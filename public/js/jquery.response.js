@@ -713,13 +713,13 @@ $(document).ready(function () {
             }
 
 
-           var form =  $('.form_chat_add').serializeArray();
+           var form =  { 'title':$('[name=chat_title]').val() , 'text':$('[name=text]').val() };
             console.log(form);
             $.ajax({
                 type:'post',
                 url:'../chat/addchatconfirm',
               //  dataType:'json',
-                data:{type_chat_mess :type_chat_mess , form: form[0]},
+                data:{type_chat_mess :type_chat_mess , form: form},
                 success: function(json){
 
                     console.log(json);

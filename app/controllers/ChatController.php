@@ -112,8 +112,26 @@ class ChatController extends ControllerBase
             $micro = new ChatMicroDialog();
             $mess = new MessageChat();
 
-            $chat->title = $_POST['form']['chat_title'];
+            $chat->title = $_POST['form']['title'];
+            $chat->created_id = $user_id;
+            $chat->save();
 
+            $chu->chat_id = $chat->id;
+            $chu->user_id = $user_id;
+            $chu->save();
+
+            $mess->chat_id = $chat->id;
+            $mess->text = $_POST['form']['text'];
+            $mess->author_id = $user_id;
+            $mess->type = $_POST['type_chat_mess'];
+            $mess->save();
+
+            $micro->chat_id = $chat->id;
+            $micro->base_mess_id = $mess->id;
+            $micro->save();
+
+            $mess->micro_dialog_id = $micro->id;
+            $mess->save();
         }
 
 

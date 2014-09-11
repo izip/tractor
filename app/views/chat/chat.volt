@@ -55,7 +55,7 @@
                         </span>
                 </div>
             </div>
-
+            {%if val['mess'] is defined and  val['mess'] is iterable%}
             {%for mess in val['mess'] %}
             <div class="full-description mess  mess_chat_micro">
                 <div class="comment">
@@ -72,6 +72,7 @@
                 </div>
             </div>
             {% endfor %}
+            {%endif%}
             {% endfor %}
             {% endif %}
 

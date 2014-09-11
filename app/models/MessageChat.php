@@ -13,7 +13,7 @@ class MessageChat extends \Phalcon\Mvc\Model
 
     public $text;
 
-
+    public $type;
     public $read;
 
     public $creation_date;

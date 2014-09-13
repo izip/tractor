@@ -399,6 +399,31 @@ class IndexController extends ControllerBase
 
         }
 
+        if ($this->session->has('auth') && $this->request->hasPost('chat_id')) {
+
+            $chat = Chat::findFirst($this->request->getPost('chat_id'));
+
+                    $user =  User::findFirst($chat->created_id);
+
+
+
+
+            $this->view->setVars(array(
+                'user_id' => $id = $user->id,
+                'first_name' => $name = (isset($user->first_name)) ? $user->first_name : false,
+                'organization' => $org = (isset($user->organization)) ? $user->organization : false,
+                'profession' => $profession = (isset($user->profession)) ? $user->profession : false,
+                'phone' => $phone = (isset($user->phone)) ? $user->phone : false,
+                'email' => $email = (isset($user->email)) ? $user->email : false,
+                'country' => $country = (isset($user->country)) ? $user->country : false,
+                'adress' => $adress = (isset($user->adress)) ? $user->adress : false,
+
+
+            ));
+
+        }
+
+
 
     }
 

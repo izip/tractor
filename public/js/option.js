@@ -96,6 +96,7 @@ $(document).ready(function () {
                 var offer_id = $('.offer.active').attr('data-offer');
                 var order_id = $('.offer.active').attr('data-order');
                 var di_id = $('.offer.active').attr('data-dialog');
+                var chat_id = $('.offer.active').attr('data-chat');
                 if(offer_id){
                 $.ajax({
                     type: 'post',
@@ -147,6 +148,25 @@ $(document).ready(function () {
                     });
 
                 }
+                if(chat_id){
+
+
+                    $.ajax({
+                        type: 'post',
+                        url: '../index/contact',
+                        data: {chat_id: chat_id},
+                        success: function (data) {
+
+                            $('.contact-left').replaceWith(data);
+                            $('.filter-left').css('z-index', '0');
+                            $('.contact-left').toggle().css('z-index', '9999999');
+                        }
+
+
+                    });
+
+                }
+
 
 
             }

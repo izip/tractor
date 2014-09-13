@@ -158,7 +158,7 @@ class ChatController extends ControllerBase
         $user_id = $this->session->get('user_id');
         if( $this->request->getPost('text')){
 
-        if($this->request->isAjax() && $this->request->getPost('micro_id')){
+        if($this->request->isAjax() && $this->request->hasPost('micro_id')){
 
         $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
         $mess = new MessageChat();
@@ -202,7 +202,7 @@ class ChatController extends ControllerBase
         $this->view->disable();
         $user_id = $this->session->get('user_id');
 
-        if($this->request->isAjax() && $this->request->getPost('chat_id')){
+        if($this->request->isAjax() && $this->request->hasPost('chat_id')){
 
             $chat = Chat::findFirst($this->request->getPost('chat_id'));
             if($chat->created_id == $user_id){
@@ -236,7 +236,7 @@ class ChatController extends ControllerBase
     {
         $this->view->disable();
 
-        if (isset($_POST['chat_id'])) {
+        if ($this->request->hasPost('chat_id')) {
 
             $chat = Chat::findFirst($_POST['chat_id']);
             $user = User::findFirst($chat->created_id);

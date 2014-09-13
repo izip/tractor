@@ -192,6 +192,7 @@ $(document).ready(function () {
 
     $(document).on('click' , '.mess_chat' , function(){
 
+        $('.mess_chat').removeClass('active');
         $(this).addClass('active');
 
 

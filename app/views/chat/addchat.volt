@@ -27,7 +27,8 @@
                     <div class="com_body no_bg ">
                         <span>
                         <span class="edit_desc"> Заголовок чата: </span>
-                        <input type="text" class="" name="chat_title">
+                       <textarea  class="info_block" name="chat_title">
+                       </textarea>
                             </span>
                         <textarea name="text" id="" class="info_block "></textarea>
                         <button type="button" id="chat_question" class="put_comment">

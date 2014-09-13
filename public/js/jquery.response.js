@@ -792,7 +792,7 @@ $(document).ready(function () {
                     type: 'post',
                     url: '../chat/addmess',
                     data: {type_mess: type_mess, chat_id: chat_id, micro_id: micro_id, text: text},
-                    dataType:'json',
+                    dataType: 'json',
                     success: function (json) {
 
 
@@ -826,19 +826,45 @@ $(document).ready(function () {
 
         //////////////////////// Удаление чата
 
-        $(document).on('click' , '.chat_del', function(){
+        $(document).on('click', '.chat_del', function () {
             var chat_id;
-            if(chat_id = $('.chat_list.active').attr('data-chat')){
+            if (chat_id = $('.chat_list.active').attr('data-chat')) {
                 $.ajax({
-                    type:'post',
-                    url:'../chat/delchat',
-                    data:{chat_id:chat_id},
-                    dataType:'json',
-                    success:function(json){
+                    type: 'post',
+                    url: '../chat/delchat',
+                    data: {chat_id: chat_id},
+                    dataType: 'json',
+                    success: function (json) {
+
+                        console.log(json);
+                        if (json.success) {
+
+                            $.ajax({
+                                type: 'post',
+                                url: '../chat',
+                                data: {chat_list: 'y'},
+                                success: function (data) {
+
+                                $('.left').replaceWith(data);
+
+                                    $.ajax({
+                                        type: 'post',
+                                        url: '../chat/chat',
+                                        data: {chat_id: $('.chat_list').first().attr('data-chat')},
+                                        success: function (data) {
+
+                                            $('.right').replaceWith(data);
+
+                                        }
 
 
-                    console.log(json);
+                                    });
 
+                                }
+
+                            });
+
+                        }
 
                     }
 

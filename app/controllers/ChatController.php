@@ -201,23 +201,33 @@ class ChatController extends ControllerBase
     {
         $this->view->disable();
         $user_id = $this->session->get('user_id');
-        print_r($_POST);
+
         if($this->request->isAjax() && $this->request->getPost('chat_id')){
 
             $chat = Chat::findFirst($this->request->getPost('chat_id'));
             if($chat->created_id == $user_id){
 
+            foreach($chat->messagechat as $mess){
 
-
+                $mess->delete();
             }
+            foreach($chat->chatmicrodialog as $micro){
+
+                $micro->delete();
+            }
+            $cht = ChatHasUser::findFirst(array('chat_id = '.$this->request->getPost('chat_id')));
+            $cht->delete();
+
+                $chat->delete();
+
+                echo json_encode(array('success' => 'Чат удален'));
+            }
+
             else{
                 echo json_encode(array('error' => 'Удалить чат может только его создатель'));
             }
 
         }
-
-
-
 
     }
 

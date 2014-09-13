@@ -701,60 +701,60 @@ $(document).ready(function () {
         });
 
 
-        $(document).on('click' , '.form_chat_add #chat_question ,.form_chat_add #chat_mess' , function(){
+        $(document).on('click', '.form_chat_add #chat_question ,.form_chat_add #chat_mess', function () {
 
             console.log($(this).attr('id'));
             var type_chat_mess;
-            if($(this).attr('id') == 'chat_question'){
-                type_chat_mess= 0;
+            if ($(this).attr('id') == 'chat_question') {
+                type_chat_mess = 0;
             }
-            else{
-                type_chat_mess =1;
+            else {
+                type_chat_mess = 1;
             }
 
 
-           var form =  { 'title':$('[name=chat_title]').val() , 'text':$('[name=text]').val() };
+            var form = { 'title': $('[name=chat_title]').val(), 'text': $('[name=text]').val() };
             console.log(form);
             $.ajax({
-                type:'post',
-                url:'../chat/addchatconfirm',
-                dataType:'json',
-                data:{type_chat_mess :type_chat_mess , form: form},
-                success: function(json){
+                type: 'post',
+                url: '../chat/addchatconfirm',
+                dataType: 'json',
+                data: {type_chat_mess: type_chat_mess, form: form},
+                success: function (json) {
 
-                   if(json.message){
+                    if (json.message) {
 
-                       generate(json.message , 'success');
+                        generate(json.message, 'success');
 
-                       $.ajax({
-                           type:'post',
-                           url:'../chat',
-                           data:{chat_list:'y'},
-                           success:function(data){
+                        $.ajax({
+                            type: 'post',
+                            url: '../chat',
+                            data: {chat_list: 'y'},
+                            success: function (data) {
 
-                               $('.left').replaceWith(data);
-
-
-                               $.ajax({
-                                   type:'post',
-                                   url:'../chat/chat',
-                                   data:{chat_id:json.chat_id},
-                                   success:function(data){
-
-                                       $('.right').replaceWith(data);
-
-                                   }
+                                $('.left').replaceWith(data);
 
 
-                               });
+                                $.ajax({
+                                    type: 'post',
+                                    url: '../chat/chat',
+                                    data: {chat_id: json.chat_id},
+                                    success: function (data) {
+
+                                        $('.right').replaceWith(data);
+
+                                    }
 
 
-                           }
+                                });
 
 
-                       });
+                            }
 
-                   }
+
+                        });
+
+                    }
 
                 }
 
@@ -766,36 +766,37 @@ $(document).ready(function () {
 
         ////////////////////////// Добавления сообщения в микродиалог
 
-        $(document).on('click' , '.add_mess_chat #chat_question , .add_mess_chat #chat_mess' ,function(){
+        $(document).on('click', '.add_mess_chat #chat_question , .add_mess_chat #chat_mess', function () {
             var type_mess;
-            if($(this).attr('id') == 'chat_question'){
-                type_mess= 0;
+            if ($(this).attr('id') == 'chat_question') {
+                type_mess = 0;
             }
-            else{
-                type_mess =1;
+            else {
+                type_mess = 1;
             }
-            var text , micro_id;
+            var text , chat_id, micro_id ;
 
-            if($('.mess_chat.active').attr('data-chat-id')){
-
+            if ($('.mess_chat.active').attr('micro-chat-id')) {
+                micro_id = $('.mess_chat.active').attr('micro-chat-id');
 
             }
-            if( text = $('.add_mess_chat [name=text]').val()){
+            if($('.add_mess_chat [name=chat_id]').val()){
+                chat_id = $('.add_mess_chat [name=chat_id]').val();
+
+            }
+            if (text = $('.add_mess_chat [name=text]').val()) {
 
 
-            $.ajax({
-                type:'post',
-                url:'../chat/addmess',
-                data:{type_mess:type_mess ,micro_id: micro_id,text: text},
-                success:function(json){
+                $.ajax({
+                    type: 'post',
+                    url: '../chat/addmess',
+                    data: {type_mess: type_mess, micro_id: micro_id, text: text},
+                    success: function (json) {
 
 
+                    }
 
-
-
-                }
-
-            });
+                });
 
             }
 

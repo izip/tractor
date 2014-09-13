@@ -70,6 +70,10 @@
 							<button class="put_call_me">
                                 <i class="fa fa-bolt b_send_request"></i>
                             </button>
+                            <button class="myoff_but b_off_kill none_active">
+                                <i class="fa fa-trash-o"></i>
+                                Удалить
+                            </button>
 						</span>
     </div>
 

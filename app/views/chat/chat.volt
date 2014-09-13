@@ -25,6 +25,7 @@
                 <form class="add_mess_chat">
                 <div class="comment ">
                     <div class="com_body no_bg ">
+                        <input type="hidden" name="chat_id" value="{{chat_id}}">
                         <textarea name="text" id="" class="info_block "></textarea>
                         <button id="chat_question" class="put_comment">
                             <i class="fa fa-question-circle"></i>
@@ -42,7 +43,7 @@
             {% if chat is iterable %}
             {%for key , val in chat %}
 
-            <div data-chat-id="{{ key }}" class="full-description mess  mess_chat">
+            <div micro-chat-id="{{ key }}" class="full-description mess  mess_chat">
                 <div class="comment">
                     {%if val['base']['type'] == 0%}
                     <i class="fa fa-question-circle"></i>

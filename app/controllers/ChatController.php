@@ -18,26 +18,26 @@ class ChatController extends ControllerBase
 
     public function indexAction()
     {
-        if($this->request->getPost('chat_list') == 'y'){
+        if ($this->request->getPost('chat_list') == 'y') {
 
             $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
         }
 
-       // $this->view->disable();
+        // $this->view->disable();
         if ($this->session->has('user_id')) {
-    $user_id = $this->session->get('user_id');
+            $user_id = $this->session->get('user_id');
         }
 
-       $user =  User::findFirst($user_id);
+        $user = User::findFirst($user_id);
 
-        foreach($user->chat as $chat){
+        foreach ($user->chat as $chat) {
 
 
-                $chats[$chat->id] = $chat->toArray();
+            $chats[$chat->id] = $chat->toArray();
 
         }
 
-       // echo '<pre>'; print_r($mes); echo '</pre>';
+        // echo '<pre>'; print_r($mes); echo '</pre>';
 
 
         $this->view->setVars(array(
@@ -51,46 +51,46 @@ class ChatController extends ControllerBase
     }
 
 
-
-    public function chatAction() {
+    public function chatAction()
+    {
 
         $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 
 
-        if($this->request->hasPost('chat_id')){
+        if ($this->request->hasPost('chat_id')) {
 
-        $chat = Chat::findFirst($this->request->getPost('chat_id'));
-
-
-            if( $chatmicrodialog = $chat->chatmicrodialog){
+            $chat = Chat::findFirst($this->request->getPost('chat_id'));
 
 
-            foreach($chatmicrodialog as $micro){
+            if ($chatmicrodialog = $chat->chatmicrodialog) {
 
 
-                foreach($micro->messagechat as $mess){
-                    if($mess->id == $micro->base_mess_id){
+                foreach ($chatmicrodialog as $micro) {
 
-                        $microd[$micro->id]['base'] = $mess->toArray();
-                    }
-                    else{
 
-                        $microd[$micro->id]['mess'][] = $mess->toArray();
+                    foreach ($micro->messagechat as $mess) {
+                        if ($mess->id == $micro->base_mess_id) {
+
+                            $microd[$micro->id]['base'] = $mess->toArray();
+                        } else {
+
+                            $microd[$micro->id]['mess'][] = $mess->toArray();
+
+                        }
+
 
                     }
 
 
                 }
 
-
-            }
-
-            //  echo '<pre>';  print_r($microd); echo '<pre>';
+                //  echo '<pre>';  print_r($microd); echo '<pre>';
             }
 
 
             $this->view->setVars(array(
-                'chat' => $microd = (isset($microd))? $microd:false
+                'chat' => $microd = (isset($microd)) ? $microd : false,
+                'chat_id' => $this->request->getPost('chat_id')
 
             ));
 
@@ -99,18 +99,21 @@ class ChatController extends ControllerBase
 
     }
 
-    public function addchatAction(){
+    public function addchatAction()
+    {
 
         $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 
 
     }
-    public function addchatconfirmAction(){
+
+    public function addchatconfirmAction()
+    {
         $this->view->disable();
 
         // print_r($_POST);
-       $user_id = $this->session->get('user_id');
-        if(isset($_POST['type_chat_mess']) && $_POST['form']['title'] && $_POST['form']['text']){
+        $user_id = $this->session->get('user_id');
+        if (isset($_POST['type_chat_mess']) && $_POST['form']['title'] && $_POST['form']['text']) {
 
             $chat = new Chat();
             $chu = new ChatHasUser();
@@ -138,41 +141,52 @@ class ChatController extends ControllerBase
             $mess->micro_dialog_id = $micro->id;
             $mess->save();
 
-            echo json_encode(array('message' => 'Тема создана' , 'chat_id' => $chat->id));
+            echo json_encode(array('message' => 'Тема создана', 'chat_id' => $chat->id));
         }
 
 
+    }
+
+
+    public function addmessAction()
+    {
+
+        $this->view->disable();
+        print_r($_POST);
+        $user_id = $this->session->get('user_id');
+        if($this->request->getPost('type_mess') && $this->request->getPost('text')){
+
+        if($this->request->getPost('micro_id')){
+            $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+        $mess = new MessageChat();
+        $mess->chat_id = $micro->chat->id;
+        $mess->text = $this->request->getPost('text');
+        $mess->type = $this->request->getPost('type_mess');
+        $mess->micro_dialog_id = $this->request->getPost('micro_id');
+        $mess->save();
+        }
+
+        }
 
 
     }
 
-
-
-    public function addmessAction(){
-
-    $this->view->disable();
-
-
-
-       print_r($_POST);
-
-
-    }
-
-    public function delchatAction(){
+    public function delchatAction()
+    {
         $this->view->disable();
 
 
     }
 
 
-    public function chat_userAction(){
+    public function chat_userAction()
+    {
         $this->view->disable();
 
-        if(isset($_POST['chat_id'])){
+        if (isset($_POST['chat_id'])) {
 
             $chat = Chat::findFirst($_POST['chat_id']);
-                  $user =   User::findFirst($chat->created_id);
+            $user = User::findFirst($chat->created_id);
             echo json_encode(array(
                 'user_id' => $user->id,
                 'user_name' => $user->first_name
@@ -180,7 +194,6 @@ class ChatController extends ControllerBase
             ));
 
         }
-
 
 
     }

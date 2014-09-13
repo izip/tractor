@@ -18,6 +18,11 @@ class ChatController extends ControllerBase
 
     public function indexAction()
     {
+        if($this->request->getPost('chat_list') == 'y'){
+
+            $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+        }
+
        // $this->view->disable();
         if ($this->session->has('user_id')) {
     $user_id = $this->session->get('user_id');
@@ -103,7 +108,7 @@ class ChatController extends ControllerBase
     public function addchatconfirmAction(){
         $this->view->disable();
 
-        print_r($_POST);
+        // print_r($_POST);
        $user_id = $this->session->get('user_id');
         if(isset($_POST['type_chat_mess']) && $_POST['form']['title'] && $_POST['form']['text']){
 
@@ -132,6 +137,8 @@ class ChatController extends ControllerBase
 
             $mess->micro_dialog_id = $micro->id;
             $mess->save();
+
+            echo json_encode(array('message' => 'Тема создана' , 'chat_id' => $chat->id));
         }
 
 
@@ -144,6 +151,10 @@ class ChatController extends ControllerBase
     public function addmessAction(){
 
     $this->view->disable();
+
+
+
+       print_r($_POST);
 
 
     }

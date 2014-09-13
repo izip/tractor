@@ -22,10 +22,10 @@
         <div class="content">
 
             <div class="full-description mess chat_add_mess">
-
+                <form class="add_mess_chat">
                 <div class="comment ">
                     <div class="com_body no_bg ">
-                        <textarea id="" class="info_block "></textarea>
+                        <textarea name="text" id="" class="info_block "></textarea>
                         <button id="chat_question" class="put_comment">
                             <i class="fa fa-question-circle"></i>
                         </button>
@@ -36,7 +36,7 @@
 
 
                 </div>
-
+                </form>
             </div>
 
             {% if chat is iterable %}

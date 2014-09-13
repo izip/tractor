@@ -718,16 +718,86 @@ $(document).ready(function () {
             $.ajax({
                 type:'post',
                 url:'../chat/addchatconfirm',
-              //  dataType:'json',
+                dataType:'json',
                 data:{type_chat_mess :type_chat_mess , form: form},
                 success: function(json){
 
-                    console.log(json);
+                   if(json.message){
+
+                       generate(json.message , 'success');
+
+                       $.ajax({
+                           type:'post',
+                           url:'../chat',
+                           data:{chat_list:'y'},
+                           success:function(data){
+
+                               $('.left').replaceWith(data);
+
+
+                               $.ajax({
+                                   type:'post',
+                                   url:'../chat/chat',
+                                   data:{chat_id:json.chat_id},
+                                   success:function(data){
+
+                                       $('.right').replaceWith(data);
+
+                                   }
+
+
+                               });
+
+
+                           }
+
+
+                       });
+
+                   }
 
                 }
 
 
             });
+
+        });
+
+
+        ////////////////////////// Добавления сообщения в микродиалог
+
+        $(document).on('click' , '.add_mess_chat #chat_question , .add_mess_chat #chat_mess' ,function(){
+            var type_mess;
+            if($(this).attr('id') == 'chat_question'){
+                type_mess= 0;
+            }
+            else{
+                type_mess =1;
+            }
+            var text , micro_id;
+
+            if($('.mess_chat.active').attr('data-chat-id')){
+
+
+            }
+            if( text = $('.add_mess_chat [name=text]').val()){
+
+
+            $.ajax({
+                type:'post',
+                url:'../chat/addmess',
+                data:{type_mess:type_mess ,micro_id: micro_id,text: text},
+                success:function(json){
+
+
+
+
+
+                }
+
+            });
+
+            }
 
         });
 

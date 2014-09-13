@@ -840,7 +840,7 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (json) {
 
-                        console.log(json);
+
                         if (json.success) {
 
                             $.ajax({
@@ -869,6 +869,9 @@ $(document).ready(function () {
                             });
 
                         }
+                        if(json.error){
+                            generate(json.error , 'error');
+                        }
 
                     }
 
@@ -879,6 +882,17 @@ $(document).ready(function () {
 
 
         });
+
+        ////////////////////////////////////// Выделение Сообщения чата
+
+        $(document).on('click' , '.mess_chat' , function(){
+
+            $('.mess_chat').removeClass('active');
+            $(this).addClass('active');
+
+
+        });
+
 
 
     }

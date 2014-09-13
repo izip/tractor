@@ -168,7 +168,7 @@ class IndexController extends ControllerBase
 //////  Конец SQL запроса дальше выборка.
 
 
-            foreach (Offers::find(array("{$inClause}" , "limit" => 25)) as $offers) {
+            foreach (Offers::find(array("{$inClause}" , 'order' => 'creation_date DESC' , "limit" => 25)) as $offers) {
 
                 if (isset($offers->image)) {
                     $im = 1;
@@ -210,9 +210,9 @@ class IndexController extends ControllerBase
                 }
             }
 
-            foreach( Categories::find(array("{$zap}")) as $cat ){
+            foreach( Categories::find(array("{$zap}" )) as $cat ){
 
-                foreach ($cat->getoffers(array("limit" => 25)) as $offers) {
+                foreach ($cat->getoffers(array('order' => 'creation_date DESC' , "limit" => 25)) as $offers) {
 
                     if (isset($offers->image)) {
                         $im = 1;

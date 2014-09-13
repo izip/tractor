@@ -79,7 +79,7 @@
                     <i class="fa fa-comments"></i>
                     {%endif%}
 
-                       <span> {%if mess['text'] is defined%}
+                       <span data-mess-id="{{ mess['id'] }}" class="mess_chat_dann"> {%if mess['text'] is defined%}
                         {{mess['text']}}
                         {%endif%}
                         </span>

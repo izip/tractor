@@ -651,8 +651,9 @@ $(document).ready(function () {
                 data: {chat_id: chat_id},
                 success: function (data) {
 
-
+                    $('.chat_list').first().addClass('active');
                     $('.right').replaceWith(data);
+
                     chat_user(chat_id);
                 }
 
@@ -764,7 +765,7 @@ $(document).ready(function () {
         });
 
 
-        ////////////////////////// Добавления сообщения в микродиалог
+        ////////////////////////// Добавления сообщения в микродиалог или создание микродиалога
 
         $(document).on('click', '.add_mess_chat #chat_question , .add_mess_chat #chat_mess', function () {
             var type_mess;
@@ -774,13 +775,13 @@ $(document).ready(function () {
             else {
                 type_mess = 1;
             }
-            var text , chat_id, micro_id ;
+            var text , chat_id, micro_id;
 
             if ($('.mess_chat.active').attr('micro-chat-id')) {
                 micro_id = $('.mess_chat.active').attr('micro-chat-id');
 
             }
-            if($('.add_mess_chat [name=chat_id]').val()){
+            if ($('.add_mess_chat [name=chat_id]').val()) {
                 chat_id = $('.add_mess_chat [name=chat_id]').val();
 
             }
@@ -790,15 +791,62 @@ $(document).ready(function () {
                 $.ajax({
                     type: 'post',
                     url: '../chat/addmess',
-                    data: {type_mess: type_mess, micro_id: micro_id, text: text},
+                    data: {type_mess: type_mess, chat_id: chat_id, micro_id: micro_id, text: text},
+                    dataType:'json',
                     success: function (json) {
 
+
+                        if (json.success) {
+
+                            generate(json.success, 'success');
+                            $.ajax({
+                                type: 'post',
+                                url: '../chat/chat',
+                                data: {chat_id: chat_id},
+                                success: function (data) {
+
+                                    $('.right').replaceWith(data);
+
+                                }
+
+
+                            });
+
+
+                        }
 
                     }
 
                 });
 
             }
+
+        });
+
+
+        //////////////////////// Удаление чата
+
+        $(document).on('click' , '.chat_del', function(){
+            var chat_id;
+            if(chat_id = $('.chat_list.active').attr('data-chat')){
+                $.ajax({
+                    type:'post',
+                    url:'../chat/delchat',
+                    data:{chat_id:chat_id},
+                    dataType:'json',
+                    success:function(json){
+
+
+                    console.log(json);
+
+
+                    }
+
+
+                });
+
+            }
+
 
         });
 

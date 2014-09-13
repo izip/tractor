@@ -18,7 +18,7 @@ class ChatController extends ControllerBase
 
     public function indexAction()
     {
-        if ($this->request->getPost('chat_list') == 'y') {
+        if ($this->request->isAjax() && $this->request->getPost('chat_list') == 'y') {
 
             $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
         }
@@ -113,7 +113,7 @@ class ChatController extends ControllerBase
 
         // print_r($_POST);
         $user_id = $this->session->get('user_id');
-        if (isset($_POST['type_chat_mess']) && $_POST['form']['title'] && $_POST['form']['text']) {
+        if ($this->request->isAjax() && isset($_POST['type_chat_mess']) && $_POST['form']['title'] && $_POST['form']['text']) {
 
             $chat = new Chat();
             $chu = new ChatHasUser();
@@ -152,28 +152,71 @@ class ChatController extends ControllerBase
     {
 
         $this->view->disable();
-        print_r($_POST);
-        $user_id = $this->session->get('user_id');
-        if($this->request->getPost('type_mess') && $this->request->getPost('text')){
 
-        if($this->request->getPost('micro_id')){
-            $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+       // print_r($_POST);
+
+        $user_id = $this->session->get('user_id');
+        if( $this->request->getPost('text')){
+
+        if($this->request->isAjax() && $this->request->getPost('micro_id')){
+
+        $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
         $mess = new MessageChat();
         $mess->chat_id = $micro->chat->id;
         $mess->text = $this->request->getPost('text');
         $mess->type = $this->request->getPost('type_mess');
         $mess->micro_dialog_id = $this->request->getPost('micro_id');
-        $mess->save();
-        }
+        $mess->author_id = $user_id;
+
+            if ($mess->save() == false) {
+                echo "Мы не можем сохранить робота прямо сейчас: \n";
+                foreach ($mess->getMessages() as $message) {
+                    echo $message, "\n";
+                }
+            }
 
         }
+        else{
+            $micro = new ChatMicroDialog();
+            $mess = new MessageChat();
+            $mess->chat_id = $this->request->getPost('chat_id');
+            $mess->text = $this->request->getPost('text');
+            $mess->type = $this->request->getPost('type_mess');
+            $mess->author_id = $user_id;
+            $mess->save();
 
+            $micro->chat_id = $this->request->getPost('chat_id');
+            $micro->base_mess_id = $mess->id;
+            $micro->save();
+            $mess->micro_dialog_id = $micro->id;
+            $mess->save();
+            }
 
+        }
+
+        echo json_encode(array('success' =>'Сохранено'));
     }
 
     public function delchatAction()
     {
         $this->view->disable();
+        $user_id = $this->session->get('user_id');
+        print_r($_POST);
+        if($this->request->isAjax() && $this->request->getPost('chat_id')){
+
+            $chat = Chat::findFirst($this->request->getPost('chat_id'));
+            if($chat->created_id == $user_id){
+
+
+
+            }
+            else{
+                echo json_encode(array('error' => 'Удалить чат может только его создатель'));
+            }
+
+        }
+
+
 
 
     }

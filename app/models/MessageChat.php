@@ -14,6 +14,7 @@ class MessageChat extends \Phalcon\Mvc\Model
     public $text;
 
     public $type;
+    public $micro_dialog_id;
     public $read;
 
     public $creation_date;

@@ -11,7 +11,20 @@
             </button>
 
         </div>
+        <div class="send_massage full-description send_me" style="display: none;">
+            <h6>
+                Личное сообщение
+            </h6>
 
+            <textarea class="info_block"></textarea>
+						<span>
+							99 символов
+						</span>
+            <button class="put_comment">
+                отправить
+            </button>
+
+        </div>
         <div class="chat_info">
 
             <span><i class="fa fa-info-circle"></i> <b>Введите текст вашего сообщения</b></span>
@@ -27,10 +40,10 @@
                     <div class="com_body no_bg ">
                         <input type="hidden" name="chat_id" value="{{chat_id}}">
                         <textarea name="text" id="" class="info_block "></textarea>
-                        <button id="chat_question" class="put_comment">
+                        <button type="button" id="chat_question" class="put_comment">
                             <i class="fa fa-question-circle"></i>
                         </button>
-                        <button id="chat_mess" class="put_comment">
+                        <button type="button" id="chat_mess" class="put_comment">
                             <i class="fa fa-comments"></i>
                         </button>
                     </div>

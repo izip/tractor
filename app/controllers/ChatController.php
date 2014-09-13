@@ -28,9 +28,9 @@ class ChatController extends ControllerBase
             $user_id = $this->session->get('user_id');
         }
 
-        $user = User::findFirst($user_id);
 
-        foreach ($user->chat as $chat) {
+
+        foreach (Chat::find(array('order' => 'creation_date DESC' , 'limit' =>10)) as $chat) {
 
 
             $chats[$chat->id] = $chat->toArray();
@@ -41,7 +41,7 @@ class ChatController extends ControllerBase
 
 
         $this->view->setVars(array(
-            'user_id' => $user->id,
+
             'chat_col' => $chat->count(),
 
             'chats' => $chats
@@ -122,6 +122,7 @@ class ChatController extends ControllerBase
 
             $chat->title = $_POST['form']['title'];
             $chat->created_id = $user_id;
+            $chat->creation_date = date("Y-m-d-H-i-s");
             $chat->save();
 
             $chu->chat_id = $chat->id;
@@ -132,16 +133,21 @@ class ChatController extends ControllerBase
             $mess->text = $_POST['form']['text'];
             $mess->author_id = $user_id;
             $mess->type = $_POST['type_chat_mess'];
+            $mess->creation_date = date("Y-m-d-H-i-s");
             $mess->save();
 
             $micro->chat_id = $chat->id;
             $micro->base_mess_id = $mess->id;
+            $micro->creation_date = date("Y-m-d-H-i-s");
             $micro->save();
 
             $mess->micro_dialog_id = $micro->id;
             $mess->save();
 
             echo json_encode(array('message' => 'Тема создана', 'chat_id' => $chat->id));
+        }
+        else{
+            echo  json_encode(array('error' => 'Заполните поле сообщения'));
         }
 
 
@@ -167,7 +173,7 @@ class ChatController extends ControllerBase
         $mess->type = $this->request->getPost('type_mess');
         $mess->micro_dialog_id = $this->request->getPost('micro_id');
         $mess->author_id = $user_id;
-
+        $mess->creation_date = date("Y-m-d-H-i-s");
             if ($mess->save() == false) {
                 echo "Мы не можем сохранить робота прямо сейчас: \n";
                 foreach ($mess->getMessages() as $message) {
@@ -183,10 +189,12 @@ class ChatController extends ControllerBase
             $mess->text = $this->request->getPost('text');
             $mess->type = $this->request->getPost('type_mess');
             $mess->author_id = $user_id;
+            $mess->creation_date = date("Y-m-d-H-i-s");
             $mess->save();
 
             $micro->chat_id = $this->request->getPost('chat_id');
             $micro->base_mess_id = $mess->id;
+            $micro->creation_date = date("Y-m-d-H-i-s");
             $micro->save();
             $mess->micro_dialog_id = $micro->id;
             $mess->save();

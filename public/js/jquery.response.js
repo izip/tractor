@@ -756,6 +756,10 @@ $(document).ready(function () {
                         });
 
                     }
+                    if(json.error){
+
+                        generate(json.error , 'error');
+                    }
 
                 }
 

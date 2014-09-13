@@ -313,7 +313,7 @@ $(document).ready(function () {
         $(document).on('click', '.add-item', function () {
             if (auth()) {
 
-                window.location = "../myoffers/index";
+                window.location = "../myoffers";
 
 
             }
@@ -420,7 +420,7 @@ $(document).ready(function () {
 
 
 /// Вывод
-    if (location.pathname == '/myoffers/index') {
+    if (location.pathname == '/myoffers') {
 
         function addoffer() {
 
@@ -528,7 +528,7 @@ $(document).ready(function () {
 
                         $.ajax({
                             type: 'post',
-                            url: '../myoffers/index',
+                            url: '../myoffers',
                             data: {up: true },
                             success: function (data) {
 
@@ -866,7 +866,7 @@ $(document).ready(function () {
 
                         $.ajax({
                             type: 'post',
-                            url: '../myoffers/index',
+                            url: '../myoffers',
                             data: {up: true },
                             success: function (data) {
 
@@ -947,14 +947,14 @@ $(document).ready(function () {
     }
 
 ////Вывод заявок
-    if (location.pathname == '/orders/index') {
+    if (location.pathname == '/orders') {
 
         $(document).on('click' ,"#cat_menu li a" , function(){
             var cat_id =  $(this).attr('data-cat');
 
                     $.ajax({
                         type: 'post',
-                        url: '../orders/index',
+                        url: '../orders',
                         data: {cat_id: cat_id},
                         success: function (data) {
                             if(data ==1){
@@ -992,7 +992,7 @@ $(document).ready(function () {
 
         $(document).on('click' , '.add-item',function(){
             if(auth()){
-            window.location = "../myorders/index";
+            window.location = "../myorders";
             }
             else{
                 generate("Пожалуйста авторизуйтесь" , "error");
@@ -1081,7 +1081,7 @@ $(document).ready(function () {
 
 // Добавление Заявок
 
-    if (location.pathname == '/myorders/index') {
+    if (location.pathname == '/myorders') {
 
         function addorder(){
 
@@ -1097,7 +1097,7 @@ $(document).ready(function () {
 
                         $.ajax({
                             type:'post',
-                            url:'../myorders/index',
+                            url:'../myorders',
                             data:{od:'y'},
                             success:function(data){
 
@@ -1284,7 +1284,7 @@ $(document).ready(function () {
                         generate('Заявка удалена', 'alert');
                         $.ajax({
                             type:'post',
-                            url:'../myorders/index',
+                            url:'../myorders',
                             data:{od:'y'},
                             success:function(data){
 

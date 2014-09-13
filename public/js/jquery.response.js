@@ -433,7 +433,7 @@ $(document).on("click", "#auth_mail", function () {
 $(document).ready(function () {
 
     /// Вывод
-    if (location.pathname == '/message/index') {
+    if (location.pathname == '/message') {
         // Начальная загрузка страницы
 
         var dialog_id = $('.mini').last().attr('data-dialog');
@@ -523,7 +523,7 @@ $(document).ready(function () {
                             generate('Контакты отправлены', 'success');
                             $.ajax({
                                 type: 'post',
-                                url: '../message/index',
+                                url: '../message',
                                 data: 'd= y',
                                 success: function (data) {
                                     $('.left').replaceWith(data);
@@ -575,7 +575,7 @@ $(document).ready(function () {
 
                     $.ajax({
                         type: 'post',
-                        url: '../message/index',
+                        url: '../message',
                         data: 'd= y',
                         success: function (data) {
                             $('.left').replaceWith(data);
@@ -641,7 +641,7 @@ function chat_user(chat_id) {
 $(document).ready(function () {
 
 
-    if (location.pathname == '/chat/index') {
+    if (location.pathname == '/chat') {
         var chat_id = $('.chat_list').first().attr('data-chat');
         console.log($('.chat_list').first().attr('data-chat'));
         if (chat_id) {

@@ -12,7 +12,7 @@
             </li><!-- Search Input HEAD END -->
             <hr/>
             <li>
-                <a href="{{ url("orders/index") }}">
+                <a href="{{ url("orders") }}">
                     <i class="fa fa-bolt  "></i>
                     <span class="hide_mob">Заявки</span>
                 </a>
@@ -30,59 +30,59 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url("option/index") }}">
+                <a href="{{ url("option") }}">
                     <i class="fa fa-cog "></i>
                     <span class="hide_mob">Настройки</span>
                 </a>
             </li>
             <hr/>
             <li>
-                <a href="{{ url("myorders/index") }}">
+                <a href="{{ url("myorders") }}">
                     <i class="fa fa-envelope-o "></i>
                     <span class="hide_mob">Мои заявки</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url("myoffers/index") }}">
+                <a href="{{ url("myoffers") }}">
                     <i class="fa fa-envelope  "></i>
                     <span class="hide_mob">Мои предложения</span>
                 </a>
             </li>
             <hr/>
             <li>
-                <a href="{{ url("message/index") }}">
+                <a href="{{ url("message") }}">
                     <i class="fa fa-folder-open-o   "></i>
                     <span class="hide_mob">Сообщения</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url("notifications/index") }}">
+                <a href="{{ url("notifications") }}">
                     <i class="fa fa-exclamation-triangle "></i>
                     <span class="hide_mob">Уведомления</span>
                 </a>
             </li>
             <hr/>
             <li>
-                <a href="{{ url("chat/index") }}">
+                <a href="{{ url("chat") }}">
                     <i class="fa fa-comment "></i>
                     <span class="hide_mob">Чат</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url("answers/index") }}">
+                <a href="{{ url("answers") }}">
                     <i class="fa fa-comments-o "></i>
                     <span class="hide_mob">Ответы</span>
                 </a>
             </li>
             <hr/>
             <li>
-                <a href="{{ url("regulations/index") }}">
+                <a href="{{ url("regulations") }}">
                     <i class="fa fa-file-text-o  "></i>
                     <span class="hide_mob">Правила</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url("contact/index") }}">
+                <a href="{{ url("contact") }}">
                     <i class="fa fa-users  "></i>
                     <span class="hide_mob">Контакты</span>
                 </a>

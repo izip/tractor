@@ -1864,7 +1864,8 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
     margin-bottom: 40px;
 }
 
-#cat_menu li.active {
+#cat_menu li.active,
+#cat_menu li:hover {
     background: #DDDDDD;
 }
 
@@ -1883,6 +1884,7 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
     line-height: 2.222;
     width: 100%;
     float: left;
+    cursor: pointer;
 }
 
 /* login page*/

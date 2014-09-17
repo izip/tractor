@@ -97,12 +97,20 @@
     </div><!-- filter-lef END  -->
 
     <div class="contact-left"></div>
-    <nav id="cat_menu" class="">
+    <nav id="cat_menu" class="cat_menu">
         <ul>
             <p class="header">Выберите категорию:</p>
 
             {{elements.getmenu()}}
 
+
+        </ul>
+    </nav>
+    <nav id="sub_cat_menu" class="cat_menu">
+        <ul>
+            <p class="header">Выберите подкатегорию:</p>
+
+            {{elements.getmenu()}}
 
         </ul>
     </nav>

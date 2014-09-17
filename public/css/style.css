@@ -1834,7 +1834,7 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
     cursor: pointer;
 }
 
-#cat_menu {
+.cat_menu {
     position: fixed;
     left: 240px;
     top: 0;
@@ -1848,28 +1848,28 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
     padding-bottom: 20px;
 }
 
-#cat_menu.right {
+.cat_menu.right {
     position: fixed;
     left: auto !important;
     right: 0 !important;
 }
 
-#cat_menu li {
+.cat_menu li {
     width: 190px;
     padding: 5px 30px;
     float: left;
 }
 
-#cat_menu li:last-child {
+.cat_menu li:last-child {
     margin-bottom: 40px;
 }
 
-#cat_menu li.active,
-#cat_menu li:hover {
+.cat_menu li.active,
+.cat_menu li:hover {
     background: #DDDDDD;
 }
 
-#cat_menu .header {
+.cat_menu .header {
     font-size: 17px;
     font-family: "PT Sans";
     color: rgb(70, 84, 94);
@@ -1877,7 +1877,7 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
     line-height: 2.222;
 }
 
-#cat_menu li a {
+.cat_menu li a {
     font-size: 14px;
     font-family: "PT Sans";
     color: rgb(70, 84, 94);

@@ -106,7 +106,7 @@
 
         </ul>
     </nav>
-    <nav id="sub_cat_menu" class="cat_menu">
+    <nav id="sub_cat_menu" class="cat_menu" style="display:none;">
         <ul>
             <p class="header">Выберите подкатегорию:</p>
 

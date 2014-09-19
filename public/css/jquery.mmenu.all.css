@@ -1697,22 +1697,18 @@ only screen and (max-device-width: 1200px) {
 }
 
 #page .right-side-head .top_title .item_title_two {
-    width: 187px;
+    width: 200px;
 }
 
 #page .right-side-head .top_title .name {
     width: 235px;
 }
 #page .right-side .content .description > div:last-child {
-    width: 187px;
+    width: 170px;
 }
-
-#page .right-side .full-description .info_block {
-    width: 89%;
-}
-.right-side .full-description .put_comment {
+/*.right-side .full-description .put_comment {
     margin-right: 10px;
-}
+}*/
 .right-side .full-description .comment .com_title .time {
     margin-right: 10px;
 }

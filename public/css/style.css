@@ -164,12 +164,15 @@ strong {
 
 #menu li.menu-head {
     width: 100% !important;
-    height: 30px !important;
+    height: 50px !important;
     padding: 10px 0 10px 20px;
     text-align: left;
     border: 0 !important;
     margin: 0 0 10px 0;
     content: none !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 #menu p.menu-head-warp {
@@ -853,7 +856,7 @@ strong {
     height: 40px;
     min-width: 45px;
     padding: 5px 10px;
-    display: block;
+    display: inline;
     background: #64B5E8;
     color: #fff;
     text-align: center;
@@ -863,7 +866,6 @@ strong {
     -moz-border-radius: 2px;
     border-radius: 2px;
     border: none;
-    float: left;
     margin-left: 10px;
 }
 
@@ -896,7 +898,7 @@ strong {
 }
 
 #page .right-side .content .top_title .item_title_two {
-    width: 200px;
+    width: 170px;
     float: left;
     padding-right: 15px;
     position: relative;
@@ -922,6 +924,9 @@ strong {
     list-style: none;
     height: auto;
     float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 #page .right-side .content .description > div {
@@ -965,13 +970,12 @@ strong {
 }
 
 #page .right-side .content .description > div:last-child {
-    width: 200px;
+    width: 195px;
     clear: right;
     padding-left: 15px;
 }
 
 #page .right-side .content .description > div p {
-    width: 250px;
     clear: right;
     margin-bottom: 10px;
 }
@@ -981,11 +985,14 @@ strong {
 }
 
 #page .right-side .content .full-description {
-    width: 95%;
+    width: 100%;
     margin-top: 10px;
-    padding: 0 0 0 5%;
+    padding: 0 5% 0 ;
     vertical-align: top;
     float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 #page .right-side .full-description h6 {
@@ -1000,11 +1007,14 @@ strong {
 }
 
 #page .right-side .full-description .info_block {
-    width: 92%;
+    width: 100%;
     float: left;
     border: 1px solid #eeeeee;
     padding: 15px 4%;
     resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .right-side .full-description .put_comment {
@@ -1029,6 +1039,9 @@ strong {
     width: 100%;
     border-bottom: 1px solid #eeeeee;
     margin-bottom: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .right-side .full-description .comment .com_title .name {
@@ -1061,6 +1074,10 @@ strong {
     background: #fff;
     z-index: 99999;
     display: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+    padding: 0 5%;
 }
 
 .send_massage.call_me {
@@ -1071,12 +1088,15 @@ strong {
     background: #fff;
     z-index: 99999;
     display: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .send_massage.call_me .b_call_me {
     background: #FFFFFF;
     border: 1px solid #EEEEEE;
-    float: left;
+    float: right;
     height: 40px;
     min-width: 45px;
     width: auto;
@@ -1150,6 +1170,9 @@ strong {
     padding: 30px 0px 0px;
     overflow: auto;
     overflow-x: hidden !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .filter-left .some_pad {
@@ -1239,6 +1262,9 @@ strong {
 .filter-left .base .floated {
     float: left;
     width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .filter-left .base li input.mini {
@@ -1897,7 +1923,7 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
 .login_block {
     width: 400px;
     float: left;
-    margin: 0 0 100px 100px !important;
+    margin: 0 0 5% 5% !important;
 }
 
 .login_btn {
@@ -1959,7 +1985,11 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
 #page .right-side-head .top_title {
     float: left;
     height: 35px;
-    padding: 15px 0 0 5%;
+    padding: 15px 5% 0 ;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 #page .right-side-head .top_title .name {
@@ -1976,14 +2006,15 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
 }
 
 #page .right-side-head .top_title .name.main_page {
-    width: 233px;
+    width: 205px;
 }
 
 #page .right-side-head .top_title .item_title_two {
-    width: 265px;
-    float: left;
+    width: 220px;
+    float: right;
     padding-right: 0px;
     position: relative;
+    text-align: right;
 }
 
 .login_block .step {
@@ -2394,7 +2425,7 @@ i.arrow {
 #page .right-side .content .full-description.styler {
     background: #FAFAFA;
     margin-top: 0;
-    padding: 10px 0 10px 5%;
+    padding: 10px 5% 10px ;
     border-bottom: 1px solid #EEEEEE;
 }
 

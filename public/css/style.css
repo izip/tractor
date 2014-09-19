@@ -970,7 +970,7 @@ strong {
 }
 
 #page .right-side .content .description > div:last-child {
-    width: 195px;
+    width: 180px;
     clear: right;
     padding-left: 15px;
 }
@@ -2013,7 +2013,7 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
 }
 
 #page .right-side-head .top_title .item_title_two {
-    width: 220px;
+    width: 210px;
     float: right;
     padding-right: 0px;
     position: relative;

@@ -71,7 +71,7 @@
             </div>
             {%if val['mess'] is defined and  val['mess'] is iterable%}
             {%for mess in val['mess'] %}
-            <div class="full-description mess  mess_chat_micro">
+            <div class="full-description mess  mess_chat_micro" data-mess-id="{{ mess['id'] }}">
                 <div class="comment">
                     {%if mess['type'] == 0%}
                     <i class="fa fa-question-circle"></i>
@@ -79,7 +79,7 @@
                     <i class="fa fa-comments"></i>
                     {%endif%}
 
-                       <span data-mess-id="{{ mess['id'] }}" class="mess_chat_dann"> {%if mess['text'] is defined%}
+                       <span  class="mess_chat_dann"> {%if mess['text'] is defined%}
                         {{mess['text']}}
                         {%endif%}
                         </span>

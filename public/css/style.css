@@ -2739,7 +2739,7 @@ i.arrow {
 
 
 
-.mess_chat.active {
+.mess_chat.active , .mess_chat_micro.active {
 
     background: #f3f3f3;
     border: 2px solid #64b5e8;
@@ -2803,11 +2803,19 @@ i.arrow {
 .chat_left .right-side-head .top_title .item_title_two {
 
     float: right!important;
+    width: 310px!important;
+
+}
+
+.chat_left .right-side-head .top_title .item_title_two .chat_del {
+
+    margin-left: 10px;
 
 }
 
 .chat_left .right-side-head .top_title .name {
     /*width:363px !important;*/
+    width: 150px;
     float: left;
 }
 

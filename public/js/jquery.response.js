@@ -831,12 +831,32 @@ $(document).ready(function () {
         //////////////////////// Удаление чата
 
         $(document).on('click', '.chat_del', function () {
-            var chat_id;
+            var chat_id, micro_id, micro_mess_id;
+            var dann = {};
+
+            ////////////////////// Удаление микродиалогов
+            if(micro_id = $('.mess_chat.active').attr('micro-chat-id')){
+
+            dann.micro_id = micro_id;
+
+            }
+            else{
+
+
+
+            ////////////////////// Удаление чатов
             if (chat_id = $('.chat_list.active').attr('data-chat')) {
+
+                dann.chat_id = chat_id;
+
+            }
+
+            }
+            if(dann.micro_id || dann.chat_id){
                 $.ajax({
                     type: 'post',
                     url: '../chat/delchat',
-                    data: {chat_id: chat_id},
+                    data: dann,
                     dataType: 'json',
                     success: function (json) {
 
@@ -877,17 +897,24 @@ $(document).ready(function () {
 
 
                 });
-
             }
+
 
 
         });
 
+
+
+
+
+
+
+
         ////////////////////////////////////// Выделение Сообщения чата
 
-        $(document).on('click' , '.mess_chat' , function(){
+        $(document).on('click' , '.mess_chat , .mess_chat_micro' , function(){
 
-            $('.mess_chat').removeClass('active');
+            $('.mess_chat , .mess_chat_micro').removeClass('active');
             $(this).addClass('active');
 
 

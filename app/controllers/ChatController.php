@@ -228,7 +228,7 @@ class ChatController extends ControllerBase
 
                 $chat->delete();
 
-                echo json_encode(array('success' => 'Чат удален'));
+                echo json_encode(array('success' => 1));
             }
 
             else{
@@ -236,6 +236,44 @@ class ChatController extends ControllerBase
             }
 
         }
+
+        if($this->request->isAjax() && $this->request->hasPost('micro_id')){
+
+           $micro =  ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+
+
+            if($micro->chat->created_id == $user_id){
+
+            foreach($micro->messagechat as $mess){
+
+                $mess->delete();
+            }
+
+            $micro->delete();
+                echo json_encode(array('success' => 1));
+            }
+            else{
+                echo json_encode(array('error' => 'Удалить микродиалог может только его создатель'));
+
+            }
+
+        }
+
+        if($this->request->isAjax() && $this->request->hasPost('micro_mess_id')){
+
+
+            $mess = MessageChat::findFirst($this->request->getPost('micro_mess_id'));
+            if($mess->author_id == $user_id){
+
+                $mess->delete();
+                echo json_encode(array('success' => 1));
+            }
+            else{
+
+                echo json_encode(array('error' => 'Удалить сообщение может только его создатель'));
+            }
+        }
+
 
     }
 

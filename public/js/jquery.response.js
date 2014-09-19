@@ -834,6 +834,13 @@ $(document).ready(function () {
             var chat_id, micro_id, micro_mess_id;
             var dann = {};
 
+            ////////////////////// Удаление сообщений в микродиалоге
+
+            if(micro_mess_id = $('.mess_chat_micro.active').attr('data-mess-id')){
+
+                dann.micro_mess_id = micro_mess_id;
+            }
+            else{
             ////////////////////// Удаление микродиалогов
             if(micro_id = $('.mess_chat.active').attr('micro-chat-id')){
 
@@ -841,8 +848,6 @@ $(document).ready(function () {
 
             }
             else{
-
-
 
             ////////////////////// Удаление чатов
             if (chat_id = $('.chat_list.active').attr('data-chat')) {
@@ -852,7 +857,8 @@ $(document).ready(function () {
             }
 
             }
-            if(dann.micro_id || dann.chat_id){
+            }
+            if(dann.micro_mess_id || dann.micro_id || dann.chat_id){
                 $.ajax({
                     type: 'post',
                     url: '../chat/delchat',

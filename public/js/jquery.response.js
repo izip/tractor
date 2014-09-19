@@ -615,13 +615,13 @@ $(document).ready(function () {
 
 //////////////////////////////////////////////////////////////////// Чат
 
-function chat_user(chat_id) {
+function chat_user(dann) {
 
     $.ajax({
         type: 'post',
         url: '../chat/chat_user',
         dataType: 'json',
-        data: {chat_id: chat_id},
+        data: dann,
         success: function (json) {
 
             if (json.user_id && json.user_name) {
@@ -642,37 +642,39 @@ $(document).ready(function () {
 
 
     if (location.pathname == '/chat') {
-        var chat_id = $('.chat_list').first().attr('data-chat');
-        console.log($('.chat_list').first().attr('data-chat'));
-        if (chat_id) {
+        var dann = {};
+        dann.chat_id = $('.chat_list').first().attr('data-chat');
+
+        if (dann.chat_id) {
             $.ajax({
                 type: 'post',
                 url: '../chat/chat',
-                data: {chat_id: chat_id},
+                data: dann,
                 success: function (data) {
 
                     $('.chat_list').first().addClass('active');
                     $('.right').replaceWith(data);
 
-                    chat_user(chat_id);
+                    chat_user(dann);
                 }
 
             });
         }
         $(document).on('click', '.chat_list', function () {
+            var dann = {};
+            dann.chat_id = $(this).attr('data-chat');
 
 
-            var chat_id = $(this).attr('data-chat');
-            if (chat_id) {
+            if (dann.chat_id) {
                 $.ajax({
                     type: 'post',
                     url: '../chat/chat',
-                    data: {chat_id: chat_id},
+                    data: dann,
                     success: function (data) {
 
 
                         $('.right').replaceWith(data);
-                        chat_user(chat_id);
+                        chat_user(dann);
                     }
 
                 });
@@ -715,7 +717,7 @@ $(document).ready(function () {
 
 
             var form = { 'title': $('[name=chat_title]').val(), 'text': $('[name=text]').val() };
-            console.log(form);
+
             $.ajax({
                 type: 'post',
                 url: '../chat/addchatconfirm',
@@ -923,6 +925,31 @@ $(document).ready(function () {
             $('.mess_chat , .mess_chat_micro').removeClass('active');
             $(this).addClass('active');
 
+            var dann = {};
+            if($(this).attr('micro-chat-id')){
+                dann.micro_id = $(this).attr('micro-chat-id');
+            }
+            else if($(this).attr('data-mess-id')){
+
+                dann.micro_mess_id = $(this).attr('data-mess-id');
+            }
+            if(dann.micro_id || dann.micro_mess_id){
+                $.ajax({
+                    type: 'post',
+                    url: '../chat/chat_user',
+                    data: dann,
+                    dataType:'json',
+                    success: function (json) {
+
+                        if (json.user_id && json.user_name) {
+                            $('.right-side-head .name').html(json.user_name);
+                            $('.right-side-head .name').attr('data-user', json.user_id);
+                        }
+                    }
+
+                });
+
+            }
 
         });
 

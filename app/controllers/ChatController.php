@@ -282,7 +282,7 @@ class ChatController extends ControllerBase
     {
         $this->view->disable();
 
-        if ($this->request->hasPost('chat_id')) {
+        if ($this->request->isAjax() && $this->request->hasPost('chat_id')) {
 
             $chat = Chat::findFirst($_POST['chat_id']);
             $user = User::findFirst($chat->created_id);
@@ -293,7 +293,28 @@ class ChatController extends ControllerBase
             ));
 
         }
+        if ($this->request->isAjax() && $this->request->hasPost('micro_id')) {
 
+            $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+
+            $user = User::findFirst($micro->chat->created_id);
+            echo json_encode(array(
+                'user_id' => $user->id,
+                'user_name' => $user->first_name
+
+            ));
+        }
+        if ($this->request->isAjax() && $this->request->hasPost('micro_mess_id')) {
+
+            $mess = MessageChat::findFirst($this->request->getPost('micro_mess_id'));
+
+            $user = User::findFirst($mess->author_id);
+            echo json_encode(array(
+                'user_id' => $user->id,
+                'user_name' => $user->first_name
+
+            ));
+        }
 
     }
 

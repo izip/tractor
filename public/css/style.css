@@ -1062,8 +1062,11 @@ strong {
 
 .right-side .full-description .comment .com_body {
     padding: 0 5%;
-    width: 90%;
+    width: 100%;
     float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .send_massage {

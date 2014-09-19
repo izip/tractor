@@ -20,10 +20,10 @@ class IndexController extends ControllerBase
             $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 
         }
-        if($this->request->hasPost('cat_id') && $this->request->isAjax()){
+        if ($this->request->hasPost('cat_id') && $this->request->isAjax()) {
             $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 
-            $cat_id  = $this->request->getPost('cat_id');
+            $cat_id = $this->request->getPost('cat_id');
         }
 
         if ($this->modelsCache->exists('filter-' . $this->session->get('user_id'))) {
@@ -39,8 +39,7 @@ class IndexController extends ControllerBase
             $rq_type += (isset($filter['price-from']) && is_numeric($filter['price-from']) && $filter['price-from'] >= 0) ? 1 : 0;
             $rq_type += (isset($filter['price-to']) && is_numeric($filter['price-to']) && $filter['price-to'] >= 0) ? 2 : 0;
             $price_id = 5;
-            switch ($rq_type)
-            {
+            switch ($rq_type) {
                 case 0: // Ничего не добавляет, пусто
                     break;
                 case 1:
@@ -54,7 +53,7 @@ class IndexController extends ControllerBase
                     break;
             }
             // 4 как код города мы здесь задаём вручную -- потом это можно будет поменять, если нужно
-            if((isset($filter['city'])) && strlen(trim($filter['city'])) > 0)
+            if ((isset($filter['city'])) && strlen(trim($filter['city'])) > 0)
                 $aDann[] = "do.field_type_id = 4 and do.dann like '%{$filter['city']}%'";
 
             // ICH -- все обработки полей вставляем здесь
@@ -62,17 +61,13 @@ class IndexController extends ControllerBase
             $rRes = $rRes1 = array();
 
 
-
-            foreach($filter as $key => $val)
-            {
-                if(preg_match('/^(to|from)fiel-(\d+)$/', $key, $rRes))
-                    $aFromTo[$rRes[2]][$rRes[1]] =  $val;
-                elseif($key == $val)
-                {
-                    if(preg_match('/^fiel-(\d+)$/', $key, $rRes1))
+            foreach ($filter as $key => $val) {
+                if (preg_match('/^(to|from)fiel-(\d+)$/', $key, $rRes))
+                    $aFromTo[$rRes[2]][$rRes[1]] = $val;
+                elseif ($key == $val) {
+                    if (preg_match('/^fiel-(\d+)$/', $key, $rRes1))
                         $aDann[] = "do.field_type_id = {$rRes1[1]} and do.dann = 'y'";
-                    else switch($key)
-                    {
+                    else switch ($key) {
                         case 'tel':
                             $aUser[] = 'u.phone is not null';
                             break;
@@ -91,14 +86,12 @@ class IndexController extends ControllerBase
             }
             // $this->elements->var_print($aFromTo);
 
-            foreach($aFromTo as $key => $val)
-            {
+            foreach ($aFromTo as $key => $val) {
                 $rq_type = 0;
-                $rq_type += (isset($filter["fromfiel-$key"]) && is_numeric($filter["fromfiel-$key"]) && $filter["fromfiel-$key"] >= 0)  ? 1 : 0;
-                $rq_type += (isset($filter["tofiel-$key"]) && is_numeric($filter["tofiel-$key"]) && $filter["tofiel-$key"] >= 0)  ? 2 : 0;
+                $rq_type += (isset($filter["fromfiel-$key"]) && is_numeric($filter["fromfiel-$key"]) && $filter["fromfiel-$key"] >= 0) ? 1 : 0;
+                $rq_type += (isset($filter["tofiel-$key"]) && is_numeric($filter["tofiel-$key"]) && $filter["tofiel-$key"] >= 0) ? 2 : 0;
 
-                switch($rq_type)
-                {
+                switch ($rq_type) {
                     case 0: // Ничего не добавляет, пусто
                         break;
 
@@ -122,14 +115,12 @@ class IndexController extends ControllerBase
             $hasDann = ($nDann > 0);
             $hasUser = (count($aUser) > 0);
             $aTabs[] = 'Offers o';
-            if ($hasDann)
-            {
+            if ($hasDann) {
                 $aTabs[] = 'DannOffers do';
                 $aOff[] = 'o.id = do.offers_id';
                 $rqDann = $this->ic->fsis($aDann, NULL, '(%s)', "\n  or ", "\n and (%s)");
             }
-            if ($hasUser)
-            {
+            if ($hasUser) {
                 $aTabs[] = 'User u';
                 $aOff[] = 'o.user_id = u.id';
             }
@@ -160,7 +151,7 @@ class IndexController extends ControllerBase
                 ->execute()
                 ->toArray();
             $a0 = array();
-            foreach($query as $val )
+            foreach ($query as $val)
                 $a0[] = $val['id'];
             $inClause = count($a0) > 0 ? 'id in (' . implode(', ', $a0) . ')' : '';
 
@@ -168,7 +159,7 @@ class IndexController extends ControllerBase
 //////  Конец SQL запроса дальше выборка.
 
 
-            foreach (Offers::find(array("{$inClause}" , 'order' => 'creation_date DESC' , "limit" => 25)) as $offers) {
+            foreach (Offers::find(array("{$inClause}", 'order' => 'creation_date DESC', "limit" => 25)) as $offers) {
 
                 if (isset($offers->image)) {
                     $im = 1;
@@ -184,35 +175,34 @@ class IndexController extends ControllerBase
                 }
             }
 
-            if(strlen($inClause) == 0){
+            if (strlen($inClause) == 0) {
                 $this->flash->error("Ничего не найдено фильтр сброшен");
 
             }
             $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
 
 
-        }  else {
-            $zap ='';
-            if(isset($cat_id) && is_numeric($cat_id)){
-                $zap =  "id = {$cat_id} or id_sub = {$cat_id}";
+        } else {
+            $zap = '';
+            if (isset($cat_id) && is_numeric($cat_id)) {
+                $zap = "id = {$cat_id} or id_sub = {$cat_id}";
                 $c_cat = 1;
 
-                foreach(Categories::find(array("{$zap}")) as $csv )
-                {
+                foreach (Categories::find(array("{$zap}")) as $csv) {
 
-                    $c_cat =$c_cat + $csv->offers->count();
+                    $c_cat = $c_cat + $csv->offers->count();
 
                 }
-                if( $c_cat == 1){
+                if ($c_cat == 1) {
                     $this->view->disable();
                     echo 1;
                     die();
                 }
             }
 
-            foreach( Categories::find(array("{$zap}" )) as $cat ){
+            foreach (Categories::find(array("{$zap}")) as $cat) {
 
-                foreach ($cat->getoffers(array('order' => 'creation_date DESC' , "limit" => 25)) as $offers) {
+                foreach ($cat->getoffers(array('order' => 'creation_date DESC', "limit" => 25)) as $offers) {
 
                     if (isset($offers->image)) {
                         $im = 1;
@@ -377,9 +367,9 @@ class IndexController extends ControllerBase
         if ($this->session->has('auth') && $this->request->hasPost('di_id')) {
 
             $dial = Dialogs::findFirst($this->request->getPost('di_id'));
-            foreach($dial->user as $users){
-                if($users->id != $this->session->get('user_id')){
-                   $user =  User::findFirst($users->id);
+            foreach ($dial->user as $users) {
+                if ($users->id != $this->session->get('user_id')) {
+                    $user = User::findFirst($users->id);
                 }
 
             }
@@ -399,13 +389,10 @@ class IndexController extends ControllerBase
 
         }
 
-        if ($this->session->has('auth') && $this->request->hasPost('chat_id')) {
-
-            $chat = Chat::findFirst($this->request->getPost('chat_id'));
-
-                    $user =  User::findFirst($chat->created_id);
+        if ($this->session->has('auth') && $this->request->hasPost('user_id')) {
 
 
+            $user = User::findFirst($this->request->getPost('user_id'));
 
 
             $this->view->setVars(array(
@@ -422,7 +409,6 @@ class IndexController extends ControllerBase
             ));
 
         }
-
 
 
     }

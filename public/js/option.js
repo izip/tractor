@@ -29,8 +29,8 @@ function auth() {
 }
 
 // Авдополнение городов
-function autocomplete(name){
-    var substringMatcher = function(strs) {
+function autocomplete(name) {
+    var substringMatcher = function (strs) {
         return function findMatches(q, cb) {
             var matches, substringRegex;
 
@@ -41,10 +41,10 @@ function autocomplete(name){
             substrRegex = new RegExp(q, 'i');
 
 
-            $.each(strs, function(i, str) {
+            $.each(strs, function (i, str) {
                 if (substrRegex.test(str)) {
 
-                    matches.push({ value: str });
+                    matches.push({value: str});
                 }
             });
 
@@ -77,9 +77,6 @@ function autocomplete(name){
     });
 
 
-
-
-
 }
 
 // Вывод контактов
@@ -96,23 +93,23 @@ $(document).ready(function () {
                 var offer_id = $('.offer.active').attr('data-offer');
                 var order_id = $('.offer.active').attr('data-order');
                 var di_id = $('.offer.active').attr('data-dialog');
-                var chat_id = $('.offer.active').attr('data-chat');
-                if(offer_id){
-                $.ajax({
-                    type: 'post',
-                    url: '../index/contact',
-                    data: {offer_id: offer_id},
-                    success: function (data) {
+                var chat_user_id = $('.chat_left .name').attr('data-user');
+                if (offer_id) {
+                    $.ajax({
+                        type: 'post',
+                        url: '../index/contact',
+                        data: {offer_id: offer_id},
+                        success: function (data) {
 
-                        $('.contact-left').replaceWith(data);
-                        $('.filter-left').css('z-index', '0');
-                        $('.contact-left').toggle().css('z-index', '9999999');
-                    }
+                            $('.contact-left').replaceWith(data);
+                            $('.filter-left').css('z-index', '0');
+                            $('.contact-left').toggle().css('z-index', '9999999');
+                        }
 
 
-                });
+                    });
                 }
-                if(order_id){
+                if (order_id) {
 
 
                     $.ajax({
@@ -130,7 +127,7 @@ $(document).ready(function () {
                     });
 
                 }
-                if(di_id){
+                if (di_id) {
 
 
                     $.ajax({
@@ -148,13 +145,13 @@ $(document).ready(function () {
                     });
 
                 }
-                if(chat_id){
+                if (chat_user_id) {
 
 
                     $.ajax({
                         type: 'post',
                         url: '../index/contact',
-                        data: {chat_id: chat_id},
+                        data: {user_id: chat_user_id},
                         success: function (data) {
 
                             $('.contact-left').replaceWith(data);
@@ -166,7 +163,6 @@ $(document).ready(function () {
                     });
 
                 }
-
 
 
             }
@@ -193,22 +189,22 @@ $(document).ready(function () {
 
 /// Вывод предложений
 //    Фото
-    $(document).on('click' , '.mini_prev' , function(){
-        try{
-            var imga =  $('.images a').attr('href').match(/ig-([0-9])/g)[0].replace('ig-','');
-            var imb =  $('.images a img').attr('src').match(/um-([0-9])/g)[0].replace('um-','');
-            var imgref = $(this).attr('src').match(/ll-([0-9])/g)[0].replace('ll-','');
-            var imgreft =  $('.images a').attr('href').replace('image-big-'+imga+'.jpg','image-big-'+imgref+'.jpg');
-            var imgrefs =  $('.images a img').attr('src').replace('image-medium-'+imb+'.jpg','image-medium-'+imgref+'.jpg');
-            if(imgreft && imgrefs){
-                $('.images a').attr('href',imgreft);
-                $('.images a img').attr('src',imgrefs);
+    $(document).on('click', '.mini_prev', function () {
+        try {
+            var imga = $('.images a').attr('href').match(/ig-([0-9])/g)[0].replace('ig-', '');
+            var imb = $('.images a img').attr('src').match(/um-([0-9])/g)[0].replace('um-', '');
+            var imgref = $(this).attr('src').match(/ll-([0-9])/g)[0].replace('ll-', '');
+            var imgreft = $('.images a').attr('href').replace('image-big-' + imga + '.jpg', 'image-big-' + imgref + '.jpg');
+            var imgrefs = $('.images a img').attr('src').replace('image-medium-' + imb + '.jpg', 'image-medium-' + imgref + '.jpg');
+            if (imgreft && imgrefs) {
+                $('.images a').attr('href', imgreft);
+                $('.images a img').attr('src', imgrefs);
 
 
                 MagicZoomPlus.refresh();
             }
         }
-        catch (e){
+        catch (e) {
 
             // console.log(e);
 
@@ -218,49 +214,48 @@ $(document).ready(function () {
     if (location.pathname == '/' || location.pathname == '/index/index') {
 
 
-        $(document).on('click' ,"#cat_menu li a" , function(){
-            var cat_id =  $(this).attr('data-cat');
-        if(!$(this).parents("#cat_menu").hasClass('left90')){
+        $(document).on('click', "#cat_menu li a", function () {
+            var cat_id = $(this).attr('data-cat');
+            if (!$(this).parents("#cat_menu").hasClass('left90')) {
 
-            if(cat_id != undefined){
+                if (cat_id != undefined) {
 
-                $.ajax({
-                    type: 'post',
-                    url: '../',
-                    data: 'cat_id=' + cat_id,
-                    success: function (data) {
-                        if(data ==1){
-                            generate("В данной категории пока нет предложений" , "alert");
-                        }
-                        else{
-                        $('.left').replaceWith(data);
-                     var offer_id  = $('.offer').eq(0).attr('data-offer');
-                        if(offer_id){
-                        $.ajax({
-                            type: 'post',
-                            url: '../index/offer',
-                            data: 'offer=' + offer_id,
-                            success: function (data) {
-
-                                $('.right').replaceWith(data);
-                                $('.offer').eq(0).addClass('active');
-                                MagicZoomPlus.refresh();
-                                $('#left-side-head').scrollToFixed();
-
-
+                    $.ajax({
+                        type: 'post',
+                        url: '../',
+                        data: 'cat_id=' + cat_id,
+                        success: function (data) {
+                            if (data == 1) {
+                                generate("В данной категории пока нет предложений", "alert");
                             }
+                            else {
+                                $('.left').replaceWith(data);
+                                var offer_id = $('.offer').eq(0).attr('data-offer');
+                                if (offer_id) {
+                                    $.ajax({
+                                        type: 'post',
+                                        url: '../index/offer',
+                                        data: 'offer=' + offer_id,
+                                        success: function (data) {
+
+                                            $('.right').replaceWith(data);
+                                            $('.offer').eq(0).addClass('active');
+                                            MagicZoomPlus.refresh();
+                                            $('#left-side-head').scrollToFixed();
 
 
-                        });
+                                        }
+
+
+                                    });
+                                }
+                            }
                         }
-                        }
-                    }
 
-                });
+                    });
+                }
             }
-}
         });
-
 
 
         $.ajax({
@@ -289,14 +284,14 @@ $(document).ready(function () {
                 data: 'offer=' + offer_id,
                 success: function (data) {
 
-                    if($('.right-side-head').hasClass('left580')){
+                    if ($('.right-side-head').hasClass('left580')) {
 
                         $('.right').replaceWith(data);
                         $('.right-side-head, #right-side').addClass('left580');
                         $('.right-side-head, #right-side ').addClass('right250');
                     }
-                    else{
-                    $('.right').replaceWith(data);
+                    else {
+                        $('.right').replaceWith(data);
                     }
                     MagicZoomPlus.refresh();
                 }
@@ -306,8 +301,6 @@ $(document).ready(function () {
 
 
         });
-
-
 
 
         $(document).on('click', '.add-item', function () {
@@ -333,8 +326,8 @@ $(document).ready(function () {
         /// Комментирование предложений
 
         $(document).on('click', '.comments .put_comment', function () {
-            if(auth())
-            var comm = $('.comm').val();
+            if (auth())
+                var comm = $('.comm').val();
             var offer = $('.comm').attr('data-offer');
             if (comm && offer) {
                 $.ajax({
@@ -353,13 +346,11 @@ $(document).ready(function () {
 
                 });
             }
-            else{
+            else {
 
-                generate('Для комментирования вы должны быть авторизованы','error');
+                generate('Для комментирования вы должны быть авторизованы', 'error');
             }
         });
-
-
 
 
     }
@@ -367,44 +358,44 @@ $(document).ready(function () {
 
     // Отправка сообшения пользователю предложения
 
-        $(document).on('click' , '.send_massage.full-description.send_me .put_comment',function(){
-            var text = $('.send_massage.full-description.send_me textarea').val();
-            var user_id = $('.name.main_page').attr('data-user');
-            if(text && user_id){
+    $(document).on('click', '.send_massage.full-description.send_me .put_comment', function () {
+        var text = $('.send_massage.full-description.send_me textarea').val();
+        var user_id = $('.name.main_page').attr('data-user');
+        if (text && user_id) {
             $.ajax({
-                type:'post',
-                url:'../message/adddialog',
-                data:{user_id: user_id , text: text},
-                success:function(data){
-                if(data ==1){
-                    generate('Сообщение отправлено' , 'success');
+                type: 'post',
+                url: '../message/adddialog',
+                data: {user_id: user_id, text: text},
+                success: function (data) {
+                    if (data == 1) {
+                        generate('Сообщение отправлено', 'success');
+                    }
+                    else {
+                        generate('Нельзя отправить сообщение самому себе', 'error');
+                    }
                 }
-                else{
-                    generate('Нельзя отправить сообщение самому себе' , 'error');
-                }
-            }
 
             });
-                $('.send_massage.send_me').toggle('slow');
-             }
+            $('.send_massage.send_me').toggle('slow');
+        }
 
-        });
+    });
 
 
-    $(document).on('click' , '.send_massage.full-description.call_me .b_call_me',function(){
+    $(document).on('click', '.send_massage.full-description.call_me .b_call_me', function () {
 
         var user_id = $('.name.main_page').attr('data-user');
-        if( user_id){
+        if (user_id) {
             $.ajax({
-                type:'post',
-                url:'../message/adddialog',
-                data:{user_id: user_id ,dn:'y'},
-                success:function(data){
-                    if(data ==1){
-                        generate('Контакты отправлены' , 'success');
+                type: 'post',
+                url: '../message/adddialog',
+                data: {user_id: user_id, dn: 'y'},
+                success: function (data) {
+                    if (data == 1) {
+                        generate('Контакты отправлены', 'success');
                     }
-                    else{
-                        generate('Нельзя отправить сообщение самому себе' , 'error');
+                    else {
+                        generate('Нельзя отправить сообщение самому себе', 'error');
                     }
                 }
 
@@ -413,7 +404,6 @@ $(document).ready(function () {
         }
 
     });
-
 
 
     //// Работа с предложениями.
@@ -430,7 +420,8 @@ $(document).ready(function () {
                     selected: 'Выбраны: $file',
                     denied: 'Неверный тип файла: $ext!',
                     duplicate: 'Этот файл уже выбран:\n$file!'
-                }});
+                }
+            });
 
             $('.addoffer').ajaxForm({
 
@@ -470,8 +461,8 @@ $(document).ready(function () {
                 data: '',
                 success: function (data) {
 
-                        $('.right').replaceWith(data);
-                        addoffer();
+                    $('.right').replaceWith(data);
+                    addoffer();
 
                 }
             });
@@ -481,7 +472,7 @@ $(document).ready(function () {
         $(document).on('click', '.offer', function () {
 
             var offer_id = $(this).attr('data-offer');
-          //  console.log(location.hostname + '/index/offer');
+            //  console.log(location.hostname + '/index/offer');
 
             $.ajax({
                 type: 'post',
@@ -514,7 +505,8 @@ $(document).ready(function () {
                     selected: 'Выбраны: $file',
                     denied: 'Неверный тип файла: $ext!',
                     duplicate: 'Этот файл уже выбран:\n$file!'
-                }});
+                }
+            });
 
             $('.addoffer').ajaxForm({
 
@@ -529,7 +521,7 @@ $(document).ready(function () {
                         $.ajax({
                             type: 'post',
                             url: '../myoffers',
-                            data: {up: true },
+                            data: {up: true},
                             success: function (data) {
 
                                 $('.myofferpage').replaceWith(data);
@@ -541,7 +533,7 @@ $(document).ready(function () {
                                     success: function (data) {
 
                                         $('.right').replaceWith(data);
-                                        $('.offer[data-offer='+mess.offer_id+']').addClass('active');
+                                        $('.offer[data-offer=' + mess.offer_id + ']').addClass('active');
 
                                     }
 
@@ -603,36 +595,35 @@ $(document).ready(function () {
                 data: '',
                 success: function (data) {
 
-                        $('.right').replaceWith(data);
+                    $('.right').replaceWith(data);
 
                     autocomplete("[name=city]");
 
-                        var cat_id = $('[name=cat_id]').val();
+                    var cat_id = $('[name=cat_id]').val();
 
-                        if(cat_id ){
-                            $.ajax({
-                                type: 'post',
-                                url: '../myoffers/catf',
-                                data: {cat_id: cat_id,c:'y'},
-                                success: function (data) {
+                    if (cat_id) {
+                        $.ajax({
+                            type: 'post',
+                            url: '../myoffers/catf',
+                            data: {cat_id: cat_id, c: 'y'},
+                            success: function (data) {
 
-                                    $('.catf').replaceWith(data);
+                                $('.catf').replaceWith(data);
 
-                                }
+                            }
 
 
+                        });
+                        $.ajax({
+                            type: 'post',
+                            url: '../myoffers/subcat',
+                            data: {cat_id: cat_id},
+                            success: function (data) {
 
-                            });
-                            $.ajax({
-                                type: 'post',
-                                url: '../myoffers/subcat',
-                                data: {cat_id: cat_id},
-                                success: function (data) {
-
-                                    $('.subcat').replaceWith(data);
-                                    selects();
-                                    var sub_cat_id = $('[name=sub_cat_id]').val();
-                                    if(sub_cat_id){
+                                $('.subcat').replaceWith(data);
+                                selects();
+                                var sub_cat_id = $('[name=sub_cat_id]').val();
+                                if (sub_cat_id) {
                                     $.ajax({
                                         type: 'post',
                                         url: '../myoffers/catf',
@@ -645,15 +636,15 @@ $(document).ready(function () {
 
                                     });
 
-                                    }
-
                                 }
 
-                            });
+                            }
 
-                        }
-                        addoffer();
-                        selects();
+                        });
+
+                    }
+                    addoffer();
+                    selects();
 
                 }
 
@@ -669,7 +660,7 @@ $(document).ready(function () {
 
             var cat_id = $(this).val();
 
-            if(cat_id){
+            if (cat_id) {
                 $.ajax({
                     type: 'post',
                     url: '../myoffers/subcat',
@@ -681,7 +672,6 @@ $(document).ready(function () {
                     }
 
 
-
                 });
             }
 
@@ -689,49 +679,46 @@ $(document).ready(function () {
 
         $(document).on('change', '[name=sub_cat_id] , [name=cat_id]', function () {
 
-            if($(this).attr('name') == 'cat_id'){
-            var cat_id = $(this).val();
+            if ($(this).attr('name') == 'cat_id') {
+                var cat_id = $(this).val();
 
-                if(cat_id){
+                if (cat_id) {
                     $.ajax({
                         type: 'post',
                         url: '../myoffers/catf',
-                        data: {cat_id: cat_id,c:'y'},
+                        data: {cat_id: cat_id, c: 'y'},
                         success: function (data) {
 
                             $('.catf').replaceWith(data);
                             var sub_cat_id = $('[name=sub_cat_id]').val();
-                            if(sub_cat_id){
-                            $.ajax({
-                                type: 'post',
-                                url: '../myoffers/catf',
-                                data: {cat_id: sub_cat_id},
-                                success: function (data) {
+                            if (sub_cat_id) {
+                                $.ajax({
+                                    type: 'post',
+                                    url: '../myoffers/catf',
+                                    data: {cat_id: sub_cat_id},
+                                    success: function (data) {
 
-                                    $('.dop_f').replaceWith(data);
+                                        $('.dop_f').replaceWith(data);
 
-                                }
+                                    }
 
 
-
-                            });
+                                });
                             }
 
                         }
 
 
-
                     });
 
 
+                }
 
             }
-
-            }
-            else{
+            else {
 
                 var cat_id = $(this).val();
-                if(cat_id){
+                if (cat_id) {
                     $.ajax({
                         type: 'post',
                         url: '../myoffers/catf',
@@ -743,16 +730,12 @@ $(document).ready(function () {
                         }
 
 
-
                     });
                 }
 
             }
 
         });
-
-
-
 
 
 //// Форма предложения
@@ -867,7 +850,7 @@ $(document).ready(function () {
                         $.ajax({
                             type: 'post',
                             url: '../myoffers',
-                            data: {up: true },
+                            data: {up: true},
                             success: function (data) {
 
                                 $('.myofferpage').replaceWith(data);
@@ -899,7 +882,6 @@ $(document).ready(function () {
 
 
                     }
-
 
 
                 });
@@ -939,9 +921,7 @@ $(document).ready(function () {
             }
 
 
-
         });
-
 
 
     }
@@ -949,56 +929,56 @@ $(document).ready(function () {
 ////Вывод заявок
     if (location.pathname == '/orders') {
 
-        $(document).on('click' ,"#cat_menu li a" , function(){
-            var cat_id =  $(this).attr('data-cat');
+        $(document).on('click', "#cat_menu li a", function () {
+            var cat_id = $(this).attr('data-cat');
 
-                    $.ajax({
-                        type: 'post',
-                        url: '../orders',
-                        data: {cat_id: cat_id},
-                        success: function (data) {
-                            if(data ==1){
-                                generate("В данной категории пока нет Заявок" , "alert");
-                            }
-                            else{
-                                $('.left').replaceWith($(data).find('.left'));
-                                var order_id  = $('.offer').eq(0).attr('data-offer');
-                                if(order_id){
-                                    $.ajax({
-                                        type: 'post',
-                                        url: '../orders/order',
-                                        data: 'order=' + order_id,
-                                        success: function (data) {
+            $.ajax({
+                type: 'post',
+                url: '../orders',
+                data: {cat_id: cat_id},
+                success: function (data) {
+                    if (data == 1) {
+                        generate("В данной категории пока нет Заявок", "alert");
+                    }
+                    else {
+                        $('.left').replaceWith($(data).find('.left'));
+                        var order_id = $('.offer').eq(0).attr('data-offer');
+                        if (order_id) {
+                            $.ajax({
+                                type: 'post',
+                                url: '../orders/order',
+                                data: 'order=' + order_id,
+                                success: function (data) {
 
-                                            $('.right').replaceWith(data);
-                                            $('.offer').eq(0).addClass('active');
+                                    $('.right').replaceWith(data);
+                                    $('.offer').eq(0).addClass('active');
 
-                                            $('#left-side-head').scrollToFixed();
-
-
-                                        }
+                                    $('#left-side-head').scrollToFixed();
 
 
-                                    });
                                 }
-                            }
-                        }
 
-                    });
+
+                            });
+                        }
+                    }
+                }
+
+            });
 
 
         });
 
 
-        $(document).on('click' , '.add-item',function(){
-            if(auth()){
-            window.location = "../myorders";
+        $(document).on('click', '.add-item', function () {
+            if (auth()) {
+                window.location = "../myorders";
             }
-            else{
-                generate("Пожалуйста авторизуйтесь" , "error");
-                setTimeout(function(){
+            else {
+                generate("Пожалуйста авторизуйтесь", "error");
+                setTimeout(function () {
                     window.location = "../user/auth";
-                },1000)
+                }, 1000)
 
             }
         });
@@ -1020,7 +1000,7 @@ $(document).ready(function () {
             });
 
         }
-        else{
+        else {
             $('.add-item').click();
 
         }
@@ -1048,30 +1028,30 @@ $(document).ready(function () {
 
         $(document).on('click', '.put_comment', function () {
 
-            if(auth()){
-            var comm = $('.comm').val();
-            var order = $('.comm').attr('data-order');
-            if (comm && order) {
-                $.ajax({
-                    type: 'post',
-                    url: '../orders/comments',
-                    data: {comm: comm, order: order},
-                    success: function (data) {
+            if (auth()) {
+                var comm = $('.comm').val();
+                var order = $('.comm').attr('data-order');
+                if (comm && order) {
+                    $.ajax({
+                        type: 'post',
+                        url: '../orders/comments',
+                        data: {comm: comm, order: order},
+                        success: function (data) {
 
-                        generate('Комментарий добавлен', 'success');
-                        $('.comments').replaceWith(data);
-                        $('.comm').val('');
-
-
-                    }
+                            generate('Комментарий добавлен', 'success');
+                            $('.comments').replaceWith(data);
+                            $('.comm').val('');
 
 
-                });
+                        }
+
+
+                    });
+                }
             }
-        }
-          else{
+            else {
 
-                generate('Для комментирования вы должны быть авторизованы','error');
+                generate('Для комментирования вы должны быть авторизованы', 'error');
 
             }
 
@@ -1083,7 +1063,7 @@ $(document).ready(function () {
 
     if (location.pathname == '/myorders') {
 
-        function addorder(){
+        function addorder() {
 
             $('.addorder').ajaxForm({
 
@@ -1096,20 +1076,20 @@ $(document).ready(function () {
                         generate(mess.success, 'success');
 
                         $.ajax({
-                            type:'post',
-                            url:'../myorders',
-                            data:{od:'y'},
-                            success:function(data){
+                            type: 'post',
+                            url: '../myorders',
+                            data: {od: 'y'},
+                            success: function (data) {
 
                                 $('.order-page').replaceWith(data);
 
                                 $.ajax({
-                                    type:'post',
-                                    url:'../myorders/order',
-                                    data:{order:mess.order_id},
-                                    success:function(data){
+                                    type: 'post',
+                                    url: '../myorders/order',
+                                    data: {order: mess.order_id},
+                                    success: function (data) {
                                         $('.right').replaceWith(data);
-                                        $('.offer[data-order='+mess.order_id+']').addClass('active');
+                                        $('.offer[data-order=' + mess.order_id + ']').addClass('active');
                                     }
                                 });
 
@@ -1135,7 +1115,6 @@ $(document).ready(function () {
         }
 
 
-
         $(document).on('click', '.add-item', function () {
             $.ajax({
                 type: 'post',
@@ -1143,9 +1122,9 @@ $(document).ready(function () {
                 data: {},
                 success: function (data) {
 
-                        $('.right').replaceWith(data);
-                        addorder();
-                        selects();
+                    $('.right').replaceWith(data);
+                    addorder();
+                    selects();
 
 
                 }
@@ -1155,7 +1134,6 @@ $(document).ready(function () {
 
 
         });
-
 
 
         var order = $('.offer').eq(0).attr('data-order');
@@ -1175,7 +1153,7 @@ $(document).ready(function () {
             });
 
         }
-        else{
+        else {
             $('.add-item').click();
 
         }
@@ -1207,7 +1185,7 @@ $(document).ready(function () {
 
             var cat_id = $(this).val();
 
-            if(cat_id){
+            if (cat_id) {
                 $.ajax({
                     type: 'post',
                     url: '../myorders/subcat',
@@ -1219,22 +1197,17 @@ $(document).ready(function () {
                     }
 
 
-
                 });
             }
 
         });
 
 
-
-
-
 /// Обработка формы заявки
 
-        $(document).on('click' , '.b_post_order' , function(){
+        $(document).on('click', '.b_post_order', function () {
 
             $('.addorder').submit();
-
 
 
         });
@@ -1249,7 +1222,7 @@ $(document).ready(function () {
 
         /// Редактирование заявок
 
-        $(document).on('click' , '.b_off_change' , function(){
+        $(document).on('click', '.b_off_change', function () {
 
             var order = $('.offer.active').attr('data-order');
             $.ajax({
@@ -1266,42 +1239,41 @@ $(document).ready(function () {
             });
 
 
-
         });
 
 
         //Удаление заявок
-        $(document).on('click' , '.b_off_kill' , function(){
+        $(document).on('click', '.b_off_kill', function () {
 
             var order = $('.offer.active').attr('data-order');
-            if(order) {
+            if (order) {
                 $.ajax({
-                   type:'post',
-                   url:'../myorders/delorder',
-                   data:{order:order},
-                    success:function(data){
+                    type: 'post',
+                    url: '../myorders/delorder',
+                    data: {order: order},
+                    success: function (data) {
 
                         generate('Заявка удалена', 'alert');
                         $.ajax({
-                            type:'post',
-                            url:'../myorders',
-                            data:{od:'y'},
-                            success:function(data){
+                            type: 'post',
+                            url: '../myorders',
+                            data: {od: 'y'},
+                            success: function (data) {
 
                                 $('.order-page').replaceWith(data);
                                 order = $('.offer').eq(0).attr('data-order');
-                                if(order){
-                                $.ajax({
-                                    type:'post',
-                                    url:'../myorders/order',
-                                    data:{order:order},
-                                    success:function(data){
-                                        $('.right').replaceWith(data);
-                                        $('.offer').eq(0).addClass('active');
-                                    }
-                                });
+                                if (order) {
+                                    $.ajax({
+                                        type: 'post',
+                                        url: '../myorders/order',
+                                        data: {order: order},
+                                        success: function (data) {
+                                            $('.right').replaceWith(data);
+                                            $('.offer').eq(0).addClass('active');
+                                        }
+                                    });
                                 }
-                                else{
+                                else {
                                     $('.add-item').click();
 
                                 }
@@ -1309,7 +1281,6 @@ $(document).ready(function () {
 
 
                         });
-
 
 
                     }
@@ -1349,26 +1320,25 @@ $(document).ready(function () {
             }
 
 
-
         });
 
 
         // Отправка сообшения пользователю предложения
 
-        $(document).on('click' , '.send_massage.full-description.send_me .put_comment',function(){
+        $(document).on('click', '.send_massage.full-description.send_me .put_comment', function () {
             var text = $('.send_massage.full-description.send_me textarea').val();
             var user_id = $('.name.main_page').attr('data-user');
-            if(text && user_id){
+            if (text && user_id) {
                 $.ajax({
-                    type:'post',
-                    url:'../message/adddialog',
-                    data:{user_id: user_id , text: text},
-                    success:function(data){
-                        if(data ==1){
-                            generate('Сообщение отправлено' , 'success');
+                    type: 'post',
+                    url: '../message/adddialog',
+                    data: {user_id: user_id, text: text},
+                    success: function (data) {
+                        if (data == 1) {
+                            generate('Сообщение отправлено', 'success');
                         }
-                        else{
-                            generate('Нельзя отправить сообщение самому себе' , 'error');
+                        else {
+                            generate('Нельзя отправить сообщение самому себе', 'error');
                         }
 
                     }
@@ -1380,20 +1350,20 @@ $(document).ready(function () {
         });
 
 
-        $(document).on('click' , '.send_massage.full-description.call_me .b_call_me',function(){
+        $(document).on('click', '.send_massage.full-description.call_me .b_call_me', function () {
 
             var user_id = $('.name.main_page').attr('data-user');
-            if( user_id){
+            if (user_id) {
                 $.ajax({
-                    type:'post',
-                    url:'../message/adddialog',
-                    data:{user_id: user_id ,dn:'y'},
-                    success:function(data){
-                        if(data ==1){
-                            generate('Контакты отправлены' , 'success');
+                    type: 'post',
+                    url: '../message/adddialog',
+                    data: {user_id: user_id, dn: 'y'},
+                    success: function (data) {
+                        if (data == 1) {
+                            generate('Контакты отправлены', 'success');
                         }
-                        else{
-                            generate('Нельзя отправить сообщение самому себе' , 'error');
+                        else {
+                            generate('Нельзя отправить сообщение самому себе', 'error');
                         }
                     }
 
@@ -1402,7 +1372,6 @@ $(document).ready(function () {
             }
 
         });
-
 
 
     }

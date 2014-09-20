@@ -59,9 +59,9 @@
             <div micro-chat-id="{{ key }}" class="full-description mess  mess_chat">
                 <div class="comment">
                     {%if val['base']['type'] == 0%}
-                    <i class="fa fa-question-circle"></i>
+                    <i mess-type="1" class="fa fa-question-circle"></i>
                     {% else %}
-                    <i class="fa fa-comments"></i>
+                    <i mess-type="2" class="fa fa-comments"></i>
                     {%endif%}
                        <span> {%if val['base']['text'] is defined%}
                         {{val['base']['text']}}
@@ -74,9 +74,9 @@
             <div class="full-description mess  mess_chat_micro" data-mess-id="{{ mess['id'] }}">
                 <div class="comment">
                     {%if mess['type'] == 0%}
-                    <i class="fa fa-question-circle"></i>
+                    <i mess-type="1" class="fa fa-question-circle"></i>
                     {% else %}
-                    <i class="fa fa-comments"></i>
+                    <i mess-type="2" class="fa fa-comments"></i>
                     {%endif%}
 
                        <span class="mess_chat_dann"> {%if mess['text'] is defined%}

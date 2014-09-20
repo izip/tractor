@@ -28,6 +28,7 @@ class ChatMicroDialog extends \Phalcon\Mvc\Model
      *
      * @var string
      */
+    public $created_id;
     public $creation_date;
 
 

@@ -8,7 +8,13 @@
         k.init = function () {
             f = f || {};
             k.byPassKeys = [9, 16, 17, 18, 36, 37, 38, 39, 40, 91];
-            k.translation = {0: {pattern: /\d/}, 9: {pattern: /\d/, optional: !0}, "#": {pattern: /\d/, recursive: !0}, A: {pattern: /[a-zA-Z0-9]/}, S: {pattern: /[a-zA-Z]/}};
+            k.translation = {
+                0: {pattern: /\d/},
+                9: {pattern: /\d/, optional: !0},
+                "#": {pattern: /\d/, recursive: !0},
+                A: {pattern: /[a-zA-Z0-9]/},
+                S: {pattern: /[a-zA-Z]/}
+            };
             k.translation = g.extend({}, k.translation, f.translation);
             k = g.extend(!0, {}, k, f);
             a.each(function () {
@@ -19,17 +25,18 @@
                 d.val(d.getMasked())
             })
         };
-        var d = {getCaret: function () {
-            var c;
-            c = 0;
-            var b = a.get(0), d = document.selection, e = b.selectionStart;
-            if (d && !~navigator.appVersion.indexOf("MSIE 10"))b.focus(), c = d.createRange(), c.moveStart("character", -b.value.length), c = c.text.length; else if (e || "0" === e)c = e;
-            return c
-        }, setCaret: function (c) {
-            var b;
-            b = a.get(0);
-            b.setSelectionRange ? (b.focus(), b.setSelectionRange(c, c)) : b.createTextRange && (b = b.createTextRange(), b.collapse(!0), b.moveEnd("character", c), b.moveStart("character", c), b.select())
-        },
+        var d = {
+            getCaret: function () {
+                var c;
+                c = 0;
+                var b = a.get(0), d = document.selection, e = b.selectionStart;
+                if (d && !~navigator.appVersion.indexOf("MSIE 10"))b.focus(), c = d.createRange(), c.moveStart("character", -b.value.length), c = c.text.length; else if (e || "0" === e)c = e;
+                return c
+            }, setCaret: function (c) {
+                var b;
+                b = a.get(0);
+                b.setSelectionRange ? (b.focus(), b.setSelectionRange(c, c)) : b.createTextRange && (b = b.createTextRange(), b.collapse(!0), b.moveEnd("character", c), b.moveStart("character", c), b.select())
+            },
             events: function () {
                 a.on("keydown.mask", function () {
                     x = d.val()
@@ -59,7 +66,7 @@
             }, getMasked: function (a) {
                 var b = [], g = d.val(), e = 0, p = h.length, l = 0, s = g.length, m = 1, t = "push", q = -1, n, u;
                 f.reverse ? (t = "unshift", m = -1, n = 0, e = p - 1, l = s - 1, u = function () {
-                    return-1 < e && -1 < l
+                    return -1 < e && -1 < l
                 }) : (n = p - 1, u = function () {
                     return e < p && l < s
                 });
@@ -80,7 +87,8 @@
                 if (!0 === g && "function" === typeof f.onChange)f.onChange(b, c, a, f);
                 if (!0 === g && "function" === typeof f.onKeyPress)f.onKeyPress(b, c, a, f);
                 if ("function" === typeof f.onComplete && b.length === h.length)f.onComplete(b, c, a, f)
-            }};
+            }
+        };
         k.remove = function () {
             d.destroyEvents();
             d.val(k.getCleanVal()).removeAttr("maxlength")
@@ -239,7 +247,7 @@ function valid_form(form) {
 
             var phone = $(elem).val();
             valid_phone = (/^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/.test(phone) === true &&
-                /^\s*$/.test(phone) === false);
+            /^\s*$/.test(phone) === false);
 
             if (!valid_phone) {
                 $(elem).css("border-color", "#FC0505");
@@ -351,7 +359,7 @@ $(document).on("click", "#auth_phone", function () {
 
     var phone = $("#auth-phoneForm [name=login_phone]").val();
     valid_phone = (/^(\+?\d+)?\s*(\(\d+\))?[\s-]*([\d-]*)$/.test(phone) === true &&
-        /^\s*$/.test(phone) === false);
+    /^\s*$/.test(phone) === false);
 
     if (!valid_phone) {
         $("#auth-phoneForm [name=login_phone]").css("border-color", "#FC0505");
@@ -602,7 +610,8 @@ $(document).ready(function () {
                     });
 
 
-                }});
+                }
+            });
 
         });
 
@@ -716,7 +725,7 @@ $(document).ready(function () {
             }
 
 
-            var form = { 'title': $('[name=chat_title]').val(), 'text': $('[name=text]').val() };
+            var form = {'title': $('[name=chat_title]').val(), 'text': $('[name=text]').val()};
 
             $.ajax({
                 type: 'post',
@@ -758,9 +767,9 @@ $(document).ready(function () {
                         });
 
                     }
-                    if(json.error){
+                    if (json.error) {
 
-                        generate(json.error , 'error');
+                        generate(json.error, 'error');
                     }
 
                 }
@@ -781,7 +790,7 @@ $(document).ready(function () {
             else {
                 type_mess = 1;
             }
-            var text , chat_id, micro_id;
+            var text, chat_id, micro_id;
 
             if ($('.mess_chat.active').attr('micro-chat-id')) {
                 micro_id = $('.mess_chat.active').attr('micro-chat-id');
@@ -838,29 +847,29 @@ $(document).ready(function () {
 
             ////////////////////// Удаление сообщений в микродиалоге
 
-            if(micro_mess_id = $('.mess_chat_micro.active').attr('data-mess-id')){
+            if (micro_mess_id = $('.mess_chat_micro.active').attr('data-mess-id')) {
 
                 dann.micro_mess_id = micro_mess_id;
             }
-            else{
-            ////////////////////// Удаление микродиалогов
-            if(micro_id = $('.mess_chat.active').attr('micro-chat-id')){
+            else {
+                ////////////////////// Удаление микродиалогов
+                if (micro_id = $('.mess_chat.active').attr('micro-chat-id')) {
 
-            dann.micro_id = micro_id;
+                    dann.micro_id = micro_id;
 
+                }
+                else {
+
+                    ////////////////////// Удаление чатов
+                    if (chat_id = $('.chat_list.active').attr('data-chat')) {
+
+                        dann.chat_id = chat_id;
+
+                    }
+
+                }
             }
-            else{
-
-            ////////////////////// Удаление чатов
-            if (chat_id = $('.chat_list.active').attr('data-chat')) {
-
-                dann.chat_id = chat_id;
-
-            }
-
-            }
-            }
-            if(dann.micro_mess_id || dann.micro_id || dann.chat_id){
+            if (dann.micro_mess_id || dann.micro_id || dann.chat_id) {
                 $.ajax({
                     type: 'post',
                     url: '../chat/delchat',
@@ -870,19 +879,25 @@ $(document).ready(function () {
 
 
                         if (json.success) {
+                            if (json.chat_id) {
+                                chat_id = json.chat_id;
+                            }
+                            else {
 
+                                chat_id = $('.chat_list').first().attr('data-chat');
+                            }
                             $.ajax({
                                 type: 'post',
                                 url: '../chat',
                                 data: {chat_list: 'y'},
                                 success: function (data) {
 
-                                $('.left').replaceWith(data);
+                                    $('.left').replaceWith(data);
 
                                     $.ajax({
                                         type: 'post',
                                         url: '../chat/chat',
-                                        data: {chat_id: $('.chat_list').first().attr('data-chat')},
+                                        data: {chat_id: chat_id},
                                         success: function (data) {
 
                                             $('.right').replaceWith(data);
@@ -897,8 +912,8 @@ $(document).ready(function () {
                             });
 
                         }
-                        if(json.error){
-                            generate(json.error , 'error');
+                        if (json.error) {
+                            generate(json.error, 'error');
                         }
 
                     }
@@ -908,37 +923,30 @@ $(document).ready(function () {
             }
 
 
-
         });
-
-
-
-
-
-
 
 
         ////////////////////////////////////// Выделение Сообщения чата
 
-        $(document).on('click' , '.mess_chat , .mess_chat_micro' , function(){
+        $(document).on('click', '.mess_chat , .mess_chat_micro', function () {
 
             $('.mess_chat , .mess_chat_micro').removeClass('active');
             $(this).addClass('active');
 
             var dann = {};
-            if($(this).attr('micro-chat-id')){
+            if ($(this).attr('micro-chat-id')) {
                 dann.micro_id = $(this).attr('micro-chat-id');
             }
-            else if($(this).attr('data-mess-id')){
+            else if ($(this).attr('data-mess-id')) {
 
                 dann.micro_mess_id = $(this).attr('data-mess-id');
             }
-            if(dann.micro_id || dann.micro_mess_id){
+            if (dann.micro_id || dann.micro_mess_id) {
                 $.ajax({
                     type: 'post',
                     url: '../chat/chat_user',
                     data: dann,
-                    dataType:'json',
+                    dataType: 'json',
                     success: function (json) {
 
                         if (json.user_id && json.user_name) {
@@ -952,7 +960,6 @@ $(document).ready(function () {
             }
 
         });
-
 
 
     }

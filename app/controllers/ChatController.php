@@ -29,8 +29,7 @@ class ChatController extends ControllerBase
         }
 
 
-
-        foreach (Chat::find(array('order' => 'creation_date DESC' , 'limit' =>10)) as $chat) {
+        foreach (Chat::find(array('order' => 'creation_date DESC', 'limit' => 10)) as $chat) {
 
 
             $chats[$chat->id] = $chat->toArray();
@@ -138,6 +137,7 @@ class ChatController extends ControllerBase
 
             $micro->chat_id = $chat->id;
             $micro->base_mess_id = $mess->id;
+            $micro->created_id = $user_id;
             $micro->creation_date = date("Y-m-d-H-i-s");
             $micro->save();
 
@@ -145,9 +145,8 @@ class ChatController extends ControllerBase
             $mess->save();
 
             echo json_encode(array('message' => 'Тема создана', 'chat_id' => $chat->id));
-        }
-        else{
-            echo  json_encode(array('error' => 'Заполните поле сообщения'));
+        } else {
+            echo json_encode(array('error' => 'Заполните поле сообщения'));
         }
 
 
@@ -159,50 +158,50 @@ class ChatController extends ControllerBase
 
         $this->view->disable();
 
-       // print_r($_POST);
+        // print_r($_POST);
 
         $user_id = $this->session->get('user_id');
-        if( $this->request->getPost('text')){
+        if ($this->request->getPost('text')) {
 
-        if($this->request->isAjax() && $this->request->hasPost('micro_id')){
+            if ($this->request->isAjax() && $this->request->hasPost('micro_id')) {
 
-        $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
-        $mess = new MessageChat();
-        $mess->chat_id = $micro->chat->id;
-        $mess->text = $this->request->getPost('text');
-        $mess->type = $this->request->getPost('type_mess');
-        $mess->micro_dialog_id = $this->request->getPost('micro_id');
-        $mess->author_id = $user_id;
-        $mess->creation_date = date("Y-m-d-H-i-s");
-            if ($mess->save() == false) {
-                echo "Мы не можем сохранить робота прямо сейчас: \n";
-                foreach ($mess->getMessages() as $message) {
-                    echo $message, "\n";
+                $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+                $mess = new MessageChat();
+                $mess->chat_id = $micro->chat->id;
+                $mess->text = $this->request->getPost('text');
+                $mess->type = $this->request->getPost('type_mess');
+                $mess->micro_dialog_id = $this->request->getPost('micro_id');
+                $mess->author_id = $user_id;
+                $mess->creation_date = date("Y-m-d-H-i-s");
+                if ($mess->save() == false) {
+                    echo "Мы не можем сохранить  прямо сейчас: \n";
+                    foreach ($mess->getMessages() as $message) {
+                        echo $message, "\n";
+                    }
                 }
+
+            } else {
+                $micro = new ChatMicroDialog();
+                $mess = new MessageChat();
+                $mess->chat_id = $this->request->getPost('chat_id');
+                $mess->text = $this->request->getPost('text');
+                $mess->type = $this->request->getPost('type_mess');
+                $mess->author_id = $user_id;
+                $mess->creation_date = date("Y-m-d-H-i-s");
+                $mess->save();
+
+                $micro->chat_id = $this->request->getPost('chat_id');
+                $micro->base_mess_id = $mess->id;
+                $micro->created_id = $user_id;
+                $micro->creation_date = date("Y-m-d-H-i-s");
+                $micro->save();
+                $mess->micro_dialog_id = $micro->id;
+                $mess->save();
             }
 
         }
-        else{
-            $micro = new ChatMicroDialog();
-            $mess = new MessageChat();
-            $mess->chat_id = $this->request->getPost('chat_id');
-            $mess->text = $this->request->getPost('text');
-            $mess->type = $this->request->getPost('type_mess');
-            $mess->author_id = $user_id;
-            $mess->creation_date = date("Y-m-d-H-i-s");
-            $mess->save();
 
-            $micro->chat_id = $this->request->getPost('chat_id');
-            $micro->base_mess_id = $mess->id;
-            $micro->creation_date = date("Y-m-d-H-i-s");
-            $micro->save();
-            $mess->micro_dialog_id = $micro->id;
-            $mess->save();
-            }
-
-        }
-
-        echo json_encode(array('success' =>'Сохранено'));
+        echo json_encode(array('success' => 'Сохранено'));
     }
 
     public function delchatAction()
@@ -210,65 +209,62 @@ class ChatController extends ControllerBase
         $this->view->disable();
         $user_id = $this->session->get('user_id');
 
-        if($this->request->isAjax() && $this->request->hasPost('chat_id')){
+        if ($this->request->isAjax() && $this->request->hasPost('chat_id')) {
 
             $chat = Chat::findFirst($this->request->getPost('chat_id'));
-            if($chat->created_id == $user_id){
+            if ($chat->created_id == $user_id) {
 
-            foreach($chat->messagechat as $mess){
+                foreach ($chat->messagechat as $mess) {
 
-                $mess->delete();
-            }
-            foreach($chat->chatmicrodialog as $micro){
+                    $mess->delete();
+                }
+                foreach ($chat->chatmicrodialog as $micro) {
 
-                $micro->delete();
-            }
-            $cht = ChatHasUser::findFirst(array('chat_id = '.$this->request->getPost('chat_id')));
-            $cht->delete();
+                    $micro->delete();
+                }
+                $cht = ChatHasUser::findFirst(array('chat_id = ' . $this->request->getPost('chat_id')));
+                $cht->delete();
 
                 $chat->delete();
 
                 echo json_encode(array('success' => 1));
-            }
-
-            else{
+            } else {
                 echo json_encode(array('error' => 'Удалить чат может только его создатель'));
             }
 
         }
 
-        if($this->request->isAjax() && $this->request->hasPost('micro_id')){
+        if ($this->request->isAjax() && $this->request->hasPost('micro_id')) {
 
-           $micro =  ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+            $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
+            $chat_id = $micro->chat->id;
 
+            if ($micro->created_id == $user_id) {
 
-            if($micro->chat->created_id == $user_id){
+                foreach ($micro->messagechat as $mess) {
 
-            foreach($micro->messagechat as $mess){
+                    $mess->delete();
+                }
 
-                $mess->delete();
-            }
-
-            $micro->delete();
-                echo json_encode(array('success' => 1));
-            }
-            else{
+                $micro->delete();
+                echo json_encode(array('success' => 1 , 'chat_id' => $chat_id));
+            } else {
                 echo json_encode(array('error' => 'Удалить микродиалог может только его создатель'));
 
             }
 
         }
 
-        if($this->request->isAjax() && $this->request->hasPost('micro_mess_id')){
+        if ($this->request->isAjax() && $this->request->hasPost('micro_mess_id')) {
 
 
             $mess = MessageChat::findFirst($this->request->getPost('micro_mess_id'));
-            if($mess->author_id == $user_id){
+            $chat_id = $mess->chatmicrodialog->chat->id;
+            if ($mess->author_id == $user_id) {
 
                 $mess->delete();
-                echo json_encode(array('success' => 1));
-            }
-            else{
+                echo json_encode(array('success' => 1 , 'chat_id' => $chat_id));
+            } else {
 
                 echo json_encode(array('error' => 'Удалить сообщение может только его создатель'));
             }
@@ -297,7 +293,7 @@ class ChatController extends ControllerBase
 
             $micro = ChatMicroDialog::findFirst($this->request->getPost('micro_id'));
 
-            $user = User::findFirst($micro->chat->created_id);
+            $user = User::findFirst($micro->created_id);
             echo json_encode(array(
                 'user_id' => $user->id,
                 'user_name' => $user->first_name

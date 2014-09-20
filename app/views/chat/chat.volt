@@ -36,20 +36,20 @@
 
             <div class="full-description mess chat_add_mess">
                 <form class="add_mess_chat">
-                <div class="comment ">
-                    <div class="com_body no_bg ">
-                        <input type="hidden" name="chat_id" value="{{chat_id}}">
-                        <textarea name="text" id="" class="info_block "></textarea>
-                        <button type="button" id="chat_question" class="put_comment">
-                            <i class="fa fa-question-circle"></i>
-                        </button>
-                        <button type="button" id="chat_mess" class="put_comment">
-                            <i class="fa fa-comments"></i>
-                        </button>
+                    <div class="comment ">
+                        <div class="com_body no_bg ">
+                            <input type="hidden" name="chat_id" value="{{chat_id}}">
+                            <textarea name="text" id="" class="info_block "></textarea>
+                            <button type="button" id="chat_question" class="put_comment">
+                                <i class="fa fa-question-circle"></i>
+                            </button>
+                            <button type="button" id="chat_mess" class="put_comment">
+                                <i class="fa fa-comments"></i>
+                            </button>
+                        </div>
+
+
                     </div>
-
-
-                </div>
                 </form>
             </div>
 
@@ -69,7 +69,7 @@
                         </span>
                 </div>
             </div>
-            {%if val['mess'] is defined and  val['mess'] is iterable%}
+            {%if val['mess'] is defined and val['mess'] is iterable%}
             {%for mess in val['mess'] %}
             <div class="full-description mess  mess_chat_micro" data-mess-id="{{ mess['id'] }}">
                 <div class="comment">
@@ -79,7 +79,7 @@
                     <i class="fa fa-comments"></i>
                     {%endif%}
 
-                       <span  class="mess_chat_dann"> {%if mess['text'] is defined%}
+                       <span class="mess_chat_dann"> {%if mess['text'] is defined%}
                         {{mess['text']}}
                         {%endif%}
                         </span>

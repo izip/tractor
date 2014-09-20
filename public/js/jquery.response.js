@@ -715,7 +715,7 @@ $(document).ready(function () {
 
         $(document).on('click', '.form_chat_add #chat_question ,.form_chat_add #chat_mess', function () {
 
-            console.log($(this).attr('id'));
+
             var type_chat_mess;
             if ($(this).attr('id') == 'chat_question') {
                 type_chat_mess = 0;
@@ -783,30 +783,35 @@ $(document).ready(function () {
         ////////////////////////// Добавления сообщения в микродиалог или создание микродиалога
 
         $(document).on('click', '.add_mess_chat #chat_question , .add_mess_chat #chat_mess', function () {
-            var type_mess;
+
+            var dann = {};
             if ($(this).attr('id') == 'chat_question') {
-                type_mess = 0;
+                dann.type_mess = 0;
             }
             else {
-                type_mess = 1;
+                dann.type_mess = 1;
             }
-            var text, chat_id, micro_id;
+
+
 
             if ($('.mess_chat.active').attr('micro-chat-id')) {
-                micro_id = $('.mess_chat.active').attr('micro-chat-id');
+                dann.micro_id = $('.mess_chat.active').attr('micro-chat-id');
+                if($('.mess_chat.active i').attr('mess-type') == dann.type_mess){
+                    dann.type_mess = $('.mess_chat.active i').attr('mess-type');
+                }
 
             }
             if ($('.add_mess_chat [name=chat_id]').val()) {
-                chat_id = $('.add_mess_chat [name=chat_id]').val();
+                dann.chat_id = $('.add_mess_chat [name=chat_id]').val();
 
             }
-            if (text = $('.add_mess_chat [name=text]').val()) {
+            if (dann.text = $('.add_mess_chat [name=text]').val()) {
 
 
                 $.ajax({
                     type: 'post',
                     url: '../chat/addmess',
-                    data: {type_mess: type_mess, chat_id: chat_id, micro_id: micro_id, text: text},
+                    data: dann,
                     dataType: 'json',
                     success: function (json) {
 
@@ -817,7 +822,7 @@ $(document).ready(function () {
                             $.ajax({
                                 type: 'post',
                                 url: '../chat/chat',
-                                data: {chat_id: chat_id},
+                                data: {chat_id: dann.chat_id},
                                 success: function (data) {
 
                                     $('.right').replaceWith(data);

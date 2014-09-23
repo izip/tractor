@@ -64,7 +64,7 @@ class OptionController extends ControllerBase
     public function confirmAction() {
         $this->view->disable();
 
-        print_r($_POST);
+       // print_r($_POST);
         $user_id = $this->session->get('user_id');
         $user =  User::findFirst($user_id);
         foreach($_POST as $key_field => $field){
@@ -86,57 +86,61 @@ class OptionController extends ControllerBase
 
                 $user->email = $field;
             }
-            if($key_field == 'password'){
 
+            if($key_field == 'password' && strlen($field) >= 3){
 
+               // echo strlen($field);
+                $user->password = $this->security->hash($field);
             }
+
+
             if($key_field == 'phone'){
 
-
+                $user->phone = $field;
             }
             if($key_field == 'location'){
-
+                $user->location = $field;
 
             }
             if($key_field == 'adress'){
 
-
+                $user->adress = $field;
             }
             if($key_field == 'country'){
 
-
+                $user->country = $field;
             }
             if($key_field == 'organization'){
-
+                $user->organization = $field;
 
             }
             if($key_field == 'profession'){
-
+                $user->profession = $field;
 
             }
             if($key_field == 'sex'){
-
+                $user->sex = $field;
 
             }
             if($key_field == 'vkontakte'){
 
-
+                $user->vkontakte = $field;
             }
             if($key_field == 'facebook'){
-
+                $user->facebook = $field;
 
             }
             if($key_field == 'icq'){
-
+                $user->icq = $field;
 
             }
             if($key_field == 'skype'){
-
+                $user->skype = $field;
 
             }
             if($key_field == 'birthdate'){
 
-
+                $user->birthdate = $field;
             }
 
 
@@ -144,8 +148,14 @@ class OptionController extends ControllerBase
 
         }
 
-        $user->save();
+        if($user->save()){
+            echo json_encode(array('success' =>'Ваши данные сохранены !'));
 
+        }
+            else{
+
+                echo json_encode(array('error' =>'Ошибка сохранения !'));
+            }
     }
 
 }

@@ -81,7 +81,7 @@
             {% endif %}
             {% if(key == 'adress') %}
             <li>
-                <span class="text-field">Адресс</span> <span class="prof-input">{{ text_field(key, "value": val, "size": 32) }}</span>
+                <span class="text-field">Адрес</span> <span class="prof-input">{{ text_field(key, "value": val, "size": 32) }}</span>
 
             </li>
             {% endif %}

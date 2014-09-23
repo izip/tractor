@@ -81,7 +81,7 @@ function autocomplete(name) {
 
 // Вывод контактов
 $(document).ready(function () {
-    console.log(window.location.hash);
+   // console.log(window.location.hash);
 
 
     $(document).on('click', '.b_contacts', function () {
@@ -1401,7 +1401,7 @@ $(document).ready(function () {
 
     /////// Профиль пользователя
     if (location.pathname == '/option') {
-
+        autocomplete("[name=country]");
         $('.form_profile_submit').on('click',function(){
 
 
@@ -1409,17 +1409,25 @@ $(document).ready(function () {
                 type:'post',
                 url:'../option/confirm',
                 data:$('.form_profile').serialize(),
-               // dataType:'json',
+                dataType:'json',
                 success:function(json){
 
                     console.log(json);
+                    if(json.success){
+
+                        generate(json.success , 'success');
+                    }
+                    else if(json.error){
+
+                        generate(json.error , 'error');
+                    }
 
 
                 }
 
 
 
-            })
+            });
 
         });
 

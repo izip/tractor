@@ -2637,9 +2637,23 @@ i.arrow {
     margin: 8px 20px 0 0;
 
 }
+#profile form {
 
+    margin:0;
+    padding: 0;
+}
 #profile .profile-head {
-    border-radius: 0 0 0 0;
+    width: 39.85%;
+    height: 70px;
+    position: fixed;
+
+    overflow: hidden;
+    background: #fff;
+    border-left: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    z-index: 9999;
+
+
     padding: 5px 20px 5px 20px;
     width: 100%;
     height: 40px;
@@ -2657,8 +2671,14 @@ i.arrow {
     width: 100%;
     height: 100%;
 
-    max-width: 800px;
+    max-width: 830px;
+margin: 40px 0 0 0!important;
+}
 
+#profile .right-side .profile-content{
+
+
+    min-height: 800px;
 }
 
 #profile .profile-content ul {

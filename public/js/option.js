@@ -81,6 +81,8 @@ function autocomplete(name) {
 
 // Вывод контактов
 $(document).ready(function () {
+    console.log(window.location.hash);
+
 
     $(document).on('click', '.b_contacts', function () {
 
@@ -216,11 +218,11 @@ $(document).ready(function () {
 //////////////////////// Меню предложений
         $(document).on('click', "#cat_menu li a , #sub_cat_menu li a", function () {
             var dann = {};
-            if($(this).attr('data-cat')){
+            if ($(this).attr('data-cat')) {
 
                 dann.cat_id = $(this).attr('data-cat');
             }
-           else if($(this).attr('sub-cat')){
+            else if ($(this).attr('sub-cat')) {
                 dann.cat_id = $(this).attr('data-cat');
                 dann.sub_cat = 'y';
             }
@@ -315,7 +317,7 @@ $(document).ready(function () {
         $(document).on('click', '.add-item', function () {
             if (auth()) {
 
-                window.location = "../myoffers";
+                window.location = "../myoffers#add";
 
 
             }
@@ -663,6 +665,11 @@ $(document).ready(function () {
 
         });
 
+        if(window.location.hash == '#add'){
+            $('.add-item').click();
+        }
+
+
         // Категории
 
         $(document).on('change', '[name=cat_id]', function () {
@@ -981,7 +988,7 @@ $(document).ready(function () {
 
         $(document).on('click', '.add-item', function () {
             if (auth()) {
-                window.location = "../myorders";
+                window.location = "../myorders#add";
             }
             else {
                 generate("Пожалуйста авторизуйтесь", "error");
@@ -1013,6 +1020,8 @@ $(document).ready(function () {
             $('.add-item').click();
 
         }
+
+
 
         $(document).on('click', '.offer', function () {
             var order = $(this).attr('data-order');
@@ -1379,6 +1388,38 @@ $(document).ready(function () {
                 });
                 $('.send_me, .aftersend_massage').hide('slow');
             }
+
+        });
+
+
+    }
+
+    if(window.location.hash == '#add'){
+
+      setTimeout(function(){$('.add-item').click()} ,100);
+    }
+
+    /////// Профиль пользователя
+    if (location.pathname == '/option') {
+
+        $('.form_profile_submit').on('click',function(){
+
+
+            $.ajax({
+                type:'post',
+                url:'../option/confirm',
+                data:$('.form_profile').serialize(),
+               // dataType:'json',
+                success:function(json){
+
+                    console.log(json);
+
+
+                }
+
+
+
+            })
 
         });
 

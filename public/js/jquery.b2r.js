@@ -96,7 +96,10 @@ $(document).ready(function () {
         $(this).addClass('actived');
 
     });
+    $('#menu ').on('mouseenter',function(){
 
+        $('.cat_menu').hide();
+    });
     $('#cat_menu , #sub_cat_menu').mouseleave(function () {
 
         if ($(this).attr('id') == 'sub_cat_menu') {

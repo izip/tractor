@@ -60,5 +60,93 @@ class OptionController extends ControllerBase
 
 }
 
+
+    public function confirmAction() {
+        $this->view->disable();
+
+        print_r($_POST);
+        $user_id = $this->session->get('user_id');
+        $user =  User::findFirst($user_id);
+        foreach($_POST as $key_field => $field){
+            if($key_field == 'first_name' && strlen($field) >3){
+
+            $user->first_name = $field;
+            }
+
+            if($key_field == 'last_name' && strlen($field) >3){
+
+                $user->last_name = $field;
+            }
+
+            if($key_field == 'patronym'){
+
+                $user->patronym = $field;
+            }
+            if($key_field == 'email'){
+
+                $user->email = $field;
+            }
+            if($key_field == 'password'){
+
+
+            }
+            if($key_field == 'phone'){
+
+
+            }
+            if($key_field == 'location'){
+
+
+            }
+            if($key_field == 'adress'){
+
+
+            }
+            if($key_field == 'country'){
+
+
+            }
+            if($key_field == 'organization'){
+
+
+            }
+            if($key_field == 'profession'){
+
+
+            }
+            if($key_field == 'sex'){
+
+
+            }
+            if($key_field == 'vkontakte'){
+
+
+            }
+            if($key_field == 'facebook'){
+
+
+            }
+            if($key_field == 'icq'){
+
+
+            }
+            if($key_field == 'skype'){
+
+
+            }
+            if($key_field == 'birthdate'){
+
+
+            }
+
+
+
+
+        }
+
+        $user->save();
+
+    }
+
 }
 ?>

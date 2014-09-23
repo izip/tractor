@@ -213,17 +213,25 @@ $(document).ready(function () {
 
     if (location.pathname == '/' || location.pathname == '/index/index') {
 
+//////////////////////// Меню предложений
+        $(document).on('click', "#cat_menu li a , #sub_cat_menu li a", function () {
+            var dann = {};
+            if($(this).attr('data-cat')){
 
-        $(document).on('click', "#cat_menu li a", function () {
-            var cat_id = $(this).attr('data-cat');
+                dann.cat_id = $(this).attr('data-cat');
+            }
+           else if($(this).attr('sub-cat')){
+                dann.cat_id = $(this).attr('data-cat');
+                dann.sub_cat = 'y';
+            }
             if (!$(this).parents("#cat_menu").hasClass('left90')) {
 
-                if (cat_id != undefined) {
+                if (dann.cat_id != undefined) {
 
                     $.ajax({
                         type: 'post',
                         url: '../',
-                        data: 'cat_id=' + cat_id,
+                        data: dann,
                         success: function (data) {
                             if (data == 1) {
                                 generate("В данной категории пока нет предложений", "alert");
@@ -255,6 +263,7 @@ $(document).ready(function () {
                     });
                 }
             }
+
         });
 
 

@@ -25,6 +25,23 @@ class Elements extends Phalcon\Mvc\User\Component
         return $text;
 }
 
+    public function getsubmenu()
+    {
+        $text = '';
+        $tyc = Categories::find(array("id_sub > 0"));
+
+        foreach ($tyc->toArray() as $category) {
+
+
+
+            $text .= '<li ><a data-cat="'.$category['id'].'" sub-cat="'.$category['id_sub'].'">'.
+                $category['name'].' </a> </li>';
+
+        }
+
+        return $text;
+    }
+
     function generate_password($number)
     {
         $arr = array('a','b','c','d','e','f',

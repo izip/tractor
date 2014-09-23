@@ -11,7 +11,8 @@
                 </p>
             </li><!-- Search Input HEAD END -->
             <hr/>
-            <li>
+
+            <li >
                 <a href="{{ url("orders") }}">
                     <i class="fa fa-bolt  "></i>
                     <span class="hide_mob">Заявки</span>
@@ -106,11 +107,11 @@
 
         </ul>
     </nav>
-    <nav id="sub_cat_menu" class="cat_menu" style="display:none;">
+    <nav id="sub_cat_menu" class="cat_menu">
         <ul>
             <p class="header">Выберите подкатегорию:</p>
 
-            {{elements.getmenu()}}
+            {{elements.getsubmenu()}}
 
         </ul>
     </nav>

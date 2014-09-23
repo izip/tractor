@@ -25,9 +25,10 @@
                 <form class="form_chat_add">
                 <div class="comment ">
                     <div class="com_body no_bg ">
+
                         <span>
-                        <span class="edit_desc"> Заголовок чата: </span>
-                       <textarea  class="info_block" name="chat_title"></textarea>
+
+                       <textarea  class="info_block" name="chat_title">Заголовок чата:</textarea>
                             </span>
                         <textarea name="text" id="" class="info_block "></textarea>
                         <button type="button" id="chat_question" class="put_comment">

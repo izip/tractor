@@ -711,18 +711,22 @@ $(document).ready(function () {
 
 
         });
+        $(document).on('click','.form_chat_add [name=chat_title]', function(){
 
+            $(this).empty();
+
+        });
 
         $(document).on('click', '.form_chat_add #chat_question ,.form_chat_add #chat_mess', function () {
 
 
-            var type_chat_mess;
-            if ($(this).attr('id') == 'chat_question') {
-                type_chat_mess = 0;
-            }
-            else {
-                type_chat_mess = 1;
-            }
+            var type_chat_mess =0;
+            //if ($(this).attr('id') == 'chat_question') {
+            //    type_chat_mess = 0;
+            //}
+            //else {
+            //    type_chat_mess = 1;
+            //}
 
 
             var form = {'title': $('[name=chat_title]').val(), 'text': $('[name=text]').val()};
@@ -884,13 +888,10 @@ $(document).ready(function () {
 
 
                         if (json.success) {
-                            if (json.chat_id) {
-                                chat_id = json.chat_id;
-                            }
-                            else {
 
-                                chat_id = $('.chat_list').first().attr('data-chat');
-                            }
+
+
+
                             $.ajax({
                                 type: 'post',
                                 url: '../chat',
@@ -898,7 +899,7 @@ $(document).ready(function () {
                                 success: function (data) {
 
                                     $('.left').replaceWith(data);
-
+                                    chat_id = $('.chat_list').first().attr('data-chat');
                                     $.ajax({
                                         type: 'post',
                                         url: '../chat/chat',

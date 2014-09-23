@@ -31,6 +31,7 @@
         {{ javascript_include("js/filter.js")}}
         {{ javascript_include("js/option.js")}}
         {{ javascript_include("js/jquery.b2r.js")}}
+        {{ javascript_include("js/pagination.js")}}
 
 
         {{  assets.outputJs()}}

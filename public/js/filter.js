@@ -33,6 +33,7 @@ $(document).ready(function () {
     $(document).on('keyup', '#left_cat', function () {
         var str = $(this).val().toLowerCase();
         var sf = str.length;
+        var nad = 0;
         $('.track ').each(function (ind, el) {
 
 
@@ -47,8 +48,10 @@ $(document).ready(function () {
                 if (sf != 0) {
 
                     $(el).parents('a').hide();
+
                 }
                 else {
+                    nad = 'n';
                     $(el).parents('a').show();
 
                 }
@@ -57,6 +60,33 @@ $(document).ready(function () {
             }
 
         });
+
+        //if(nad =='n'){
+        //$('.model span').each(function (ind, el) {
+        //
+        //
+        //    var text = $(el).text().toLowerCase();
+        //
+        //    if (~text.indexOf(str, -1)) {
+        //        $(el).parents('a').show();
+        //        console.log(el);
+        //
+        //    }
+        //    else {
+        //        if (sf != 0) {
+        //
+        //            $(el).parents('a').hide();
+        //        }
+        //        else {
+        //            $(el).parents('a').show();
+        //
+        //        }
+        //
+        //
+        //    }
+        //
+        //});
+        //}
 
     });
 
@@ -67,7 +97,7 @@ $(document).ready(function () {
 
 
             var pr = Number($(el).text().replace(" руб.", ""));
-            console.log(pr);
+
             if ($.isNumeric(pr) && pr <= cen) {
                 $(el).parents('a').show();
 

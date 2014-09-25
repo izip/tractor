@@ -2903,3 +2903,51 @@ margin: 40px 0 0 0!important;
 
 
 }
+
+
+
+/*Chat styles*/
+#page #left-side-head-two.head li.offers.info_banner,
+.info_banner {
+    font-size: 13px;
+    padding-left: 10px;
+    width: 193px;
+    padding-top: 0px;
+}
+.w90{
+    width: 80%!important;
+    padding-left: 10px;
+    height: auto;
+}
+.w90 .fa-question-circle{
+    margin-top:2px;
+    margin-bottom:  7px;
+}
+#page .left-side a.offer.mini.resize{
+    height: auto;
+    min-height: 25px;
+}
+.send_massage.call_me .b_call_me.clear {
+    border: 1px solid transparent;
+}
+#page #left-side-head-two.head li .fa {
+    color: #cccccc;
+    font-size: 16px;
+}
+.send_massage.visible{
+    display: block!important;
+    position: relative!important;
+    margin: 0 0 10px!important;
+}
+.title_info{
+    font-size: 13px;
+    color: #64b5e8;
+    display: inline-block;
+    width: 70%;
+    padding: 15px 0;
+    font-family: Helvetica,Verdana;
+    font-weight: 400;
+}
+.title_info .fa{
+    font-size: 16px;
+}

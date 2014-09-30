@@ -172,7 +172,7 @@ strong {
     content: none !important;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 #menu p.menu-head-warp {
@@ -926,7 +926,7 @@ strong {
     float: left;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 #page .right-side .content .description > div {
@@ -987,12 +987,12 @@ strong {
 #page .right-side .content .full-description {
     width: 100%;
     margin-top: 10px;
-    padding: 0 5% 0 ;
+    padding: 0 5% 0;
     vertical-align: top;
     float: left;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 #page .right-side .full-description h6 {
@@ -1014,7 +1014,7 @@ strong {
     resize: none;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .right-side .full-description .put_comment {
@@ -1041,7 +1041,7 @@ strong {
     margin-bottom: 10px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .right-side .full-description .comment .com_title .name {
@@ -1066,7 +1066,7 @@ strong {
     float: left;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .send_massage {
@@ -1079,7 +1079,7 @@ strong {
     display: none;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     padding: 0 5%;
 }
 
@@ -1093,7 +1093,7 @@ strong {
     display: none;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .send_massage.call_me .b_call_me {
@@ -1175,7 +1175,7 @@ strong {
     overflow-x: hidden !important;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .filter-left .some_pad {
@@ -1267,7 +1267,7 @@ strong {
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .filter-left .base li input.mini {
@@ -1878,7 +1878,7 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
 }
 
 #sub_cat_menu {
-    display:none;
+    display: none;
     left: 473px !important;
 }
 
@@ -1993,11 +1993,11 @@ select.allselector:focus, input[type="file"]:focus, input[type="radio"]:focus, i
 #page .right-side-head .top_title {
     float: left;
     height: 35px;
-    padding: 15px 5% 0 ;
+    padding: 15px 5% 0;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 #page .right-side-head .top_title .name {
@@ -2433,7 +2433,7 @@ i.arrow {
 #page .right-side .content .full-description.styler {
     background: #FAFAFA;
     margin-top: 0;
-    padding: 10px 5% 10px ;
+    padding: 10px 5% 10px;
     border-bottom: 1px solid #EEEEEE;
 }
 
@@ -2637,11 +2637,13 @@ i.arrow {
     margin: 8px 20px 0 0;
 
 }
+
 #profile form {
 
-    margin:0;
+    margin: 0;
     padding: 0;
 }
+
 #profile .profile-head {
     width: 39.85%;
     height: 70px;
@@ -2652,7 +2654,6 @@ i.arrow {
     border-left: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
     z-index: 9999;
-
 
     padding: 5px 20px 5px 20px;
     width: 100%;
@@ -2672,11 +2673,10 @@ i.arrow {
     height: 100%;
 
     max-width: 830px;
-margin: 40px 0 0 0!important;
+    margin: 40px 0 0 0 !important;
 }
 
-#profile .right-side .profile-content{
-
+#profile .right-side .profile-content {
 
     min-height: 800px;
 }
@@ -2706,44 +2706,50 @@ margin: 40px 0 0 0!important;
 
     margin: 0 0 0 0;
 }
-.set-place select{
+
+.set-place select {
     width: 200px !important;
 }
 
-
 /* /////////////// Чат ////////////////////////////  */
 .chat_list {
-    height: 60px !important;
+    height: 50px !important;
 
     font-weight: bold;
 
 }
+
 .chat_list .lefted .fa {
 
-    font-size: 20px !important;
-    color:red !important;
+    font-size: 16px !important;
+    color: #cccccc !important;
 }
+
 .chat_list .righted {
 
     margin: 15px 20px 0 0;
 
 }
-.chat_list ul , .chat_list ul li{
+
+.chat_list ul, .chat_list ul li {
 
     display: inline !important;
 }
+
 .chat_list ul li {
 
     margin-left: 20px;
 }
+
 .chat_list .text {
     width: 400px !important;
     margin: 0 0 0 10px;
     display: inline;
-    color:#64b5e8;
+    font-weight: normal;
 
 }
-.chat_list .text .lefted{
+
+.chat_list .text .lefted {
 
     display: inline;
 
@@ -2751,69 +2757,76 @@ margin: 40px 0 0 0!important;
 
 .chat_list .fa-comments {
 
-    font-size: 25px !important;
+    font-size: 16px !important;
 
 }
 
 .mess_chat {
 
     min-height: 50px;
-     padding: 5px !important;
+    padding: 5px !important;
     border: 2px solid #eeeeee;
- }
+}
 
-
-
-.mess_chat.active , .mess_chat_micro.active {
+.mess_chat.active, .mess_chat_micro.active {
 
     background: #f3f3f3;
     border: 2px solid #64b5e8;
 }
 
-.mess_chat .fa , .mess_chat_micro .fa{
-    margin:0 0 0 20px;
-   font-size: 20px !important;
-    width:50px !important;
+.mess_chat .fa, .mess_chat_micro .fa {
+    margin: 0 0 0 20px;
+    font-size: 20px !important;
+    width: 50px !important;
     height: 100% !important;
     float: left;
 
-
-
 }
+
 .mess span {
-    margin-left:65px;
-    display:block;
+    margin-left: 65px;
+    display: block;
 }
-.mess_chat_micro{
+
+.mess_chat_micro {
     word-break: normal !important;
     min-height: 40px;
-    width:80%!important;
-    margin:0 0 0 40px;
+    width: 80% !important;
+    margin: 0 0 0 40px;
     border: 2px solid #eeeeee;
 }
-.mess_chat .fa-comments  , .mess_chat_micro .fa-comments{
 
-    color:#3fb233 !important;
+.mess_chat .fa-comments, .mess_chat_micro .fa-comments {
+
+    color: #3fb233 !important;
 }
 
-.mess_chat .fa-question-circle  , .mess_chat_micro  .fa-question-circle{
+.mess_chat .fa-question-circle, .mess_chat_micro .fa-question-circle {
 
-    color:red !important;
+    color: #cccccc !important;
 }
+
 .mess_chat:hover {
 
 }
 
 .chat_add {
-    width: 160px !important;
-    margin: 0 5px 0 0;
+    width: 100px !important;
+    margin: 0 0 0 0;
+
+}
+
+.chat_add_button {
+    margin: 0 0 0 10px;
+
+    width: 58px !important;
 
 }
 
 .chat_add_button i {
     display: inline;
     float: left;
-
+    margin-left: 10px !important;
 }
 
 .chat_add_button span {
@@ -2827,8 +2840,8 @@ margin: 40px 0 0 0!important;
 
 .chat_left .right-side-head .top_title .item_title_two {
 
-    float: right!important;
-    width: 310px!important;
+    float: right !important;
+    width: 310px !important;
 
 }
 
@@ -2853,7 +2866,7 @@ margin: 40px 0 0 0!important;
 
 .chat_right .chat_add_mess #chat_question {
 
-    background: #e9322d !important;
+    background: #CCCCCC !important;
 }
 
 .chat_right .chat_add_mess #chat_mess {
@@ -2863,48 +2876,52 @@ margin: 40px 0 0 0!important;
 
 }
 
-.chat_right .chat_info{
+.chat_right .chat_info {
     display: block;
-    width:100%;
-    float:left;
+    width: 100%;
+    float: left;
     height: 40px;
-    padding:5px 20px 5px 20px !important;
+    padding: 5px 20px 5px 20px !important;
     background: none repeat scroll 0 0 #fbfbfb;
     border-bottom: 1px solid #eeeeee;
 }
-.chat_right .chat_info span{
+
+.chat_right .chat_info span {
     display: block;
-    margin:10px 0 0 0 !important;
-    font-size: 15px;
+    margin: 10px 0 0 0 !important;
+    font-size: 13px;
+    color: #64b5e8;
 }
+
 .chat_right .chat_info span .fa {
-    font-size: 20px !important;
-    margin:0 10px 0 0;
+    font-size: 17px !important;
+    margin: 0 10px 0 0;
 }
+
 .chat_left .head ul li .fa {
-    font-size: 20px !important;
-    margin:0 10px 0 0;
+    font-size: 17px !important;
+    margin: 0 10px 0 0;
 }
+
 .chat_left .head ul li {
-    font-weight: bold;
-    font-size: 15px;
-   margin:0 0 0 20px;
+    color: #64b5e8;
+    font-size: 13px;
+    margin: 0 0 0 20px;
 
 }
+
 .form_chat_add .edit_desc {
 
-    width:100px;
+    width: 100px;
 
 }
+
 .form_chat_add .info_block[name=chat_title] {
 
-    width:70%  !important;
-    margin:0 0 10px 20px !important;
-
+    width: 70% !important;
+    margin: 0 0 10px 20px !important;
 
 }
-
-
 
 /*Chat styles*/
 #page #left-side-head-two.head li.offers.info_banner,
@@ -2914,40 +2931,48 @@ margin: 40px 0 0 0!important;
     width: 193px;
     padding-top: 0px;
 }
-.w90{
-    width: 80%!important;
+
+.w90 {
+    width: 80% !important;
     padding-left: 10px;
     height: auto;
 }
-.w90 .fa-question-circle{
-    margin-top:2px;
-    margin-bottom:  7px;
+
+.w90 .fa-question-circle {
+    margin-top: 2px;
+    margin-bottom: 7px;
 }
-#page .left-side a.offer.mini.resize{
+
+#page .left-side a.offer.mini.resize {
     height: auto;
     min-height: 25px;
 }
+
 .send_massage.call_me .b_call_me.clear {
     border: 1px solid transparent;
 }
+
 #page #left-side-head-two.head li .fa {
     color: #cccccc;
     font-size: 16px;
 }
-.send_massage.visible{
-    display: block!important;
-    position: relative!important;
-    margin: 0 0 10px!important;
+
+.send_massage.visible {
+    display: block !important;
+    position: relative !important;
+    margin: 0 0 10px !important;
 }
-.title_info{
+
+.title_info {
     font-size: 13px;
     color: #64b5e8;
     display: inline-block;
     width: 70%;
     padding: 15px 0;
-    font-family: Helvetica,Verdana;
+    font-family: Helvetica, Verdana;
     font-weight: 400;
 }
-.title_info .fa{
+
+.title_info .fa {
     font-size: 16px;
 }

@@ -206,25 +206,25 @@ class MessageController extends ControllerBase
                 echo 1;
             }
             else{
-            $dialog = new Dialogs();
-            $dialog->creation_date = date('Y-m-d-H-i-s');
-            $dialog->save();
+                $dialog = new Dialogs();
+                $dialog->creation_date = date('Y-m-d-H-i-s');
+                $dialog->save();
 
-            $dial_h = new DialogsHasUser();
-            $dial_h->dialogs_id = $dialog->id;
-            $dial_h->user_id = $this->session->get('user_id');
-            $dial_h->save();
+                $dial_h = new DialogsHasUser();
+                $dial_h->dialogs_id = $dialog->id;
+                $dial_h->user_id = $this->session->get('user_id');
+                $dial_h->save();
 
-            $dial_h = new DialogsHasUser();
-            $dial_h->dialogs_id = $dialog->id;
-            $dial_h->user_id = $this->request->getPost('user_id');
-            $dial_h->save();
-            $mess = new Message();
-            $mess->dialogs_id = $dialog->id;
-            $mess->text = $text;
-            $mess->creation_date = date('Y-m-d-H-i-s');
-            $mess->author_id = $this->session->get('user_id');
-            $mess->save();
+                $dial_h = new DialogsHasUser();
+                $dial_h->dialogs_id = $dialog->id;
+                $dial_h->user_id = $this->request->getPost('user_id');
+                $dial_h->save();
+                $mess = new Message();
+                $mess->dialogs_id = $dialog->id;
+                $mess->text = $text;
+                $mess->creation_date = date('Y-m-d-H-i-s');
+                $mess->author_id = $this->session->get('user_id');
+                $mess->save();
 
             echo 1;
             }
@@ -234,14 +234,14 @@ class MessageController extends ControllerBase
 
 
     public function deleteAction() {
-	    $this->view->disable();
+        $this->view->disable();
 
         if($this->request->hasPost('d_id') && $this->request->isAjax()){
-	    $dialog_ids = $this->request->getPost('d_id');
+            $dialog_ids = $this->request->getPost('d_id');
 
             foreach(Message::find(array("dialogs_id = {$dialog_ids}")) as $mes){
 
-            $mes->delete();
+                $mes->delete();
             }
             foreach(DialogsHasUser::find(array("dialogs_id = {$dialog_ids}"))as $ds){
 

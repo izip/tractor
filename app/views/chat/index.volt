@@ -11,7 +11,6 @@
 
             <button class="chat_add_button">
                 <i class="fa fa-plus"></i>
-                <span>Создать</span>
             </button>
 
         </li>
@@ -44,7 +43,7 @@
            {{ chat['title'] }}
             </li>
             <li  class="righted">
-                <i class="fa fa-comments "></i>
+                <i class="fa fa-comment"></i>
             </li>
 
 

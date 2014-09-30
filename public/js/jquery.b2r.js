@@ -105,9 +105,7 @@ $(document).ready(function () {
         if ($(this).attr('id') == 'sub_cat_menu') {
             $('#sub_cat_menu').hide();
 
-            if(sub_menu == true){
-                $('.cat_menu').hide();
-            }
+
         }
         else if ($(this).attr('id') == 'cat_menu') {
             if ($('.cat_name').hasClass('actived') &&

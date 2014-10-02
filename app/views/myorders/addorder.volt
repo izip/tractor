@@ -97,11 +97,11 @@
 									Сроки
 								</span>
 								<span class="edit_desc fix pull-right">
-                                  {{text_field('date-from-tex' , 'class':'editors','placeholder': '30.03.2013')}}
+                                  {{text_field('date-from-tex' ,'data-date-format':"dd-mm-yyyy" ,'class':'editors','placeholder': '30.03.2013')}}
 
 								</span>
 								<span class="edit_desc fix pull-right">
-                                     {{text_field('date-to-tex' , 'class':'editors','placeholder': '12.03.2013')}}
+                                     {{text_field('date-to-tex' , 'data-date-format':"dd-mm-yyyy" , 'class':'editors','placeholder': '12.03.2013')}}
 
 								</span>
                     </div>

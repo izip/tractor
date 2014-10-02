@@ -15,7 +15,18 @@ $(document).ready(function () {
         }
 
     });
+
+$(document).on('click','#date-to-tex ,#date-from-tex',function(){
+
+    $('#date-to-tex').datepicker();
+
+    $('#date-from-tex').datepicker();
 });
+
+
+
+});
+
 var toggle_side_in = function () {
     $('.right-side-head, #right-side ').addClass('right250');
     var men = $('#menu').width();

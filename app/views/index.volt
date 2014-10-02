@@ -13,11 +13,14 @@
         {{ stylesheet_link('css/font-awesome.min.css') }}
         {{ stylesheet_link('css/easydropdown.css') }}
         {{ stylesheet_link('css/zoom.css') }}
+        {{ stylesheet_link('css/datepicker.css') }}
         <!-- this page specific styles -->
         {{ assets.outputCss() }}
         <!--end  css-->
           <!--js-->
         {{ javascript_include("js/jquery-1.11.1.min.js")}}
+        {{ javascript_include("js/bootstrap.js")}}
+        {{ javascript_include("js/bootstrap-datepicker.min.js")}}
         {{ javascript_include("js/underscore-min.js")}}
         {{ javascript_include("js/zoom.js")}}
         {{ javascript_include("js/jquery.form.js")}}

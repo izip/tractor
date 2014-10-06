@@ -188,9 +188,9 @@ class MyoffersController extends ControllerBase
     public function addofferAction()
     {
 
-
+        $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
         if ($this->request->isAjax()) {
-            $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+
             $cat_id = Categories::findFirst()->id;
 
             foreach (FieldType::find() as $field) {

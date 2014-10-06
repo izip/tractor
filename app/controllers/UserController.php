@@ -55,7 +55,7 @@ class UserController extends ControllerBase
                     $this->session->set("auth", "Users");
                     $this->session->set("user_id", $user->id);
                     $this->flashSession->success(" Вы авторизованы ! " . $user->first_name);
-                    $this->response->redirect("myoffers/index");
+                    $this->response->redirect("myoffers");
 
                 } else {
 
@@ -124,7 +124,7 @@ class UserController extends ControllerBase
                         $this->session->set("auth", $rlname);
                         $this->session->set("user_id", $user->id);
                         $this->flashSession->success(" Вы авторизованы ! " . $user->first_name);
-                        $this->response->redirect("index/index");
+                        header('location: ../');
 
                     } elseif (!$this->security->checkHash($pass, $user->password)) {
 
@@ -282,7 +282,7 @@ class UserController extends ControllerBase
                     $this->session->set("auth", $rlname);
                     $this->session->set("user_id", $user->id);
                     $this->flashSession->success("Вы зарегистрированы и авторизованы !");
-                    $this->response->redirect("myoffers/index");
+                    $this->response->redirect("myoffers");
 
 
                 } else {

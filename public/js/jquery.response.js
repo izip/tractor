@@ -341,6 +341,10 @@ function login(token) {
                         else if (mess.success) {
 
                             generate(mess.success, 'success');
+                            setTimeout(function(){
+                                location.href = '../';
+                            },1000);
+
 
                         }
 

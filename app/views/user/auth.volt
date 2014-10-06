@@ -12,7 +12,7 @@
             <input type="text" id="left_city" name="left_city" value="Москва"/>
         </li>
         <li class="add-item">
-            <a href="/myoffers/index">
+            <a href="/myoffers#add">
                 <button>
                     <i class="fa  fa-plus"></i>
                 </button>

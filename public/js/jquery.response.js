@@ -449,6 +449,7 @@ $(document).ready(function () {
         // Начальная загрузка страницы
 
         var dialog_id = $('.mini').last().attr('data-dialog');
+        localStorage.setItem('selected_dialog', dialog_id);
         if (dialog_id) {
 
             $.ajax({
@@ -470,7 +471,7 @@ $(document).ready(function () {
         $(document).on('click', '.mini', function () {
             var dialog_id = $(this).attr('data-dialog');
             localStorage.setItem('selected_dialog', dialog_id);
-            console.log('selected_dialog: ' + localStorage.getItem('selected_dialog'));
+
             $.ajax({
                 type: 'post',
                 url: '../message/dialog',
@@ -503,7 +504,7 @@ $(document).ready(function () {
                                 $('.full-description').show();
                             }
                         });
-                        //generate('Сообщение отправлено!','success');
+                        generate('Сообщение отправлено!','success');
                     } else {
                         generate('Не удалось отправить сообщение!', 'error');
                     }

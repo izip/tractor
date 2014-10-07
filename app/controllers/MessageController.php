@@ -142,16 +142,7 @@ class MessageController extends ControllerBase
 					    exit;
 				    }
 			    }
-			    $dialogsHasUser = new DialogsHasUser();
-			    $dialogsHasUser->dialogs_id = $dialog->id;
-			    $dialogsHasUser->user_id = $user_id;
-			    $dialogsHasUser->save();
-			    if ($dialogsHasUser->save() == false) {
-				    foreach ($dialogsHasUser->getMessages() as $message) {
-					    echo $message;
-					    exit;
-				    }
-			    }
+
 
 			    $message = new Message();
 			    $message->dialogs_id = $dialog_id;

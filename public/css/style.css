@@ -2883,21 +2883,31 @@ margin-left: 0;
     width: 100% !important;
 
 }
+.chat_right .add_mess_chat .put_comment ,
+.chat_right .add_mess_chat .put_comment {
 
-.chat_right .chat_add_mess #chat_question {
-    clear: right !important;
-    background: #64b5e8 !important;
+    margin: 0!important;
+
+}
+.chat_right .add_mess_chat #chat_question {
+    float: right!important;
+
+    background: red !important;
     display: none;
 
 }
 
 
 .chat_right .chat_add_mess #chat_mess {
-    margin: -28px 0 0 0;
-    clear: left !important;
+
+    float: right!important;
+    clear: left!important;
+    margin: -28px 0 0 0!important;
     background: #57a957 !important;
 
 }
+
+
 
 .chat_right .chat_info {
     display: block;

@@ -759,6 +759,8 @@ $(document).ready(function () {
 
                                         $('.right').replaceWith(data);
 
+                                        pagin.chat();
+
                                     }
 
 
@@ -889,9 +891,6 @@ $(document).ready(function () {
 
                         if (json.success) {
 
-
-
-
                             $.ajax({
                                 type: 'post',
                                 url: '../chat',
@@ -899,7 +898,21 @@ $(document).ready(function () {
                                 success: function (data) {
 
                                     $('.left').replaceWith(data);
-                                    chat_id = $('.chat_list').first().attr('data-chat');
+                                    if(json.chat_id){
+                                        chat_id = json.chat_id
+                                        $('.chat_list').each(function(ind,el){
+
+                                            if($(el).attr('data-chat') == chat_id){
+
+                                                $(el).addClass('active');
+                                            }
+
+                                        });
+                                    }else{
+                                        chat_id = $('.chat_list').first().attr('data-chat');
+                                        $('.chat_list').first().addClass('active');
+                                    }
+
                                     $.ajax({
                                         type: 'post',
                                         url: '../chat/chat',
@@ -907,7 +920,7 @@ $(document).ready(function () {
                                         success: function (data) {
 
                                             $('.right').replaceWith(data);
-
+                                            pagin.chat();
                                         }
 
 

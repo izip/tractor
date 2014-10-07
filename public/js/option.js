@@ -250,7 +250,7 @@ $(document).ready(function () {
 
                                             $('.right').replaceWith(data);
                                             $('.offer').eq(0).addClass('active');
-                                            MagicZoomPlus.refresh();
+                                            pagin.scroll();
                                             $('#left-side-head').scrollToFixed();
 
 
@@ -277,7 +277,8 @@ $(document).ready(function () {
 
                 $('.right').replaceWith(data);
                 $('.offer').eq(0).addClass('active');
-                MagicZoomPlus.refresh();
+
+                pagin.scroll();
             }
 
 
@@ -304,7 +305,7 @@ $(document).ready(function () {
                     else {
                         $('.right').replaceWith(data);
                     }
-                    MagicZoomPlus.refresh();
+                    pagin.scroll();
                 }
 
 

@@ -40,12 +40,14 @@
                         <div class="com_body no_bg ">
                             <input type="hidden" name="chat_id" value="{{chat_id}}">
                             <textarea name="text" id="" class="info_block "></textarea>
+
                             <button type="button" id="chat_question" class="put_comment">
                                 <i class="fa fa-question-circle"></i>
                             </button>
                             <button type="button" id="chat_mess" class="put_comment">
                                 <i class="fa fa-comments"></i>
                             </button>
+
                         </div>
 
 

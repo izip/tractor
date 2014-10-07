@@ -25,9 +25,7 @@
         {{ javascript_include("js/underscore-min.js")}}
 
         {{ javascript_include("js/jquery.slimscroll.min.js")}}
-
-
-
+        {{ javascript_include("js/pagination.js")}}
 
         {{ javascript_include("js/zoom.js")}}
         {{ javascript_include("js/jquery.form.js")}}
@@ -41,7 +39,7 @@
         {{ javascript_include("js/filter.js")}}
         {{ javascript_include("js/option.js")}}
         {{ javascript_include("js/jquery.b2r.js")}}
-        {{ javascript_include("js/pagination.js")}}
+
 
 
         {{  assets.outputJs()}}

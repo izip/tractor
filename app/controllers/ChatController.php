@@ -28,8 +28,26 @@ class ChatController extends ControllerBase
             $user_id = $this->session->get('user_id');
         }
 
+        ///////////////// Пагинация
+        if(!empty($_POST['page'])){
 
-        foreach (Chat::find(array('order' => 'creation_date DESC', 'limit' => 10)) as $chat) {
+            $currentPage = $_POST["page"];
+        }
+        else{
+            $currentPage = 1;
+        }
+
+        $paginator = new Phalcon\Paginator\Adapter\Model(
+            array(
+                "data" => Chat::find(array('order' => 'creation_date DESC')),
+                "limit"=> 10,
+                "page" => $currentPage
+            )
+        );
+        $page = $paginator->getPaginate();
+
+
+        foreach ($page->items as $chat) {
 
 
             $chats[$chat->id] = $chat->toArray();

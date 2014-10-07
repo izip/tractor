@@ -204,7 +204,7 @@ class UserController extends ControllerBase
                 $user->save();
                 $role = new UserRole;
                 $role->user_id = $user->id;
-                $role->role_id = 4;
+                $role->role_id = 3;
                 $role->save();
                 $this->elements->email_send($_POST['email'], "Ваш пароль от сериса mashinosmena.ru", "<p>Пароль <p>" . $pass);
 
@@ -272,7 +272,7 @@ class UserController extends ControllerBase
 
                     $role = new UserRole;
                     $role->user_id = $user->id;
-                    $role->role_id = 4;
+                    $role->role_id = 3;
                     $role->save();
                     $this->elements->sms_send($_POST['reg_phone'], "mashinosmena.ru - пароль  -- " . $pass);
                     $this->elements->email_send($_POST['reg_mail'], "mashinosmena.ru - пароль", "<p>Пароль <p>" . $pass);

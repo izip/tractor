@@ -2730,8 +2730,8 @@ margin-left: 0;
 
 .chat_list .lefted .fa {
 
-    font-size: 16px !important;
-    color: #cccccc !important;
+    font-size: 18px !important;
+    color: red!important;
 }
 
 .chat_list .righted {
@@ -2767,6 +2767,11 @@ margin-left: 0;
 .chat_list .fa-comments {
 
     font-size: 16px !important;
+
+
+}
+.chat_list .fa.active {
+    color:#3fb233 !important;
 
 }
 
@@ -2812,7 +2817,7 @@ margin-left: 0;
 
 .mess_chat .fa-question-circle, .mess_chat_micro .fa-question-circle {
 
-    color: #cccccc !important;
+    color: red !important;
 }
 
 .mess_chat:hover {
@@ -2828,14 +2833,14 @@ margin-left: 0;
 .chat_add_button {
     margin: 0 0 0 10px;
 
-    width: 58px !important;
+    width: 56px !important;
 
 }
 
 .chat_add_button i {
-    display: inline;
+
     float: left;
-    margin-left: 10px !important;
+    margin-left: 0 !important;
 }
 
 .chat_add_button span {
@@ -2873,13 +2878,22 @@ margin-left: 0;
 
 }
 
-.chat_right .chat_add_mess #chat_question {
+.chat_right .form_chat_add .info_block {
 
-    background: #CCCCCC !important;
+    width: 100% !important;
+
 }
 
+.chat_right .chat_add_mess #chat_question {
+    clear: right !important;
+    background: #64b5e8 !important;
+    display: none;
+
+}
+
+
 .chat_right .chat_add_mess #chat_mess {
-    margin: -42px 0 0 0;
+    margin: -28px 0 0 0;
     clear: left !important;
     background: #57a957 !important;
 
@@ -2909,7 +2923,7 @@ margin-left: 0;
 
 .chat_left .head ul li .fa {
     font-size: 17px !important;
-    margin: 0 10px 0 0;
+
 }
 
 .chat_left .head ul li {

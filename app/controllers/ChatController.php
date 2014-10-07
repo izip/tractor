@@ -34,7 +34,17 @@ class ChatController extends ControllerBase
 
             $chats[$chat->id] = $chat->toArray();
 
+
+            $rt = $chat->messagechat->getLast();
+            if(!is_bool($rt)){
+               //$this->elements->var_print(is_bool($rt));
+                $chat_s[$chat->id] = $rt->text;
+               // $chat_s[$chat->id] = false;
+            }
+
+
         }
+
 
         // echo '<pre>'; print_r($mes); echo '</pre>';
 
@@ -43,7 +53,8 @@ class ChatController extends ControllerBase
 
             'chat_col' => $chat->count(),
 
-            'chats' => $chats
+            'chats' => $chats,
+            'chat_s' => $cha = (isset($chat_s))? $chat_s: false
 
         ));
 
@@ -112,14 +123,13 @@ class ChatController extends ControllerBase
 
         // print_r($_POST);
         $user_id = $this->session->get('user_id');
-        if ($this->request->isAjax() && isset($_POST['type_chat_mess']) && $_POST['form']['title'] && $_POST['form']['text']) {
+        if ($this->request->isAjax() && isset($_POST['type_chat_mess']) &&  $_POST['form']['text']) {
 
             $chat = new Chat();
             $chu = new ChatHasUser();
             $micro = new ChatMicroDialog();
             $mess = new MessageChat();
 
-            $chat->title = $_POST['form']['title'];
             $chat->created_id = $user_id;
             $chat->creation_date = date("Y-m-d-H-i-s");
             $chat->save();

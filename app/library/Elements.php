@@ -93,7 +93,7 @@ class Elements extends Phalcon\Mvc\User\Component
 
     public function var_print($r) {
 
-        echo "<pre>"; print_r($r); echo "</pre>";
+        echo "<pre>"; var_dump($r); echo "</pre>";
 
     }
 

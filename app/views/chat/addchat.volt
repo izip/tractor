@@ -23,27 +23,19 @@
 
             <div class="full-description mess chat_add_mess">
                 <form class="form_chat_add">
-                <div class="comment ">
-                    <div class="com_body no_bg ">
+                    <div class="comment ">
+                        <div class="com_body no_bg ">
 
-                        <span>
+                            <textarea name="text" id="" class="info_block "></textarea>
 
-                       <textarea  class="info_block" name="chat_title">Заголовок чата:</textarea>
-                            </span>
-                        <textarea name="text" id="" class="info_block "></textarea>
-                        <button type="button" id="chat_question" class="put_comment">
-                            <i class="fa fa-question-circle"></i>
-                        </button>
-                        <button type="button" id="chat_mess" class="put_comment">
-                            <i class="fa fa-comments"></i>
-                        </button>
+                        </div>
+
+
                     </div>
 
-
-                </div>
+                    <button type="button" id="chat_question" class="put_comment"> отправить </button>
                 </form>
             </div>
-
 
 
         </div>

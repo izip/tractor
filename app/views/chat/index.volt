@@ -40,10 +40,19 @@
                 <i class="fa fa-question-circle "></i>
             </li>
             <li  class="text">
-           {{ chat['title'] }}
+                {% if chat_s is iterable  and chat_s[key] is defined %}
+           {{ chat_s[key] }}
+                {%else%}
+                Нет сообщений
+                {% endif %}
             </li>
             <li  class="righted">
+                {% if chat_s is iterable and chat_s[key] is defined%}
+                <i class="active fa fa-comment"></i>
+
+                {%else%}
                 <i class="fa fa-comment"></i>
+                {% endif %}
             </li>
 
 

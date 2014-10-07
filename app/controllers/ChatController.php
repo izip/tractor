@@ -47,6 +47,7 @@ class ChatController extends ControllerBase
         $page = $paginator->getPaginate();
 
 
+
         foreach ($page->items as $chat) {
 
 
@@ -72,7 +73,9 @@ class ChatController extends ControllerBase
             'chat_col' => $chat->count(),
 
             'chats' => $chats,
-            'chat_s' => $cha = (isset($chat_s))? $chat_s: false
+            'chat_s' => $cha = (isset($chat_s))? $chat_s: false,
+            'page_num' => $page->current,
+            'page_total' => $page->total_pages,
 
         ));
 
@@ -90,7 +93,7 @@ class ChatController extends ControllerBase
             $chat = Chat::findFirst($this->request->getPost('chat_id'));
 
 
-            if ($chatmicrodialog = $chat->chatmicrodialog) {
+            if ($chatmicrodialog = $chat->getchatmicrodialog(array('order' => 'creation_date DESC'))) {
 
 
                 foreach ($chatmicrodialog as $micro) {

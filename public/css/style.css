@@ -312,13 +312,20 @@ strong {
 
 #page .left-side {
     width: 50%;
-    height: 700px;
+    height: 100%;
     /*overflow-y: hidden;*/
     /*overflow-x: hidden;*/
-    overflow: scroll;
+    overflow: auto;
     position: relative;
     float: left;
     background: #fafafa;
+}
+
+.slimScrollDiv{
+    position: relative;
+    float: left;
+    background: #fafafa;
+
 }
 
 #page #left-side-head.head {

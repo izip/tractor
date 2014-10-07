@@ -14,8 +14,7 @@ class Dialogs extends \Phalcon\Mvc\Model
 
     public function initialize()
     {
-        $this->hasMany("id", "Message", "dialogs_id" , array(
-                "foreignKey" => true)
+        $this->hasMany("id", "Message", "dialogs_id" , NULL
         );
 
         $this->hasManyToMany(

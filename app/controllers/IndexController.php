@@ -26,6 +26,15 @@ class IndexController extends ControllerBase
             $cat_id = $this->request->getPost('cat_id');
         }
 
+        if(!empty($_POST['page'])){
+
+            $currentPage = $_POST["page"];
+        }
+        else{
+            $currentPage = 1;
+        }
+
+
         if ($this->modelsCache->exists('filter-' . $this->session->get('user_id'))) {
             $filter = $this->modelsCache->get('filter-' . $this->session->get('user_id'));
             //$this->elements->var_print($filter);
@@ -159,7 +168,7 @@ class IndexController extends ControllerBase
 //////  Конец SQL запроса дальше выборка.
 
 
-            foreach (Offers::find(array("{$inClause}", 'order' => 'creation_date DESC', "limit" => 25)) as $offers) {
+            foreach (Offers::find(array("{$inClause}", 'order' => 'creation_date DESC')) as $offers) {
 
                 if (isset($offers->image)) {
                     $im = 1;
@@ -183,7 +192,7 @@ class IndexController extends ControllerBase
 
 
         } else {
-            $zap = '';
+            $zap = 0;
             if (isset($cat_id) && is_numeric($cat_id)) {
                 if($this->request->getPost('sub_cat') =='y'){
                     $zap = "id = {$cat_id}";
@@ -206,9 +215,50 @@ class IndexController extends ControllerBase
                 }
             }
 
-            foreach (Categories::find(array("{$zap}")) as $cat) {
+            ///////////////////// Пагинация
 
-                foreach ($cat->getoffers(array('order' => 'creation_date DESC', "limit" => 25)) as $offers) {
+
+            if(empty($zap)){
+                $zaps= '';
+
+            }
+            else{
+                $query = $this->modelsManager->createQuery("SELECT id FROM Categories WHERE ".$zap)
+                    ->execute()
+                    ->toArray();
+
+                foreach($query as $f){
+
+                    $cats_id[] = $f['id'];
+                }
+               // $this->elements->var_print($hj);
+               $sre  = implode(" ," ,$cats_id);
+            $zaps = " category_id IN ({$sre})";
+
+            }
+
+
+            $bield = $this->modelsManager->createBuilder()
+                ->from('Offers')
+                ->where($zaps)
+            ->orderBy('creation_date DESC');
+
+//            $bield->setCache(array(
+//                "key" => "name",
+//                "lifetime" => 3300
+//            ));
+
+            $paginator = new Phalcon\Paginator\Adapter\QueryBuilder(
+                array(
+                    "builder" => $bield,
+                    "limit"=> 10,
+                    "page" => $currentPage
+                )
+            );
+            $page = $paginator->getPaginate();
+
+
+                foreach ($page->items as $offers) {
 
                     if (isset($offers->image)) {
                         $im = 1;
@@ -227,7 +277,7 @@ class IndexController extends ControllerBase
 
                     }
                 }
-            }
+
         }
 
 

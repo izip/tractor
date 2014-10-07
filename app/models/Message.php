@@ -23,8 +23,7 @@ class Message extends \Phalcon\Mvc\Model
 
     public function initialize()
     {
-        $this->belongsTo("dialogs_id", "Dialogs", "id" , array(
-            "foreignKey" => true)
+        $this->belongsTo("dialogs_id", "Dialogs", "id" , NULL
     );
 
         $this->belongsTo("author_id", "User", "id" ,NULL);

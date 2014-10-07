@@ -1,22 +1,47 @@
+
+
+
+
 $(document).ready(function(){
 
 
 /////////////////// Пагинация предложений
-
-    $('.left-side').jScrollPane();
     if (location.pathname == '/' || location.pathname == '/index/index') {
 
+    $('.left-side').slimScroll({
+        position: 'right',
+        width:'500px',
+        height: '500px',
+        wheelStep: 5
+    }).on('slimscroll', function(e, pos){
+        console.log(pos);
+        if(pos == 'bottom'){
+
+            $.ajax({
+                type:'post',
+                url:'../',
+                data:{up:'y',page:2},
+                dataType:'html',
+                success:function(html){
 
 
-        $('.left-side').on('scroll',function(){
-           // console.log($('.left-side').height());
+                   // var rt = $(html).find('#left-side-head-two').remove().find('.fix_holder').remove();
 
-            console.log($('.left-side').scrollTop());
+                   // $('.left-side').append($(rt).find('.left-side').html());
+                    //$('.left-side').slimScroll({
+                    //    position: 'right',
+                    //    width:'500px',
+                    //    height: '170px',
+                    //    wheelStep: 5
+                    //});
+                }
 
 
+            });
 
-        });
+        }
 
+    });
 
 
     }

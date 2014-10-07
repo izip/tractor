@@ -144,7 +144,7 @@ class MessageController extends ControllerBase
 			    }
 			    $dialogsHasUser = new DialogsHasUser();
 			    $dialogsHasUser->dialogs_id = $dialog->id;
-			    $dialogsHasUser->user_id = '66666666666';
+			    $dialogsHasUser->user_id = $user_id;
 			    $dialogsHasUser->save();
 			    if ($dialogsHasUser->save() == false) {
 				    foreach ($dialogsHasUser->getMessages() as $message) {

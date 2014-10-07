@@ -14,7 +14,7 @@
         {{ stylesheet_link('css/easydropdown.css') }}
         {{ stylesheet_link('css/zoom.css') }}
         {{ stylesheet_link('css/datepicker.css') }}
-        {{ stylesheet_link('css/jquery.jscrollpane.css') }}
+
         <!-- this page specific styles -->
         {{ assets.outputCss() }}
         <!--end  css-->
@@ -24,8 +24,9 @@
         {{ javascript_include("js/bootstrap-datepicker.min.js")}}
         {{ javascript_include("js/underscore-min.js")}}
 
-        {{ javascript_include("js/jquery.jscrollpane.min.js")}}
-        {{ javascript_include("js/jquery.mousewheel.js")}}
+        {{ javascript_include("js/jquery.slimscroll.min.js")}}
+
+
 
 
         {{ javascript_include("js/zoom.js")}}

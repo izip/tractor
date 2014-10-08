@@ -2,7 +2,7 @@
 {{ content() }}
 <span class="left">
 
-<div id="left-side-head" class="head">
+<div  id="left-side-head" class="head">
     <ul>
         <li class="search-all">
             <input type="text" id="left_cat" name="left_cat" value="Погрузчик"/>
@@ -21,7 +21,7 @@
     </ul>
 </div><!-- Left Side HEAD END  -->
 
-<div class="left-side">
+<div data-page-total="{{page_total}}" data-page-num="{{page_num}}" class="left-side">
 <div id="left-side-head-two" class="head">
 
     <ul>

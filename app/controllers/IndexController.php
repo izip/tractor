@@ -243,10 +243,7 @@ class IndexController extends ControllerBase
                 ->where($zaps)
             ->orderBy('creation_date DESC');
 
-//            $bield->setCache(array(
-//                "key" => "name",
-//                "lifetime" => 3300
-//            ));
+
 
             $paginator = new Phalcon\Paginator\Adapter\QueryBuilder(
                 array(
@@ -283,7 +280,9 @@ class IndexController extends ControllerBase
 
         $this->view->setVars(array(
 
-            "off" => $off = (isset($off)) ? $off : false
+            "off" => $off = (isset($off)) ? $off : false,
+            'page_num' => $page->current,
+            'page_total' => $page->total_pages
         ));
 
     }

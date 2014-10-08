@@ -29,23 +29,21 @@ class ChatController extends ControllerBase
         }
 
         ///////////////// Пагинация
-        if(!empty($_POST['page'])){
+        if (!empty($_POST['page'])) {
 
             $currentPage = $_POST["page"];
-        }
-        else{
+        } else {
             $currentPage = 1;
         }
 
         $paginator = new Phalcon\Paginator\Adapter\Model(
             array(
                 "data" => Chat::find(array('order' => 'creation_date DESC')),
-                "limit"=> 10,
+                "limit" => 10,
                 "page" => $currentPage
             )
         );
         $page = $paginator->getPaginate();
-
 
 
         foreach ($page->items as $chat) {
@@ -55,10 +53,10 @@ class ChatController extends ControllerBase
 
 
             $rt = $chat->messagechat->getLast();
-            if(!is_bool($rt)){
-               //$this->elements->var_print(is_bool($rt));
+            if (!is_bool($rt)) {
+                //$this->elements->var_print(is_bool($rt));
                 $chat_s[$chat->id] = $rt->text;
-               // $chat_s[$chat->id] = false;
+                // $chat_s[$chat->id] = false;
             }
 
 
@@ -73,7 +71,7 @@ class ChatController extends ControllerBase
             'chat_col' => $chat->count(),
 
             'chats' => $chats,
-            'chat_s' => $cha = (isset($chat_s))? $chat_s: false,
+            'chat_s' => $cha = (isset($chat_s)) ? $chat_s : false,
             'page_num' => $page->current,
             'page_total' => $page->total_pages,
 
@@ -93,18 +91,17 @@ class ChatController extends ControllerBase
             $chat = Chat::findFirst($this->request->getPost('chat_id'));
 
 ///////////////// Пагинация
-            if(!empty($_POST['page'])){
+            if (!empty($_POST['page'])) {
 
                 $currentPage = $_POST["page"];
-            }
-            else{
+            } else {
                 $currentPage = 1;
             }
 
             $paginator = new Phalcon\Paginator\Adapter\Model(
                 array(
                     "data" => $chat->getchatmicrodialog(array('order' => 'creation_date DESC')),
-                    "limit"=> 10,
+                    "limit" => 10,
                     "page" => $currentPage
                 )
             );
@@ -163,7 +160,7 @@ class ChatController extends ControllerBase
 
         // print_r($_POST);
         $user_id = $this->session->get('user_id');
-        if ($this->request->isAjax() && isset($_POST['type_chat_mess']) &&  $_POST['form']['text']) {
+        if ($this->request->isAjax() && isset($_POST['type_chat_mess']) && $_POST['form']['text']) {
 
             $chat = new Chat();
             $chu = new ChatHasUser();
@@ -297,7 +294,7 @@ class ChatController extends ControllerBase
                 }
 
                 $micro->delete();
-                echo json_encode(array('success' => 1 , 'chat_id' => $chat_id));
+                echo json_encode(array('success' => 1, 'chat_id' => $chat_id));
             } else {
                 echo json_encode(array('error' => 'Удалить микродиалог может только его создатель'));
 
@@ -313,7 +310,7 @@ class ChatController extends ControllerBase
             if ($mess->author_id == $user_id) {
 
                 $mess->delete();
-                echo json_encode(array('success' => 1 , 'chat_id' => $chat_id));
+                echo json_encode(array('success' => 1, 'chat_id' => $chat_id));
             } else {
 
                 echo json_encode(array('error' => 'Удалить сообщение может только его создатель'));

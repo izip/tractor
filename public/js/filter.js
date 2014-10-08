@@ -34,7 +34,7 @@ $(document).ready(function () {
         var str = $(this).val().toLowerCase();
         var sf = str.length;
         var nad = 0;
-        $('.track ').each(function (ind, el) {
+        $('.track , .text').each(function (ind, el) {
 
 
             var text = $(el).text().toLowerCase();

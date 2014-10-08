@@ -9,6 +9,7 @@ html, body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
+
 }
 
 .blue {
@@ -113,6 +114,8 @@ strong {
 #page {
 
     box-shadow: none !important;
+    min-width: 1200px!important;
+
 }
 
 #page nav {
@@ -314,7 +317,7 @@ strong {
     width: 50%;
     height: 100%;
     /*overflow-y: hidden;*/
-    /*overflow-x: hidden;*/
+    /*overflow-x: scroll;*/
     overflow: auto;
     position: relative;
     float: left;
@@ -811,8 +814,9 @@ strong {
     right: 0;
     background: #fff;
     overflow: scroll;
-    overflow-x: hidden;
+    overflow-x: auto;
     z-index: 0;
+
 }
 
 #page .right-side-head {
@@ -826,6 +830,7 @@ strong {
     border-left: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
     z-index: 9999;
+
 }
 
 #page .right-side-head ul {

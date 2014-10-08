@@ -23,7 +23,7 @@ pagin = {
 
             $('.left-side').slimScroll({
                 position: 'right',
-                width:'500px',
+                width:($('.left-side').width()+5)+'px',
                 height: $('.left-side').height()-50+'px',
                 wheelStep: 5
             }).on('slimscroll', function (e, pos) {
@@ -62,14 +62,14 @@ pagin = {
     },
     chat : function(){
     /////////////////////Пагинация чата
-        var ch = this;
-    if (location.pathname == '/chat' ) {
 
+    if (location.pathname == '/chat' ) {
+        var ch = this;
 
         $('.left-side').slimScroll({
             position: 'right',
-            width:'500px',
-            height: '500px',
+            width:($('.left-side').width()+5)+'px',
+            height: $('.left-side').height()-250+'px',
             wheelStep: 5
         }).on('slimscroll', function(e, pos){
             console.log(pos);
@@ -104,7 +104,56 @@ pagin = {
 
 
     }
+    },
+
+    chatmicro : function(){
+        /////////////////////Пагинация чата
+
+        if (location.pathname == '/chat' ) {
+            var ch = this;
+
+            $('.right-side').slimScroll({
+                position: 'right',
+                width:($('.right-side').width()-5)+'px',
+                height: $('.right-side').height()-50+'px',
+                wheelStep: 5
+            }).on('slimscroll', function(e, pos){
+
+                if(pos == 'bottom'){
+                    dann = {};
+                    dann.chat_id = $('.chat_list').first().attr('data-chat');
+                    var num = $('.right-side').attr('data-page-num');
+                    var total = $('.right-side').attr('data-page-total');
+                    dann.page = (Number(num) +1);
+
+                    if( dann.page <= total){
+                        $.ajax({
+                            type:'post',
+                            url:'../chat/chat',
+                            data:dann,
+                            dataType:'html',
+                            success:function(html){
+
+
+                                $('.right-side .content').append($(html).find('.mess'));
+                                ch.chatmicro();
+
+                                $('.right-side').attr('data-page-num',dann.page);
+                            }
+
+
+                        });
+
+                    }
+
+                }
+
+            });
+
+
+        }
     }
+
 
 }
 

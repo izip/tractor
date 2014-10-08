@@ -670,6 +670,7 @@ $(document).ready(function () {
                     $('.right').replaceWith(data);
 
                     chat_user(dann);
+                    pagin.chatmicro();
                 }
 
             });
@@ -689,6 +690,7 @@ $(document).ready(function () {
 
                         $('.right').replaceWith(data);
                         chat_user(dann);
+                        pagin.chatmicro();
                     }
 
                 });
@@ -832,7 +834,7 @@ $(document).ready(function () {
                                 success: function (data) {
 
                                     $('.right').replaceWith(data);
-
+                                    pagin.chatmicro();
                                 }
 
 
@@ -921,6 +923,7 @@ $(document).ready(function () {
 
                                             $('.right').replaceWith(data);
                                             pagin.chat();
+                                            pagin.chatmicro();
                                         }
 
 

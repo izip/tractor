@@ -1,7 +1,7 @@
 <span class="right chat_right">
     {{ content() }}
 
-    <div id="right-side" class="right-side ">
+    <div data-page-total="{{page_total}}" data-page-num="{{page_num}}" id="right-side" class="right-side ">
         <div class="send_massage full-description call_me">
             <h6>
                 Сообщить пользователю Ваши контакты?
@@ -34,7 +34,7 @@
 
         <div class="content">
 
-            <div class="full-description mess chat_add_mess">
+            <div class="full-description  chat_add_mess">
                 <form class="add_mess_chat">
                     <div class="comment ">
                         <div class="com_body no_bg ">

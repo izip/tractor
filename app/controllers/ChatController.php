@@ -92,8 +92,25 @@ class ChatController extends ControllerBase
 
             $chat = Chat::findFirst($this->request->getPost('chat_id'));
 
+///////////////// Пагинация
+            if(!empty($_POST['page'])){
 
-            if ($chatmicrodialog = $chat->getchatmicrodialog(array('order' => 'creation_date DESC'))) {
+                $currentPage = $_POST["page"];
+            }
+            else{
+                $currentPage = 1;
+            }
+
+            $paginator = new Phalcon\Paginator\Adapter\Model(
+                array(
+                    "data" => $chat->getchatmicrodialog(array('order' => 'creation_date DESC')),
+                    "limit"=> 10,
+                    "page" => $currentPage
+                )
+            );
+            $page = $paginator->getPaginate();
+
+            if ($chatmicrodialog = $page->items) {
 
 
                 foreach ($chatmicrodialog as $micro) {
@@ -121,7 +138,9 @@ class ChatController extends ControllerBase
 
             $this->view->setVars(array(
                 'chat' => $microd = (isset($microd)) ? $microd : false,
-                'chat_id' => $this->request->getPost('chat_id')
+                'chat_id' => $this->request->getPost('chat_id'),
+                'page_num' => $page->current,
+                'page_total' => $page->total_pages
 
             ));
 

@@ -168,7 +168,16 @@ class IndexController extends ControllerBase
 //////  Конец SQL запроса дальше выборка.
 
 
-            foreach (Offers::find(array("{$inClause}", 'order' => 'creation_date DESC')) as $offers) {
+            $paginator = new Phalcon\Paginator\Adapter\Model(
+                array(
+                    "data" => Offers::find(array("{$inClause}", 'order' => 'creation_date DESC')),
+                    "limit"=> 10,
+                    "page" => $currentPage
+                )
+            );
+            $page = $paginator->getPaginate();
+
+            foreach ($page->items as $offers) {
 
                 if (isset($offers->image)) {
                     $im = 1;
@@ -188,7 +197,10 @@ class IndexController extends ControllerBase
                 $this->flash->error("Ничего не найдено фильтр сброшен");
 
             }
-            $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
+            if($page->total_pages == 1){
+                $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
+            }
+
 
 
         } else {

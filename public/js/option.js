@@ -1,4 +1,3 @@
-
 ///////////////////// Функция проверки авторизации
 function auth() {
     var auth = 0;
@@ -83,7 +82,7 @@ function autocomplete(name) {
 
 // Вывод контактов
 $(document).ready(function () {
-   // console.log(window.location.hash);
+    // console.log(window.location.hash);
 
 
     $(document).on('click', '.b_contacts', function () {
@@ -668,7 +667,7 @@ $(document).ready(function () {
 
         });
 
-        if(window.location.hash == '#add'){
+        if (window.location.hash == '#add') {
             $('.add-item').click();
         }
 
@@ -1023,7 +1022,6 @@ $(document).ready(function () {
             $('.add-item').click();
 
         }
-
 
 
         $(document).on('click', '.offer', function () {
@@ -1397,37 +1395,38 @@ $(document).ready(function () {
 
     }
 
-    if(window.location.hash == '#add'){
+    if (window.location.hash == '#add') {
 
-      setTimeout(function(){$('.add-item').click()} ,100);
+        setTimeout(function () {
+            $('.add-item').click()
+        }, 100);
     }
 
     /////// Профиль пользователя
     if (location.pathname == '/option') {
         autocomplete("[name=country]");
-        $('.form_profile_submit').on('click',function(){
+        $('.form_profile_submit').on('click', function () {
 
 
             $.ajax({
-                type:'post',
-                url:'../option/confirm',
-                data:$('.form_profile').serialize(),
-                dataType:'json',
-                success:function(json){
+                type: 'post',
+                url: '../option/confirm',
+                data: $('.form_profile').serialize(),
+                dataType: 'json',
+                success: function (json) {
 
                     console.log(json);
-                    if(json.success){
+                    if (json.success) {
 
-                        generate(json.success , 'success');
+                        generate(json.success, 'success');
                     }
-                    else if(json.error){
+                    else if (json.error) {
 
-                        generate(json.error , 'error');
+                        generate(json.error, 'error');
                     }
 
 
                 }
-
 
 
             });
@@ -1661,9 +1660,9 @@ function login(token) {
                         else if (mess.success) {
 
                             generate(mess.success, 'success');
-                            setTimeout(function(){
+                            setTimeout(function () {
                                 location.href = '../';
-                            },1000);
+                            }, 1000);
 
 
                         }
@@ -1824,7 +1823,7 @@ $(document).ready(function () {
                                 $('.full-description').show();
                             }
                         });
-                        generate('Сообщение отправлено!','success');
+                        generate('Сообщение отправлено!', 'success');
                     } else {
                         generate('Не удалось отправить сообщение!', 'error');
                     }
@@ -2038,7 +2037,7 @@ $(document).ready(function () {
 
 
         });
-        $(document).on('click','.form_chat_add [name=chat_title]', function(){
+        $(document).on('click', '.form_chat_add [name=chat_title]', function () {
 
             $(this).empty();
 
@@ -2047,11 +2046,10 @@ $(document).ready(function () {
         $(document).on('click', '.form_chat_add #chat_question', function () {
 
 
-            var type_chat_mess =0;
+            var type_chat_mess = 0;
 
 
-
-            var form = { 'text': $('[name=text]').val()};
+            var form = {'text': $('[name=text]').val()};
 
             $.ajax({
                 type: 'post',
@@ -2121,10 +2119,9 @@ $(document).ready(function () {
             }
 
 
-
             if ($('.mess_chat.active').attr('micro-chat-id')) {
                 dann.micro_id = $('.mess_chat.active').attr('micro-chat-id');
-                if($('.mess_chat.active i').attr('mess-type') == dann.type_mess){
+                if ($('.mess_chat.active i').attr('mess-type') == dann.type_mess) {
                     dann.type_mess = $('.mess_chat.active i').attr('mess-type');
                 }
 
@@ -2220,17 +2217,17 @@ $(document).ready(function () {
                                 success: function (data) {
 
                                     $('.left').replaceWith(data);
-                                    if(json.chat_id){
+                                    if (json.chat_id) {
                                         chat_id = json.chat_id
-                                        $('.chat_list').each(function(ind,el){
+                                        $('.chat_list').each(function (ind, el) {
 
-                                            if($(el).attr('data-chat') == chat_id){
+                                            if ($(el).attr('data-chat') == chat_id) {
 
                                                 $(el).addClass('active');
                                             }
 
                                         });
-                                    }else{
+                                    } else {
                                         chat_id = $('.chat_list').first().attr('data-chat');
                                         $('.chat_list').first().addClass('active');
                                     }

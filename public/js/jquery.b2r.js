@@ -16,6 +16,15 @@ $(document).ready(function () {
 
     });
 
+    $(document).ready(function(){
+
+        if(location.pathname != '/'){
+
+            $('#b_filter').hide();
+        }
+
+    });
+
 $(document).on('click','#date-to-tex ,#date-from-tex',function(){
 
     $('#date-to-tex').datepicker();

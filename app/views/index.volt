@@ -20,13 +20,11 @@
         <!--end  css-->
           <!--js-->
         {{ javascript_include("js/jquery-1.11.1.min.js")}}
+        {{ javascript_include("js/underscore-min.js")}}
         {{ javascript_include("js/bootstrap.js")}}
         {{ javascript_include("js/bootstrap-datepicker.min.js")}}
-        {{ javascript_include("js/underscore-min.js")}}
-
         {{ javascript_include("js/jquery.slimscroll.min.js")}}
         {{ javascript_include("js/pagination.js")}}
-
         {{ javascript_include("js/zoom.js")}}
         {{ javascript_include("js/jquery.form.js")}}
         {{ javascript_include("js/typeahead.js")}}

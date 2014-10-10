@@ -219,7 +219,7 @@ class MyordersController extends ControllerBase
 
                 if (!isset($_POST['name-tex']) || strlen($_POST['name-tex']) < 3) {
 
-                    $sub_mess['name-tex'] = "Не корректно заполнено поле Вид техники !";
+                    $sub_mess['name-tex'] = "Не корректно заполнено поле Модель !";
 
                 }
 

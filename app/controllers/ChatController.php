@@ -100,7 +100,7 @@ class ChatController extends ControllerBase
 
             $paginator = new Phalcon\Paginator\Adapter\Model(
                 array(
-                    "data" => $chat->getchatmicrodialog(array('order' => 'creation_date DESC')),
+                    "data" => $chat->getchatmicrodialog(),
                     "limit" => 10,
                     "page" => $currentPage
                 )

@@ -154,7 +154,7 @@
 
      <script src="//ulogin.ru/js/ulogin.js"></script>
     <div id="uLogin" data-ulogin="display=panel;fields=first_name,email,photo,city,country;
-    providers=odnoklassniki,mailru,google;
+    providers=odnoklassniki,mailru,vkontakte,facebook;
      redirect_uri=http%3A%2F%2F92.63.99.71%2Fuser%2Fauth;callback=login;">
 
 

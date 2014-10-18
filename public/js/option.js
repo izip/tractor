@@ -1144,7 +1144,10 @@ $(document).ready(function () {
                     $('.right').replaceWith(data);
                     addorder();
                     selects();
+                    $('#date-to-tex , #date-from-tex').datepicker({
+                        orientation:'top left'
 
+                    });
 
                 }
 
@@ -2124,9 +2127,6 @@ $(document).ready(function () {
 
                 dann.micro_id = $('.mess_chat.active').attr('micro-chat-id');
 
-                if ($('.mess_chat.active i').attr('mess-type') == dann.type_mess) {
-                    dann.type_mess = $('.mess_chat.active i').attr('mess-type');
-                }
 
             }
             else if ($('.mess_chat_micro.active').attr('micro-chat-mess-id')) {

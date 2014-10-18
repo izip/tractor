@@ -114,7 +114,7 @@ strong {
 #page {
 
     box-shadow: none !important;
-    min-width: 1200px!important;
+    min-width: 1200px !important;
 
 }
 
@@ -324,7 +324,7 @@ strong {
     background: #fafafa;
 }
 
-.slimScrollDiv{
+.slimScrollDiv {
     position: relative;
     float: left;
     background: #fafafa;
@@ -1604,7 +1604,7 @@ strong {
 .styled_big {
     height: 30px;
     background: #F1F1F1;
-    width: 290px;
+    width: 340px;
     padding: 10px;
 }
 
@@ -2173,7 +2173,7 @@ i.arrow {
 }
 
 .left {
-margin-left: 0;
+    margin-left: 0;
 }
 
 .right {
@@ -2478,7 +2478,7 @@ margin-left: 0;
 }
 
 .fw_box {
-    width: 100% !important;
+    width: 100%;
 }
 
 .pull-right {
@@ -2736,7 +2736,7 @@ margin-left: 0;
 .chat_list .lefted .fa {
 
     font-size: 18px !important;
-    color: red!important;
+    color: red !important;
 }
 
 .chat_list .righted {
@@ -2773,10 +2773,10 @@ margin-left: 0;
 
     font-size: 16px !important;
 
-
 }
+
 .chat_list .fa.active {
-    color:#3fb233 !important;
+    color: #3fb233 !important;
 
 }
 
@@ -2888,31 +2888,30 @@ margin-left: 0;
     width: 100% !important;
 
 }
-.chat_right .add_mess_chat .put_comment ,
+
+.chat_right .add_mess_chat .put_comment,
 .chat_right .add_mess_chat .put_comment {
 
-    margin: 0!important;
+    margin: 0 !important;
 
 }
+
 .chat_right .add_mess_chat #chat_question {
-    float: right!important;
+    float: right !important;
 
     background: red !important;
     display: none;
 
 }
 
-
 .chat_right .chat_add_mess #chat_mess {
 
-    float: right!important;
-    clear: left!important;
-    margin: -28px 0 0 0!important;
+    float: right !important;
+    clear: left !important;
+    margin: -28px 0 0 0 !important;
     background: #57a957 !important;
 
 }
-
-
 
 .chat_right .chat_info {
     display: block;

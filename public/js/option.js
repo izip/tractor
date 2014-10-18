@@ -2120,12 +2120,20 @@ $(document).ready(function () {
 
 
             if ($('.mess_chat.active').attr('micro-chat-id')) {
+
+
                 dann.micro_id = $('.mess_chat.active').attr('micro-chat-id');
+
                 if ($('.mess_chat.active i').attr('mess-type') == dann.type_mess) {
                     dann.type_mess = $('.mess_chat.active i').attr('mess-type');
                 }
 
             }
+            else if ($('.mess_chat_micro.active').attr('micro-chat-mess-id')) {
+
+                dann.micro_id = $('.mess_chat_micro.active').attr('micro-chat-mess-id');
+            }
+
             if ($('.add_mess_chat [name=chat_id]').val()) {
                 dann.chat_id = $('.add_mess_chat [name=chat_id]').val();
 
@@ -2273,7 +2281,9 @@ $(document).ready(function () {
             $(this).addClass('active');
 
             var dann = {};
-            if ($(this).attr('micro-chat-id')) {
+
+
+            if ($(this).attr('micro-chat-id') && $(this).find('.fa').attr('mess-type') == 2) {
                 dann.micro_id = $(this).attr('micro-chat-id');
                 $('.chat_right .chat_add_mess #chat_question').show();
             }
@@ -2281,7 +2291,21 @@ $(document).ready(function () {
 
                 dann.micro_mess_id = $(this).attr('data-mess-id');
                 $('.chat_right .chat_add_mess #chat_question').hide();
+
+                var ts = this;
+                $('.mess_chat').each(function (ind, el) {
+
+                    if ($(ts).attr('micro-chat-mess-id') == $(el).attr('micro-chat-id') && $(el).find('.fa').attr('mess-type') == 2) {
+
+                        $('.chat_right .chat_add_mess #chat_question').show();
+                    }
+
+
+                });
+
+
             }
+
             if (dann.micro_id || dann.micro_mess_id) {
                 $.ajax({
                     type: 'post',

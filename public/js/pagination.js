@@ -17,49 +17,6 @@ pagin = {
         MagicZoomPlus.refresh();
     },
 
-    offers : function() {
-/////////////////// Пагинация предложений
-        if (location.pathname == '/' || location.pathname == '/index/index') {
-
-            var ch = this;
-            $('.left-side').slimScroll({
-                position: 'right',
-                width:($('.left-side').width()+5)+'px',
-                height: $('.left-side').height()-50+'px',
-                wheelStep: 5
-            }).on('slimscroll', function (e, pos) {
-                console.log(pos);
-                if (pos == 'bottom') {
-                    var num = $('.left-side').attr('data-page-num');
-                    var total = $('.left-side').attr('data-page-total');
-                    num = (Number(num) +1);
-
-                    if( num <= total) {
-                        $.ajax({
-                            type: 'post',
-                            url: '../',
-                            data: {up: 'y', page: num},
-                            dataType: 'html',
-                            success: function (html) {
-
-
-                                $('.left-side').append($(html).find('.offer'));
-                                $('.left-side').attr('data-page-num',num);
-                                ch.offers();
-                            }
-
-
-                        });
-
-                    }
-                }
-
-            });
-
-
-        }
-
-    },
     chat : function(){
     /////////////////////Пагинация чата
 
@@ -104,6 +61,49 @@ pagin = {
 
 
     }
+    },
+    offers : function() {
+/////////////////// Пагинация предложений
+        if (location.pathname == '/' || location.pathname == '/index/index') {
+
+            var ch = this;
+            $('.left-side').slimScroll({
+                position: 'right',
+                width:($('.left-side').width()+5)+'px',
+                height: $('.left-side').height()-50+'px',
+                wheelStep: 5
+            }).on('slimscroll', function (e, pos) {
+                console.log(pos);
+                if (pos == 'bottom') {
+                    var num = $('.left-side').attr('data-page-num');
+                    var total = $('.left-side').attr('data-page-total');
+                    num = (Number(num) +1);
+
+                    if( num <= total) {
+                        $.ajax({
+                            type: 'post',
+                            url: '../',
+                            data: {up: 'y', page: num},
+                            dataType: 'html',
+                            success: function (html) {
+
+
+                                $('.left-side').append($(html).find('.offer'));
+                                $('.left-side').attr('data-page-num',num);
+                                ch.offers();
+                            }
+
+
+                        });
+
+                    }
+                }
+
+            });
+
+
+        }
+
     },
 
     chatmicro : function(){

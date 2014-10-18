@@ -2295,7 +2295,8 @@ $(document).ready(function () {
                 var ts = this;
                 $('.mess_chat').each(function (ind, el) {
 
-                    if ($(ts).attr('micro-chat-mess-id') == $(el).attr('micro-chat-id') && $(el).find('.fa').attr('mess-type') == 2) {
+                    if ($(ts).attr('micro-chat-mess-id') == $(el).attr('micro-chat-id') &&
+                        $(el).find('.fa').attr('mess-type') == 2) {
 
                         $('.chat_right .chat_add_mess #chat_question').show();
                     }
@@ -2303,6 +2304,11 @@ $(document).ready(function () {
 
                 });
 
+
+            }
+            else{
+                dann.micro_id = $(this).attr('micro-chat-id');
+                $('.chat_right .chat_add_mess #chat_question').hide();
 
             }
 

@@ -22,7 +22,7 @@
     </ul>
 </div><!-- Left Side HEAD END  -->
 
-			<div class="left-side">
+			<div data-page-total="{{page_total}}" data-page-num="{{page_num}}" class="left-side">
                 <div id="left-side-head-two" class="head">
 
                     <ul>

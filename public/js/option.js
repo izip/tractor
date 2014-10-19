@@ -1413,7 +1413,7 @@ $(document).ready(function () {
 
         setTimeout(function () {
             $('.add-item').click()
-        }, 100);
+        }, 200);
     }
 
     /////// Профиль пользователя

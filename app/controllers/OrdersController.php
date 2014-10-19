@@ -109,7 +109,9 @@ class OrdersController extends ControllerBase
 
         $this->view->setVars(array(
             'cl' => count($page->items),
-            'prop' => $props = (isset($props)) ? $props : false
+            'prop' => $props = (isset($props)) ? $props : false,
+            'page_num' => $page->current,
+            'page_total' => $page->total_pages
 
         ));
 

@@ -197,9 +197,10 @@ class IndexController extends ControllerBase
                 $this->flash->error("Ничего не найдено фильтр сброшен");
 
             }
-            if($page->total_pages == 1){
+
+
                 $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
-            }
+
 
 
 

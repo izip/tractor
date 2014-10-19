@@ -26,8 +26,15 @@ class OrdersController extends ControllerBase
 
 
             if(isset($cat_id) && is_numeric($cat_id)){
-                $zap =  "id = {$cat_id} or id_sub = {$cat_id}";
-                $c_cat = 1;
+                if($this->request->hasPost('sub-cat')){
+                    $zap =  "id = {$cat_id}";
+                    $c_cat = 1;
+                }
+                else{
+                    $zap =  "id = {$cat_id} or id_sub = {$cat_id}";
+                    $c_cat = 1;
+                }
+
 
                 foreach(Categories::find(array("{$zap}")) as $csv )
                 {

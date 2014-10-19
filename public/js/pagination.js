@@ -117,7 +117,16 @@ pagin = {
             $('.left-side').slimScroll({
                 position: 'right',
                 width: ($('.left-side').width() + 5) + 'px',
-                height: $('.left-side').height() - 50 + 'px',
+                height: function(){
+                    if($('.left-side').height() < 400){
+                        return   $('.left-side').height()+ 'px';
+                    }
+                    else{
+                     return   $('.left-side').height() - 50 + 'px';
+                    }
+
+
+                },
                 wheelStep: 5
             }).on('slimscroll', function (e, pos) {
                 console.log(pos);

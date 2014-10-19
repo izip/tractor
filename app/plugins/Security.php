@@ -27,7 +27,7 @@ class Security extends Plugin
 
 
             //Register roles
-            $rol = Role::find();
+            $rol = Role::find(array("cache" => array("key" => "role" )));
 
 
             foreach($rol as $ros) {
@@ -39,7 +39,7 @@ class Security extends Plugin
 			}
 
 
-			foreach (Action::find() as  $actions) {
+			foreach (Action::find(array("cache" => array("key" => "action" ))) as  $actions) {
 				$acl->addResource(new Phalcon\Acl\Resource($actions->controller->name), $actions->name);
 			}
 

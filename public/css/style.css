@@ -3013,3 +3013,8 @@ i.arrow {
 .title_info .fa {
     font-size: 16px;
 }
+
+.addorder .styled_big .twitter-typeahead {
+    float: right;
+    margin:0 25px 0 0;
+}

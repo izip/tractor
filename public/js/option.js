@@ -37,14 +37,8 @@ function autocomplete(name) {
     var substringMatcher = function (strs) {
         return function findMatches(q, cb) {
             var matches, substringRegex;
-
-
             matches = [];
-
-
             substrRegex = new RegExp(q, 'i');
-
-
             $.each(strs, function (i, str) {
                 if (substrRegex.test(str)) {
 
@@ -59,10 +53,11 @@ function autocomplete(name) {
     $.ajax({
         type: 'post',
         url: '../index/autc',
+        dataType:'json',
         success: function (data) {
 
 
-            var city = $.makeArray($.parseJSON(data));
+            var city = $.makeArray(data);
 
 
             $(name).typeahead({
@@ -83,17 +78,17 @@ function autocomplete(name) {
 
 }
 
-// Вывод контактов
+
 $(document).ready(function () {
     // console.log(window.location.hash);
 
     if (window.location.hash == '#add') {
         setTimeout(function () {
             $('.add-item').click()
-        }, 200);
+        }, 100);
     }
 
-
+// Вывод контактов
     $(document).on('click', '.b_contacts', function () {
 
         if (auth()) {
@@ -1160,6 +1155,7 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $('.right').replaceWith(data);
+                    autocomplete("[name=city-tex]");
                     addorder();
                     selects();
                     $('#date-to-tex , #date-from-tex').datepicker({

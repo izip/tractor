@@ -2533,10 +2533,7 @@ i.arrow {
     font-size: 12px;
 }
 
-.offer_edit .twitter-typeahead {
-    left: 25px;
 
-}
 
 .typeahead,
 .tt-query,
@@ -3014,7 +3011,8 @@ i.arrow {
     font-size: 16px;
 }
 
-.addorder .styled_big .twitter-typeahead {
+.addorder .styled_big .twitter-typeahead , .addoffer .styled_big .twitter-typeahead {
     float: right;
-    margin:0 25px 0 0;
+
 }
+

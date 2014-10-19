@@ -130,7 +130,7 @@ try {
         ));
     });
 
-    $di->set('Cache', function () {
+    $di->set('cache', function () {
 
         $ultraFastFrontend = new Phalcon\Cache\Frontend\Data(array(
             "lifetime" => 3600

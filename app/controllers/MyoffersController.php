@@ -383,6 +383,13 @@ class MyoffersController extends ControllerBase
             }
 
             $offer->name = $this->request->getPost('model');
+
+            $md = new Model();
+            $md->name = $this->request->getPost('model');
+            $this->modelsCache->delete("md");
+            $md->save();
+
+
             $offer->user_id = $user_id;
             if ($this->request->hasPost('sub_cat_id')) {
                 $offer->category_id = $this->request->getPost('sub_cat_id');

@@ -120,7 +120,7 @@ class MyordersController extends ControllerBase
         if($this->request->hasPost('cat_id') && $this->request->isAjax()){
 
             $cat_id = $this->request->getPost('cat_id');
-            foreach(Categories::find(array("id_sub = {$cat_id}")) as $categ){
+            foreach(Categories::find(array("id_sub = {$cat_id}" )) as $categ){
                 $sub_cat[$categ->id] = $categ->name;
 
             }
@@ -300,6 +300,12 @@ class MyordersController extends ControllerBase
 
 
                 if ($this->request->hasPost('name-tex')) {
+
+                    $md = new Model();
+                    $md->name = $this->request->getPost('name-tex');
+                    $this->modelsCache->delete("md");
+                    $md->save();
+
                     if($this->request->hasPost('order_id')){
 
                         $dann = DannProposal::findFirst(array("proposal_id = {$prop->id} and field_type_id = 22"));

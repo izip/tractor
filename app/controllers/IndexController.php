@@ -518,16 +518,33 @@ class IndexController extends ControllerBase
 
     }
 
-    public function autcAction()
+    public function cityAction()
     {
         $this->view->disable();
-        foreach (Location::find(array("cache" => array("key" => "autc-key" ))) as $loc) {
+        if($this->request->hasPost('md')){
+            foreach (Model::find(array("cache" => array("key" => "md" ))) as $md) {
 
-            $city[] = $loc->city;
+                $model[] = $md->name;
+
+            }
+            if(!empty($model)){
+                echo json_encode($model);
+            }
+
+
+        }
+        else{
+
+            foreach (Location::find(array("cache" => array("key" => "autc-key" ))) as $loc) {
+
+                $city[] = $loc->city;
+
+            }
+
+            echo json_encode($city);
 
         }
 
-        echo json_encode($city);
     }
 
 }

@@ -33,7 +33,7 @@ function auth() {
 
 
 // Авдополнение городов
-function autocomplete(name) {
+function autocomplete(name , el) {
     var substringMatcher = function (strs) {
         return function findMatches(q, cb) {
             var matches, substringRegex;
@@ -50,9 +50,17 @@ function autocomplete(name) {
         };
     };
 
+    var link =  '../index/city';
+    var dann = {};
+    if(el == 'md'){
+        dann.md = 'y';
+    }
+
+
     $.ajax({
         type: 'post',
-        url: '../index/autc',
+        url: link,
+        data:dann,
         dataType:'json',
         success: function (data) {
 
@@ -615,6 +623,8 @@ $(document).ready(function () {
                     $('.right').replaceWith(data);
 
                     autocomplete("[name=city]");
+                    autocomplete("[name=model]" , "md");
+
 
                     var cat_id = $('[name=cat_id]').val();
 
@@ -834,6 +844,7 @@ $(document).ready(function () {
 
                         $('.right').replaceWith(data);
                         autocomplete("[name=city]");
+
                         selects();
                         addoffer();
 
@@ -1156,6 +1167,7 @@ $(document).ready(function () {
 
                     $('.right').replaceWith(data);
                     autocomplete("[name=city-tex]");
+                    autocomplete("[name=name-tex]" , "md");
                     addorder();
                     selects();
                     $('#date-to-tex , #date-from-tex').datepicker({

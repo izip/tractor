@@ -521,7 +521,7 @@ class IndexController extends ControllerBase
     public function autcAction()
     {
         $this->view->disable();
-        foreach (Location::find(array("cache" => array("lifetime" => 3600, "key" => "autc-key"))) as $loc) {
+        foreach (Location::find(array("cache" => array("key" => "autc-key" ))) as $loc) {
 
             $city[] = $loc->city;
 

@@ -29,6 +29,9 @@ function auth() {
 
 }
 
+
+
+
 // Авдополнение городов
 function autocomplete(name) {
     var substringMatcher = function (strs) {
@@ -83,6 +86,12 @@ function autocomplete(name) {
 // Вывод контактов
 $(document).ready(function () {
     // console.log(window.location.hash);
+
+    if (window.location.hash == '#add') {
+        setTimeout(function () {
+            $('.add-item').click()
+        }, 200);
+    }
 
 
     $(document).on('click', '.b_contacts', function () {
@@ -667,9 +676,7 @@ $(document).ready(function () {
 
         });
 
-        if (window.location.hash == '#add') {
-            $('.add-item').click();
-        }
+
 
 
         // Категории
@@ -1409,12 +1416,7 @@ $(document).ready(function () {
 
     }
 
-    if (window.location.hash == '#add') {
 
-        setTimeout(function () {
-            $('.add-item').click()
-        }, 200);
-    }
 
     /////// Профиль пользователя
     if (location.pathname == '/option') {

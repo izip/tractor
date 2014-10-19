@@ -17,7 +17,7 @@ class OrdersController extends ControllerBase
         if ($this->request->hasPost('od') && $this->request->getPost('od') == 'y') {
             $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
         }
-        $zap ='';
+        $zap = '';
 
         if ($this->request->hasPost('cat_id') && $this->request->isAjax()) {
 
@@ -25,25 +25,23 @@ class OrdersController extends ControllerBase
             $cat_id = $this->request->getPost('cat_id');
 
 
-            if(isset($cat_id) && is_numeric($cat_id)){
-                if($this->request->hasPost('sub-cat')){
-                    $zap =  "id = {$cat_id}";
+            if (isset($cat_id) && is_numeric($cat_id)) {
+                if ($this->request->hasPost('sub-cat')) {
+                    $zap = "id = {$cat_id}";
+                    $c_cat = 1;
+                } else {
+                    $zap = "id = {$cat_id} or id_sub = {$cat_id}";
                     $c_cat = 1;
                 }
-                else{
-                    $zap =  "id = {$cat_id} or id_sub = {$cat_id}";
-                    $c_cat = 1;
-                }
 
 
-                foreach(Categories::find(array("{$zap}")) as $csv )
-                {
+                foreach (Categories::find(array("{$zap}")) as $csv) {
 
-                    $c_cat =$c_cat + $csv->proposal->count();
+                    $c_cat = $c_cat + $csv->proposal->count();
 
                 }
 
-                if( $c_cat == 1){
+                if ($c_cat == 1) {
                     $this->view->disable();
                     echo 1;
                     die();
@@ -51,27 +49,72 @@ class OrdersController extends ControllerBase
             }
         }
 
-            foreach(Categories::find("{$zap}")as $cat){
+        ///////////////// Пагинация
+        if (!empty($_POST['page'])) {
 
-            foreach ($cat->proposal as $prop) {
+            $currentPage = $_POST["page"];
+        } else {
+            $currentPage = 1;
+        }
 
-                foreach ($prop->dannproposal as $dann) {
-                    $props[$prop->id][$dann->fieldtype->id] = $dann->dann;
-                    $props[$prop->id]['cat'] = $prop->categories->name;
 
-                }
+        // Chat::find(array('order' => 'creation_date DESC'))
+        if(empty($zap)){
+            $zaps= '';
+
+        }
+        else {
+            $query = $this->modelsManager->createQuery("SELECT id FROM Categories WHERE " . $zap)
+                ->execute()
+                ->toArray();
+
+            foreach ($query as $f) {
+
+                $cats_id[] = $f['id'];
             }
+
+            // $this->elements->var_print($cats_id);
+
+            $sre = implode(" ,", $cats_id);
+            $zaps = " category_id IN ({$sre})";
+
+            // echo $zaps;
+
+        }
+        $bield = $this->modelsManager->createBuilder()
+            ->from('Proposal')
+            ->where($zaps)
+            ->orderBy('creation_date DESC');
+
+        $paginator = new Phalcon\Paginator\Adapter\QueryBuilder(
+            array(
+                "builder" => $bield,
+                "limit" => 10,
+                "page" => $currentPage
+            )
+        );
+
+        $page = $paginator->getPaginate();
+
+
+        foreach ($page->items as $prop) {
+
+            foreach ($prop->dannproposal as $dann) {
+                $props[$prop->id][$dann->fieldtype->id] = $dann->dann;
+                $props[$prop->id]['cat'] = $prop->categories->name;
+
             }
+        }
 
-            $this->view->setVars(array(
-                'cl' => count($cat->proposal),
-                'prop' => $props = (isset($props)) ? $props :false
 
-            ));
+        $this->view->setVars(array(
+            'cl' => count($page->items),
+            'prop' => $props = (isset($props)) ? $props : false
+
+        ));
 
 
     }
-
 
 
     public function orderAction()
@@ -99,8 +142,8 @@ class OrdersController extends ControllerBase
 
 
                 $this->view->setVars(array(
-                    'user_name' => $user = (isset($prop->user->first_name))? $prop->user->first_name: false,
-                    'user_id' => $user_id = (isset($prop->user->id))? $prop->user->id: false,
+                    'user_name' => $user = (isset($prop->user->first_name)) ? $prop->user->first_name : false,
+                    'user_id' => $user_id = (isset($prop->user->id)) ? $prop->user->id : false,
                     'order_id' => $pr = (isset($prop->id)) ? $prop->id : false,
                     'order' => $order = (isset($order)) ? $order : false,
                     'order_name' => $name = (isset($prop->name)) ? $prop->name : false,

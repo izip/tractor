@@ -263,7 +263,7 @@ $(document).ready(function () {
 
                                             $('.right').replaceWith(data);
                                             $('.offer').eq(0).addClass('active');
-                                            pagin.scroll();
+                                            pagin.offers();
                                             $('#left-side-head').scrollToFixed();
 
 
@@ -960,6 +960,9 @@ $(document).ready(function () {
 ////Вывод заявок
     if (location.pathname == '/orders') {
 
+
+
+        ////////////// Меню заявок
         $(document).on('click', "#cat_menu li a , #sub_cat_menu li a", function () {
 
             var dann = {};

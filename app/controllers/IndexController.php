@@ -195,11 +195,13 @@ class IndexController extends ControllerBase
 
             if (strlen($inClause) == 0) {
                 $this->flash->error("Ничего не найдено фильтр сброшен");
-
+                $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
             }
 
+                if($currentPage <= 1){
+                    $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
+                }
 
-                $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
 
 
 

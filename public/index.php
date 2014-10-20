@@ -74,6 +74,22 @@ try {
     });
 
 
+    $di->set('viewCache', function() {
+
+        // Кэширование данных на сутки по умолчанию
+        $frontCache = new Phalcon\Cache\Frontend\Output(array(
+            "lifetime" => 86400
+        ));
+
+        // Настройки соединения с Memcached
+        $cache = new Phalcon\Cache\Backend\Apc($frontCache, array(
+
+        ));
+
+        return $cache;
+    });
+
+
     $di->set('volt', function ($view, $di) {
 
         $volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
@@ -156,7 +172,7 @@ try {
             )),
             new Phalcon\Cache\Backend\File($slowFrontend, array(
                 "prefix" => 'file_cache',
-                "cacheDir" => "../cache/file"
+                "cacheDir" => "../cache/file/"
             ))
         ));
 

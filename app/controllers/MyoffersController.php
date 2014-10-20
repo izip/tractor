@@ -55,6 +55,8 @@ class MyoffersController extends ControllerBase
             "off" => $off = (isset($off)) ? $off : false
         ));
 
+
+
     }
 
 
@@ -142,6 +144,8 @@ class MyoffersController extends ControllerBase
         }
 
 
+
+
     }
 
     public function subcatAction()
@@ -161,6 +165,13 @@ class MyoffersController extends ControllerBase
                 'sub_cat' => $sub_cat = (isset($sub_cat)) ? $sub_cat : false
 
             ));
+
+            $this->view->cache(
+                array(
+                    "lifetime" => 86400,
+                    "key"      => "offer",
+                )
+            );
         }
     }
 
@@ -182,6 +193,13 @@ class MyoffersController extends ControllerBase
                 'cat' => $cat = (isset($cat)) ? $cat : false,
                 'c' => $c = ($this->request->hasPost('c')) ? $this->request->getPost('c') : false
             ));
+
+            $this->view->cache(
+                array(
+                    "lifetime" => 86400,
+                    "key"      => "offer",
+                )
+            );
         }
     }
 
@@ -223,6 +241,13 @@ class MyoffersController extends ControllerBase
                 'sub_cat' => $sub_cat = (isset($sub_cat)) ? $sub_cat : false,
                 'cat' => $category = (isset($category)) ? $category : false
             ));
+
+            $this->view->cache(
+                array(
+                    "lifetime" => 86400,
+                    "key"      => "offer",
+                )
+            );
 
         }
 

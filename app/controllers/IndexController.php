@@ -26,11 +26,10 @@ class IndexController extends ControllerBase
             $cat_id = $this->request->getPost('cat_id');
         }
 
-        if(!empty($_POST['page'])){
+        if (!empty($_POST['page'])) {
 
             $currentPage = $_POST["page"];
-        }
-        else{
+        } else {
             $currentPage = 1;
         }
 
@@ -171,7 +170,7 @@ class IndexController extends ControllerBase
             $paginator = new Phalcon\Paginator\Adapter\Model(
                 array(
                     "data" => Offers::find(array("{$inClause}", 'order' => 'creation_date DESC')),
-                    "limit"=> 10,
+                    "limit" => 10,
                     "page" => $currentPage
                 )
             );
@@ -198,21 +197,17 @@ class IndexController extends ControllerBase
                 $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
             }
 
-                if($currentPage <= 1){
-                    $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
-                }
-
-
-
+            if ($currentPage <= 1) {
+                $this->modelsCache->delete('filter-' . $this->session->get('user_id'));
+            }
 
 
         } else {
             $zap = 0;
             if (isset($cat_id) && is_numeric($cat_id)) {
-                if($this->request->getPost('sub_cat') =='y'){
+                if ($this->request->getPost('sub_cat') == 'y') {
                     $zap = "id = {$cat_id}";
-                }
-                else{
+                } else {
                     $zap = "id = {$cat_id} or id_sub = {$cat_id}";
                 }
 
@@ -231,24 +226,23 @@ class IndexController extends ControllerBase
             }
 
             ///////////////////// Пагинация
+            $this->cache->save('zap', $zap);
 
+            if (empty($zap)) {
+                $zaps = '';
 
-            if(empty($zap)){
-                $zaps= '';
-
-            }
-            else{
-                $query = $this->modelsManager->createQuery("SELECT id FROM Categories WHERE ".$zap)
+            } else {
+                $query = $this->modelsManager->createQuery("SELECT id FROM Categories WHERE " . $zap)
                     ->execute()
                     ->toArray();
 
-                foreach($query as $f){
+                foreach ($query as $f) {
 
                     $cats_id[] = $f['id'];
                 }
-               // $this->elements->var_print($hj);
-               $sre  = implode(" ," ,$cats_id);
-            $zaps = " category_id IN ({$sre})";
+                // $this->elements->var_print($hj);
+                $sre = implode(" ,", $cats_id);
+                $zaps = " category_id IN ({$sre})";
 
             }
 
@@ -256,39 +250,38 @@ class IndexController extends ControllerBase
             $bield = $this->modelsManager->createBuilder()
                 ->from('Offers')
                 ->where($zaps)
-            ->orderBy('creation_date DESC');
-
+                ->orderBy('creation_date DESC');
 
 
             $paginator = new Phalcon\Paginator\Adapter\QueryBuilder(
                 array(
                     "builder" => $bield,
-                    "limit"=> 10,
+                    "limit" => 10,
                     "page" => $currentPage
                 )
             );
             $page = $paginator->getPaginate();
 
 
-                foreach ($page->items as $offers) {
+            foreach ($page->items as $offers) {
 
-                    if (isset($offers->image)) {
-                        $im = 1;
-                    } else {
-                        $im = 0;
-                    }
-
-                    // Выдавать в таком виде результат
-                    $off[$offers->id]['name'] = array($offers->name, $im, $offers->status, $offers->user->phone, $offers->categories->name);
-
-                    foreach ($offers->dannoffers as $dan) {
-
-
-                        $off[$offers->id][$dan->fieldtype->id] = $dan->dann;
-
-
-                    }
+                if (isset($offers->image)) {
+                    $im = 1;
+                } else {
+                    $im = 0;
                 }
+
+                // Выдавать в таком виде результат
+                $off[$offers->id]['name'] = array($offers->name, $im, $offers->status, $offers->user->phone, $offers->categories->name);
+
+                foreach ($offers->dannoffers as $dan) {
+
+
+                    $off[$offers->id][$dan->fieldtype->id] = $dan->dann;
+
+
+                }
+            }
 
         }
 
@@ -523,21 +516,20 @@ class IndexController extends ControllerBase
     public function cityAction()
     {
         $this->view->disable();
-        if($this->request->hasPost('md')){
-            foreach (Model::find(array("cache" => array("key" => "md" ))) as $md) {
+        if ($this->request->hasPost('md')) {
+            foreach (Model::find(array("cache" => array("key" => "md"))) as $md) {
 
                 $model[] = $md->name;
 
             }
-            if(!empty($model)){
+            if (!empty($model)) {
                 echo json_encode($model);
             }
 
 
-        }
-        else{
+        } else {
 
-            foreach (Location::find(array("cache" => array("key" => "autc-key" ))) as $loc) {
+            foreach (Location::find(array("cache" => array("key" => "autc-key"))) as $loc) {
 
                 $city[] = $loc->city;
 

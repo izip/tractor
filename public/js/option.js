@@ -1175,8 +1175,8 @@ $(document).ready(function () {
                     addorder();
                     selects();
                     $('#date-to-tex , #date-from-tex').datepicker({
-                        orientation:'top left'
-
+                        orientation:'top left',
+                        format:"yyyy-mm-dd"
                     });
 
                 }
@@ -1288,6 +1288,10 @@ $(document).ready(function () {
                     autocomplete("[name=name-tex]" , "md");
                     addorder();
                     selects();
+                    $('#date-to-tex , #date-from-tex').datepicker({
+                        orientation:'top left',
+                        format:"yyyy-mm-dd"
+                    });
                 }
 
             });

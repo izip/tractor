@@ -134,7 +134,7 @@
 								</span>
 								<span class="edit_desc fix pull-right">
                                   {%if date_from is defined%}
-                     {{text_field('date-from-tex' , 'value':date_from ,'class':'editors','placeholder': '30.03.2013')}}
+                     {{text_field('date-from-tex' ,  'value':date_from ,'class':'editors','placeholder': '30.03.2013')}}
                         {%else%}
                  {{text_field('date-from-tex' , 'class':'editors','placeholder': '30.03.2013')}}
                         {%endif%}

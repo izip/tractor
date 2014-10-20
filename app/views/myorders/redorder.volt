@@ -89,7 +89,7 @@
 
                     </label>
 
-                    <div class="styled_big fw_box no_bg">
+                    <div class="styled_big  no_bg">
 								<span class="edit_desc">
 									Цена
 								</span>
@@ -128,7 +128,7 @@
 
 								</span>
                     </div>
-                    <div class="styled_big fw_box no_bg">
+                    <div class="styled_big  no_bg">
 								<span class="edit_desc">
 									Сроки
 								</span>

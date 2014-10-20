@@ -844,6 +844,7 @@ $(document).ready(function () {
 
                         $('.right').replaceWith(data);
                         autocomplete("[name=city]");
+                        autocomplete("[name=model]" , "md");
 
                         selects();
                         addoffer();
@@ -1283,6 +1284,8 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $('.right').replaceWith(data);
+                    autocomplete("[name=city-tex]");
+                    autocomplete("[name=name-tex]" , "md");
                     addorder();
                     selects();
                 }

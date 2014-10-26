@@ -16,6 +16,7 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
+
         if ($this->request->hasPost('up')) {
             $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 

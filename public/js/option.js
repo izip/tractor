@@ -29,7 +29,62 @@ function auth() {
 
 }
 
+///Функция вывода ошибок
+function generate(text, type) {
+    var n = noty({
+        text: text,
+        type: type,
+        dismissQueue: true,
+        modal: true,
+        layout: 'topLeft',
+        theme: 'defaultTheme',
+        maxVisible: 10
+    });
+    //  console.log('html: ' + n.options.id);
+    setTimeout(function () {
+        n.close();
+    }, 2000);
+}
 
+$(document).ready(function () {
+// Перехват информациооных сообщений
+//Ошибки
+    if ($("div").is(".alert-error")) {
+
+        var err = $(".alert-error").text();
+        $(".alert-error").remove();
+        generate(err, "error");
+
+
+    }
+
+    if ($("div").is(".errorMessage")) {
+        var err = $(".errorMessage").text();
+        $(".errorMessage").remove();
+        generate(err, "error");
+
+    }
+
+// Подтверждения
+
+    if ($("div").is(".alert-success")) {
+
+        var success = $(".alert-success").text();
+        $(".alert-success").remove();
+        generate(success, "success");
+
+
+    }
+
+    if ($("div").is(".successMessage")) {
+        var success = $(".successMessage").text();
+        $(".successMessage").remove();
+        generate(success, "success");
+
+    }
+
+
+});
 
 
 // Авдополнение городов
@@ -1497,62 +1552,7 @@ $(document).ready(function () {
 
 });
 
-///Функция вывода ошибок
-function generate(text, type) {
-    var n = noty({
-        text: text,
-        type: type,
-        dismissQueue: true,
-        modal: true,
-        layout: 'topLeft',
-        theme: 'defaultTheme',
-        maxVisible: 10
-    });
-    //  console.log('html: ' + n.options.id);
-    setTimeout(function () {
-        n.close();
-    }, 2000);
-}
 
-$(document).ready(function () {
-// Перехват информациооных сообщений
-//Ошибки
-    if ($("div").is(".alert-error")) {
-
-        var err = $(".alert-error").text();
-        $(".alert-error").remove();
-        generate(err, "error");
-
-
-    }
-
-    if ($("div").is(".errorMessage")) {
-        var err = $(".errorMessage").text();
-        $(".errorMessage").remove();
-        generate(err, "error");
-
-    }
-
-// Подтверждения
-
-    if ($("div").is(".alert-success")) {
-
-        var success = $(".alert-success").text();
-        $(".alert-success").remove();
-        generate(success, "success");
-
-
-    }
-
-    if ($("div").is(".successMessage")) {
-        var success = $(".successMessage").text();
-        $(".successMessage").remove();
-        generate(success, "success");
-
-    }
-
-
-});
 
 //if(location.pathname == '/user/auth'){
 //$.ajax({
@@ -1731,8 +1731,9 @@ $(document).on("click", "#auth_phone", function () {
             type: "post",
             url: "/user/auth_phone",
             data: zap_phone,
+            dataType:'json',
             success: function (data) {
-                var mess = $.parseJSON(data);
+                var mess = data;
                 console.log(data);
                 if (mess.error) {
                     generate(mess.error, 'error');
@@ -1741,6 +1742,9 @@ $(document).on("click", "#auth_phone", function () {
                 else if (mess.success) {
 
                     generate(mess.success, 'success');
+                    setTimeout(function () {
+                        location.href = '../';
+                    }, 1000);
                     $('#auth-phoneForm').find('.phone_step').removeClass('phone_step').addClass('phone_step2');
 
 

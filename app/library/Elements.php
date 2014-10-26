@@ -67,6 +67,7 @@ class Elements extends Phalcon\Mvc\User\Component
 
     public function sms_send ($phone , $mess) {
 
+        $phone =  str_replace(array('+','(',')','-' , " ") , array('') , $phone);
 
         $zapr = array ('login'=>'raidhon', 'psw'=>'rt45rt46rt47' , 'phones'=> $phone , 'mes' =>$mess ,'charset'=>'UTF-8');
         $zapr = http_build_query($zapr);
